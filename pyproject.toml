@@ -1,0 +1,10 @@
+[project]
+name = "portfolio"
+version = "0.1.0"
+description = "My portfolio"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "textual>=6.1.0",
+    "textual-serve>=1.1.2",
+]
