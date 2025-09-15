@@ -2,13 +2,23 @@ from textual.app import App
 from textual.screen import Screen
 from textual.widgets import Footer, Header, Static, Input, Button, Log, Label, ProgressBar
 
+from markdown import MD
+
 class HomeScreen(Screen):
+
+    CSS = """
+    """
     def compose(self):
         yield Label("GHLEN'S PORTFOLIO")
         yield Button("Try message", id="goto-message")
+        yield Button("Try Markdown", id="goto-markdown")
+
 
     def on_button_pressed(self, event):
-        self.app.switch_screen("message")
+        if event.button.id == "goto-markdown":
+             self.app.switch_screen("markdown")
+        if event.button.id == "goto-message":
+            self.app.switch_screen("message")
 
 class MessageScreen(Screen):
     CSS = """
@@ -43,6 +53,7 @@ class Portfolio(App):
 
         self.install_screen(HomeScreen(), name="home")
         self.install_screen(MessageScreen(), name="message")
+        self.install_screen(MD(), name="markdown")
 
         self.timer = self.set_interval(0.1, self.update_progress)
 
