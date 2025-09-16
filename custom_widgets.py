@@ -12,8 +12,8 @@ class Link(Static):
         color: orange;
     }
     """
-    def __init__(self, text:str , target:str): # 'target' is for screen switching reference
-        super().__init__(text)
+    def __init__(self, text: str, target: str, id: str): # 'target' is for screen switching reference
+        super().__init__(text, id=id)
         self.target = target
 
     def on_click(self, events: Click):
