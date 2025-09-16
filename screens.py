@@ -1,6 +1,7 @@
 from textual.containers import Container, Horizontal, Vertical
 from textual.widgets import Static, Input, Button, Log, ProgressBar
 from textual.screen import Screen
+from textual_image.widget import Image
 
 from custom_widgets import Link 
  
@@ -46,7 +47,7 @@ class MenuScreen(Screen):
     #logo {
         align: center middle;
     }
-    #about-me {
+    Link {
         margin-top: 2;
     }
     """
@@ -55,6 +56,7 @@ class MenuScreen(Screen):
             Vertical(
                 Static(LOGO, id="logo"),
                 Link("About Me", "message", id="about-me"),
+                Link("Projects", "test-image", id="test-image"),
                 id="center-stack"
             )
         )
@@ -84,4 +86,13 @@ class MessageScreen(Screen):
         if event.button.id == "go-back":
             self.app.switch_screen(MenuScreen())
 
+class TestImageScreen(Screen):
+    CSS = """ 
+    Image {
+        width: 60;
+        height: 30;
+    }
+        """
 
+    def compose(self):
+        yield Image("z.jpg")
