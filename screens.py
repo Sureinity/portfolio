@@ -1,7 +1,7 @@
 from textual.containers import Container, Horizontal, Vertical
-from textual.widgets import Static, Input, Button, Log, ProgressBar
+from textual.widgets import Static, Input, Button, Log, ProgressBar, TabbedContent, TabPane, Markdown
 from textual.screen import Screen
-from textual_image.widget import Image
+from pathlib import Path
 
 from custom_widgets import Link 
  
@@ -13,6 +13,13 @@ LOGO = """
 ██║  ██║███████╗███████╗███████╗╚██████╔╝
 ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝ 
     """
+
+def load_md(filename: str):
+    content_path = Path(__file__).parent / "md" / f"{filename}.md"
+    try:
+        return content_path.read_text()
+    except FileNotFoundError:
+        return f"# Error\n\nCould not find `{content_path}`."
 
 class LoadingScreen(Screen):
     def compose(self):
@@ -36,7 +43,6 @@ class MenuScreen(Screen):
         align: center middle;
     }
     Container {
-        border: green;
         width: auto;
         height: auto;
         align: center middle;
@@ -55,44 +61,21 @@ class MenuScreen(Screen):
         yield Container(
             Vertical(
                 Static(LOGO, id="logo"),
-                Link("About Me", "message", id="about-me"),
-                Link("Projects", "test-image", id="test-image"),
+                Link("About Me", "about-me", id="about-me"),
                 id="center-stack"
             )
         )
        
-
-
-class MessageScreen(Screen):
+class AboutMeScreen(Screen):
     CSS = """
-    Log {
-        border: heavy green;  /* border style + color */
-        padding: 1;           /* optional inner spacing */
-        height: 10;           /* optional fixed height */
-    }
-    """
-
-    def compose(self):
-        yield Input(placeholder="Enter message...", id="message-input")
-        yield Log(id="log-container")
-        yield Button("Send", id="button-send")
-        yield Button("Go Back to Menu", id="go-back")
-
-    def on_button_pressed(self, event):
-        if event.button.id == "button-send":
-            input = self.query_one("#message-input", Input)
-            log = self.query_one("#log-container", Log)
-            log.write(f"{input.value}\n")
-        if event.button.id == "go-back":
-            self.app.switch_screen(MenuScreen())
-
-class TestImageScreen(Screen):
-    CSS = """ 
-    Image {
-        width: 60;
-        height: 30;
-    }
         """
-
     def compose(self):
-        yield Image("z.jpg")
+        with TabbedContent(initial="about-me"):
+            with TabPane("About Me", id="about-me"):
+                yield Markdown(load_md("about-me"))
+            with TabPane("Skills", id="skills"):
+                yield Markdown(load_md("skills"))
+            with TabPane("Projects", id="project"):
+                 yield Markdown(load_md("projects"))
+            with TabPane("Contact", id="contact"):
+                 yield Markdown(load_md("contact"))
