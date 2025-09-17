@@ -1,7 +1,7 @@
 from textual.app import App
 from textual.widgets import ProgressBar
 
-from screens import LoadingScreen, MenuScreen, MessageScreen, TestImageScreen
+from screens import LoadingScreen, MenuScreen, AboutMeScreen
 
 class Portfolio(App):
     def compose(self):
@@ -10,8 +10,7 @@ class Portfolio(App):
     def on_mount(self):
         self.install_screen(LoadingScreen(), name="splash")
         self.install_screen(MenuScreen(), name="menu")
-        self.install_screen(MessageScreen(), name="message")
-        self.install_screen(TestImageScreen(), name="test-image")
+        self.install_screen(AboutMeScreen(), name="about-me")
 
         self.push_screen("splash")
 
