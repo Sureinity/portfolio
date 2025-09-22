@@ -4,6 +4,8 @@ from textual.widgets import ProgressBar
 from screens import LoadingScreen, MenuScreen, AboutMeScreen
 
 class Portfolio(App):
+    ENABLE_COMMAND_PALETTE = False
+
     def compose(self):
         yield ProgressBar(id="loading-bar", total=100, show_eta=False)
 

@@ -1,5 +1,5 @@
 from textual.containers import Container, Horizontal, Vertical
-from textual.widgets import Static, Input, Button, Log, ProgressBar, TabbedContent, TabPane, Markdown
+from textual.widgets import Static, Input, Button, Log, ProgressBar, TabbedContent, TabPane, Markdown, Footer, Header
 from textual.screen import Screen
 from pathlib import Path
 
@@ -69,8 +69,14 @@ class MenuScreen(Screen):
 class AboutMeScreen(Screen):
     CSS = """
         """
+
+    BINDINGS = [
+        ("q", "switch_tab('previous')", "Previous"),
+        ("e", "switch_tab('next')", "Next"),
+    ]
     def compose(self):
-        with TabbedContent(initial="about-me"):
+        yield Footer()
+        with TabbedContent(initial="about-me", id="main-tab"):
             with TabPane("About Me", id="about-me"):
                 yield Markdown(load_md("about-me"))
             with TabPane("Skills", id="skills"):
@@ -79,3 +85,18 @@ class AboutMeScreen(Screen):
                  yield Markdown(load_md("projects"))
             with TabPane("Contact", id="contact"):
                  yield Markdown(load_md("contact"))
+        yield Static(id="test")
+
+    def action_switch_tab(self, direction: str):
+        tab = self.query_one("#main-tab", TabbedContent)
+        tabs = [pane.id for pane in self.query(TabPane)]
+
+        counter = tabs.index(tab.active)
+        max_counter = len(tabs)
+
+        if direction == "next":
+            counter = (counter + 1) % max_counter
+        elif direction == "previous":
+            counter = (counter - 1) % max_counter
+
+        tab.active = tabs[counter]
