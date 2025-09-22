@@ -1,9 +1,12 @@
-from textual.containers import Container, Horizontal, Vertical
+from textual.containers import Container, Horizontal, Vertical, ItemGrid
 from textual.widgets import Static, Input, Button, Log, ProgressBar, TabbedContent, TabPane, Markdown, Footer, Header
 from textual.screen import Screen
 from pathlib import Path
 
-from custom_widgets import Link 
+from custom_widgets import Link, ProjectCard
+
+from _projects import MY_PROJECTS
+
  
 LOGO = """
 ██╗  ██╗███████╗██╗     ██╗      ██████╗ 
@@ -68,8 +71,24 @@ class MenuScreen(Screen):
        
 class AboutMeScreen(Screen):
     CSS = """
-        """
+    ProjectCard {
+        border: round green;
+        padding: 1 2;
+        margin: 1;
+        background: $panel;
+    }
 
+    ProjectCard Label {
+        text-style: bold;
+        color: $text;
+    }
+
+    ProjectCard:hover, ProjectCard:focus {
+        background: $boost;
+        color: orange;
+        border: round orange;
+    }
+    """
     BINDINGS = [
         ("q", "switch_tab('previous')", "Previous"),
         ("e", "switch_tab('next')", "Next"),
@@ -82,7 +101,9 @@ class AboutMeScreen(Screen):
             with TabPane("Skills", id="skills"):
                 yield Markdown(load_md("skills"))
             with TabPane("Projects", id="project"):
-                 yield Markdown(load_md("projects"))
+                with ItemGrid(min_column_width=40):
+                    for project in MY_PROJECTS:
+                        yield ProjectCard(project)
             with TabPane("Contact", id="contact"):
                  yield Markdown(load_md("contact"))
         yield Static(id="test")
