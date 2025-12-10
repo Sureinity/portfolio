@@ -1,0 +1,122 @@
+# Laravel Framework
+/vendor/
+/node_modules/
+/public/hot
+/public/storage
+/storage/*.key
+/storage/app/public/*
+!/storage/app/public/.gitkeep
+/storage/framework/cache/data/*
+!/storage/framework/cache/data/.gitkeep
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitkeep
+/storage/framework/testing/*
+!/storage/framework/testing/.gitkeep
+/storage/framework/views/*
+!/storage/framework/views/.gitkeep
+/storage/logs/*
+!/storage/logs/.gitkeep
+/bootstrap/cache/*
+!/bootstrap/cache/.gitkeep
+
+# Environment Configuration
+.env
+.env.backup
+.env.production
+.env.local
+.env.*.local
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Composer
+composer.phar
+/vendor/
+composer.lock
+
+# NPM/Yarn
+/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Build and Cache
+/public/build/
+/public/mix-manifest.json
+/public/css/
+/public/js/
+*.cache
+
+# Testing
+/coverage/
+.phpunit.result.cache
+.phpunit.cache
+
+# Logs
+*.log
+/storage/logs/
+laravel.log
+
+# Database
+*.sqlite
+*.sqlite3
+database.sqlite
+
+# Backup files
+*.bak
+*.backup
+*.tmp
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# PHP Storm
+.idea/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/
+
+# Vim
+*.swp
+*.swo
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Laravel Specific
+/public/storage
+/storage/app/public
+Homestead.json
+Homestead.yaml
+.vagrant/
+.phpunit.result.cache
+
+# Portfolio Specific
+# Add any custom files you don't want to track
+/screenshots/
+/docs/private/

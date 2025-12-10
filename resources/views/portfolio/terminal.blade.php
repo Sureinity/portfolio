@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Portfolio</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23111111'/><rect x='2' y='2' width='28' height='28' rx='3' fill='%23000000' stroke='%234CC2FF' stroke-width='1'/><rect x='3' y='3' width='26' height='4' fill='%23333333'/><circle cx='6' cy='5' r='1' fill='%23ff5f56'/><circle cx='9' cy='5' r='1' fill='%23ffbd2e'/><circle cx='12' cy='5' r='1' fill='%2327ca3f'/><text x='5' y='15' font-family='monospace' font-size='6' fill='%234CC2FF'>$</text><rect x='8' y='12' width='6' height='1' fill='%234CC2FF'/><rect x='5' y='20' width='2' height='4' fill='%234CC2FF' opacity='0.8'/></svg>" type="image/svg+xml">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #0D0D0D;
+            color: #E5E5E5;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .terminal-container {
+            height: 100vh;
+            background: linear-gradient(135deg, #0D0D0D 0%, #111111 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: #1e1e1e;
+            padding: 8px 16px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .close { background: #ff5f56; }
+        .minimize { background: #ffbd2e; }
+        .maximize { background: #27ca3f; }
+
+        .terminal-title {
+            color: #888;
+            font-size: 12px;
+            margin-left: 12px;
+        }
+
+        .terminal-content {
+            height: 100vh;
+            padding: 20px;
+            overflow-y: auto;
+            position: relative;
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+
+        .terminal-content::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+        }
+
+        .boot-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #0D0D0D;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .boot-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .ascii-art {
+            color: #4CC2FF;
+            font-size: clamp(6px, 1.5vw, 12px);
+            line-height: 1.1;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #4CC2FF;
+            white-space: pre;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .boot-text {
+            color: #888;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
+        }
+
+        .terminal-output {
+            min-height: calc(100vh - 80px);
+            padding-bottom: 20px;
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+
+        .terminal-output::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+        }
+
+        .output-line {
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .prompt {
+            color: #4CC2FF;
+            text-shadow: 0 0 5px #4CC2FF;
+        }
+
+        .command {
+            color: #ffffff;
+        }
+
+        .output {
+            color: #B3B3B3;
+            margin-left: 0;
+            white-space: pre-wrap;
+        }
+
+        .error {
+            color: #ff6b6b;
+        }
+
+        .success {
+            color: #51cf66;
+        }
+
+        .info {
+            color: #74c0fc;
+        }
+
+        .input-line {
+            display: flex;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .input-prompt {
+            color: #4CC2FF;
+            text-shadow: 0 0 5px #4CC2FF;
+            margin-right: 8px;
+        }
+
+        #command-input {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: inherit;
+            outline: none;
+            flex: 1;
+            caret-color: #4CC2FF;
+            caret-shape: block;
+        }
+
+        /* Hide default caret and prepare for custom cursor */
+        #command-input {
+            caret-color: transparent;
+            position: relative;
+        }
+        
+        /* Custom block cursor */
+        .custom-cursor {
+            position: absolute;
+            width: 8px;
+            height: 16px;
+            background: #4CC2FF;
+            animation: blink 1s infinite;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #00ff41;
+            white-space: nowrap;
+            animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #00ff41; }
+        }
+
+        .welcome-banner {
+            color: #4CC2FF;
+            text-shadow: 0 0 10px #4CC2FF;
+            margin-bottom: 20px;
+            font-size: 12px;
+            line-height: 1.3;
+        }
+
+        .section-title {
+            color: #7EE787;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-decoration: underline;
+        }
+
+        .section-content {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .skill-category {
+            margin-bottom: 4px;
+        }
+
+        .skill-category strong {
+            color: #7EE787;
+        }
+
+        .skill-icon {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 6px 0 4px;
+            filter: brightness(0.9);
+        }
+
+        .skill-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .skill-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 4px;
+        }
+
+        .skill-list {
+            margin-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .skill-list div {
+            margin-bottom: 2px;
+        }
+
+        .project-item {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            border-left: 2px solid #333;
+        }
+
+        .project-title {
+            color: #4CC2FF;
+            font-weight: 700;
+        }
+
+        .project-tech {
+            color: #888;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 1200px) {
+            .ascii-art {
+                font-size: clamp(5px, 1.2vw, 10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .terminal-content {
+                padding: 15px;
+                font-size: 14px;
+            }
+            
+            .ascii-art {
+                font-size: clamp(4px, 1vw, 8px);
+                line-height: 1.0;
+                transform: scaleX(0.9);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ascii-art {
+                font-size: clamp(3px, 0.8vw, 6px);
+                line-height: 0.9;
+                transform: scaleX(0.8);
+            }
+            
+            .boot-screen {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+
+
+        <div class="boot-screen" id="bootScreen">
+            <div class="ascii-art">
+██████╗  ██████╗ ██████╗ ████████╗███████╗ ██████╗ ██╗     ██╗ ██████╗ 
+██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██║     ██║██╔═══██╗
+██████╔╝██║   ██║██████╔╝   ██║   █████╗  ██║   ██║██║     ██║██║   ██║
+██╔═══╝ ██║   ██║██╔══██╗   ██║   ██╔══╝  ██║   ██║██║     ██║██║   ██║
+██║     ╚██████╔╝██║  ██║   ██║   ██║     ╚██████╔╝███████╗██║╚██████╔╝
+╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚══════╝╚═╝ ╚═════╝ 
+            </div>
+            <div class="boot-text">
+                <span class="loading-dots">Initializing terminal</span>
+            </div>
+        </div>
+
+        <div class="terminal-content">
+            <div class="terminal-output" id="output"></div>
+            <div class="input-line">
+                <span class="input-prompt">visitor@portfolio:~$</span>
+                <div style="position: relative; flex: 1;">
+                    <input type="text" id="command-input" autocomplete="off" spellcheck="false">
+                    <span class="custom-cursor" id="cursor"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class TerminalPortfolio {
+            constructor() {
+                this.output = document.getElementById('output');
+                this.input = document.getElementById('command-input');
+                this.cursor = document.getElementById('cursor');
+                this.bootScreen = document.getElementById('bootScreen');
+                
+                this.commandHistory = [];
+                this.historyIndex = -1;
+                this.currentCommand = '';
+                
+                this.commands = {
+                    help: this.showHelp.bind(this),
+                    about: this.showAbout.bind(this),
+                    projects: this.showProjects.bind(this),
+                    skills: this.showSkills.bind(this),
+                    contact: this.showContact.bind(this),
+                    clear: this.clearTerminal.bind(this),
+                    welcome: this.showWelcome.bind(this)
+                };
+
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.bootSequence();
+            }
+
+            bootSequence() {
+                setTimeout(() => {
+                    this.bootScreen.classList.add('hidden');
+                    setTimeout(() => {
+                        this.showWelcome();
+                        this.input.focus();
+                    }, 500);
+                }, 3000);
+            }
+
+            setupEventListeners() {
+                this.input.addEventListener('keydown', this.handleKeyDown.bind(this));
+                this.input.addEventListener('input', this.handleInput.bind(this));
+                this.input.addEventListener('keyup', this.updateCursorPosition.bind(this));
+                this.input.addEventListener('click', this.updateCursorPosition.bind(this));
+                this.input.addEventListener('focus', this.updateCursorPosition.bind(this));
+                
+                // Global keyboard shortcuts
+                document.addEventListener('keydown', (e) => {
+                    if (e.ctrlKey && e.key === 'l') {
+                        e.preventDefault();
+                        this.clearTerminal();
+                    }
+                });
+
+                // Keep input focused and visible
+                document.addEventListener('click', () => {
+                    this.input.focus();
+                    this.ensureInputVisible();
+                });
+                
+                // Initial cursor position
+                this.updateCursorPosition();
+            }
+
+            handleKeyDown(e) {
+                switch(e.key) {
+                    case 'Enter':
+                        e.preventDefault();
+                        this.executeCommand();
+                        break;
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        this.navigateHistory(-1);
+                        break;
+                    case 'ArrowDown':
+                        e.preventDefault();
+                        this.navigateHistory(1);
+                        break;
+                    case 'Tab':
+                        e.preventDefault();
+                        this.autocomplete();
+                        break;
+                }
+            }
+
+            handleInput(e) {
+                this.currentCommand = e.target.value;
+            }
+
+            navigateHistory(direction) {
+                if (this.commandHistory.length === 0) return;
+
+                if (direction === -1) {
+                    if (this.historyIndex === -1) {
+                        this.historyIndex = this.commandHistory.length - 1;
+                    } else if (this.historyIndex > 0) {
+                        this.historyIndex--;
+                    }
+                } else {
+                    if (this.historyIndex < this.commandHistory.length - 1) {
+                        this.historyIndex++;
+                    } else {
+                        this.historyIndex = -1;
+                        this.input.value = '';
+                        return;
+                    }
+                }
+
+                this.input.value = this.commandHistory[this.historyIndex];
+                this.currentCommand = this.input.value;
+            }
+
+            autocomplete() {
+                const partial = this.input.value.toLowerCase();
+                const matches = Object.keys(this.commands).filter(cmd => 
+                    cmd.startsWith(partial)
+                );
+
+                if (matches.length === 1) {
+                    this.input.value = matches[0];
+                    this.currentCommand = matches[0];
+                } else if (matches.length > 1) {
+                    this.addOutput(`Available commands: ${matches.join(', ')}`, 'info');
+                }
+            }
+
+            executeCommand() {
+                const command = this.input.value.trim().toLowerCase();
+                
+                if (command) {
+                    this.addOutput(`visitor@portfolio:~$ ${command}`, 'prompt');
+                    this.commandHistory.push(command);
+                    this.historyIndex = -1;
+
+                    if (this.commands[command]) {
+                        this.commands[command]();
+                    } else {
+                        this.showError(command);
+                    }
+                }
+
+                this.input.value = '';
+                this.currentCommand = '';
+                this.scrollToBottom();
+                this.ensureInputVisible();
+            }
+
+            addOutput(text, className = 'output') {
+                const line = document.createElement('div');
+                line.className = `output-line ${className}`;
+                line.innerHTML = text;
+                this.output.appendChild(line);
+                
+                // Auto-scroll to keep the latest output visible
+                this.scrollToBottom();
+            }
+
+            typeWriter(text, className = 'output', callback = null) {
+                const line = document.createElement('div');
+                line.className = `output-line ${className}`;
+                this.output.appendChild(line);
+
+                let i = 0;
+                const timer = setInterval(() => {
+                    line.innerHTML = text.slice(0, i + 1);
+                    i++;
+                    if (i >= text.length) {
+                        clearInterval(timer);
+                        if (callback) callback();
+                    }
+                }, 30);
+            }
+
+            scrollToBottom() {
+                // Scroll the terminal content container to show the input prompt
+                const terminalContent = document.querySelector('.terminal-content');
+                terminalContent.scrollTop = terminalContent.scrollHeight;
+                
+                // Also ensure the output is scrolled to bottom
+                this.output.scrollTop = this.output.scrollHeight;
+                
+                // Small delay to ensure DOM is updated, then scroll again
+                setTimeout(() => {
+                    terminalContent.scrollTop = terminalContent.scrollHeight;
+                    // Ensure input stays focused
+                    this.input.focus();
+                }, 10);
+            }
+
+            ensureInputVisible() {
+                // Make sure the input line is always visible
+                const inputLine = document.querySelector('.input-line');
+                if (inputLine) {
+                    inputLine.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                }
+                this.input.focus();
+            }
+
+            updateCursorPosition() {
+                // Create a temporary span to measure text width
+                const tempSpan = document.createElement('span');
+                tempSpan.style.visibility = 'hidden';
+                tempSpan.style.position = 'absolute';
+                tempSpan.style.whiteSpace = 'pre';
+                tempSpan.style.font = window.getComputedStyle(this.input).font;
+                tempSpan.textContent = this.input.value.substring(0, this.input.selectionStart);
+                
+                document.body.appendChild(tempSpan);
+                const textWidth = tempSpan.offsetWidth;
+                document.body.removeChild(tempSpan);
+                
+                // Position the cursor
+                this.cursor.style.left = textWidth + 'px';
+            }
+
+            clearTerminal() {
+                this.output.innerHTML = '';
+            }
+
+            showWelcome() {
+                const welcomeText = `<div class="welcome-banner">
+╔══════════════════════════════════════════════════════════════╗
+║                    Welcome to My Portfolio                   ║
+║                                                              ║
+║  Type 'help' to see available commands                       ║
+║  Use Tab for autocomplete, ↑↓ for command history            ║
+║  Ctrl+L to clear screen                                      ║
+╚══════════════════════════════════════════════════════════════╝
+</div>`;
+                this.addOutput(welcomeText);
+                this.addOutput('');
+            }
+
+            showHelp() {
+                const helpText = `<div class="section-title">Available Commands:</div>
+<div class="section-content">
+  <strong>about</strong>     - Learn about my background and experience
+  <strong>projects</strong>  - Explore my featured projects and achievements
+  <strong>skills</strong>    - View my technical skills and expertise
+  <strong>contact</strong>   - Get my contact information
+  <strong>clear</strong>     - Clear the terminal screen
+  <strong>help</strong>      - Show this help message
+
+<em>Tip: Use Tab for autocomplete and arrow keys for command history</em>
+</div>`;
+                this.addOutput(helpText);
+            }
+
+            showAbout() {
+                const aboutText = `<div class="section-title">About Me</div>
+<div class="section-content">
+Hello! I'm a <strong>Linux-focused IT practitioner</strong> with hands-on experience in <strong>Python scripting, automation, and application development</strong>. Actively pursuing <strong>cybersecurity</strong>, with a growing interest in <strong>red teaming and offensive security</strong>.
+
+I've built projects such as a Book Inventory Management System, a Behavioral Biometrics
+Authentication Chrome Extension, and a Poultry Monitoring System with Raspberry Pi.
+I've also worked on automating tasks, and deploying and managing servers.
+
+I am skilled at <strong>analyzing systems at different complexity levels</strong> and <strong>breaking down problems into manageable steps</strong>. I enjoy creating practical, real-world solutions and exploring how technology can optimize workflows.
+
+My goal is to work on challenging projects that blend development, automation, and security.
+I love experimenting with new tools and technologies that bring ideas to life and
+stay curious about emerging trends in tech.
+</div>`;
+                this.addOutput(aboutText);
+            }
+
+            showProjects() {
+                const projectsText = `<div class="section-title">Featured Projects</div>
+<div class="section-content">
+<div class="project-item">
+  <div class="project-title">→ Authentication-Layer Chrome Extension (Capstone Project)</div>
+  <strong>Architected</strong> a browser-based security extension utilizing <strong>behavioral biometrics</strong> to enhance user authentication, mitigating unauthorized access risks. <strong>Led development lifecycle</strong> from concept to functional prototype with <strong>rigorous testing for data privacy compliance</strong>.<br>
+  <span class="project-tech">Tech: Python, JavaScript, FastAPI, Scikit-learn, SQLite | <strong>Lead Developer</strong></span><br>
+  <span class="project-tech">GitHub: https://github.com/Sureinity/maxidom</span>
+</div>
+<div class="project-item">
+  <div class="project-title">→ Book Inventory Management System</div>
+  Developed a Python-based (Django) application with <strong>REST API architecture</strong>. Locally deployed with <strong>HTTPS implementation using OpenSSL</strong>, simulating <strong>secure production environment</strong>.<br>
+  <span class="project-tech">Tech: Python, Django, <strong>OpenSSL, HTTPS</strong> | Backend Developer</span><br>
+  <span class="project-tech">GitHub: https://github.com/Sureinity/maxicom-bims</span>
+</div>
+<div class="project-item">
+  <div class="project-title">→ IoT Monitoring System</div>
+  <strong>Engineered hardware monitoring solution</strong> using Raspberry Pi with <strong>hardware sensors & software logic integration</strong>. Designed <strong>terminal-based GUI</strong> for lightweight system monitoring.<br>
+  <span class="project-tech">Tech: <strong>Raspberry Pi</strong>, Python, Linux, GPIO, sensors | Hardware/Software Integration</span><br>
+  <span class="project-tech">GitHub: https://github.com/Sureinity/poultry-env</span>
+</div>
+<div class="project-item">
+  <div class="project-title">→ Cloud Web Deployment</div>
+  <strong>Deployed Laravel-based web application on AWS Cloud</strong>. Managed transition from local development to <strong>live cloud instance</strong>, troubleshooting server-side dependencies.<br>
+  <span class="project-tech">Tech: Laravel, <strong>AWS EC2</strong>, Cloud deployment | AWS Experience</span>
+</div>
+</div>`;
+                this.addOutput(projectsText);
+            }
+
+            showSkills() {
+                const skillsText = `<div class="section-title">Technical Skills</div>
+<div class="section-content">
+<strong>Languages & Scripting:</strong>
+<div class="skill-list">
+  • <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="skill-icon" alt="Python"> Python
+  • <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" class="skill-icon" alt="Bash"> Bash Scripting
+  • <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="skill-icon" alt="SQL"> SQL
+</div>
+
+<strong>Web Frameworks & APIs:</strong>
+<div class="skill-list">
+  • <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" class="skill-icon" alt="Django"> Django
+  • <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" class="skill-icon" alt="FastAPI"> FastAPI
+</div>
+
+<strong>Security & Networking:</strong>
+<div class="skill-list">
+  • <svg class="skill-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <rect x="15" y="25" width="70" height="50" rx="8" fill="#721817" stroke="#fff" stroke-width="2"/>
+      <circle cx="50" cy="40" r="6" fill="#fff"/>
+      <rect x="38" y="50" width="24" height="18" fill="#fff" rx="2"/>
+      <text x="50" y="62" text-anchor="middle" font-size="10" fill="#721817" font-weight="bold">SSL</text>
+    </svg> OpenSSL
+  • 🔒 HTTPS Implementation
+  • <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Wireshark_icon_new.png/120px-Wireshark_icon_new.png" class="skill-icon" alt="Wireshark"> Wireshark
+  • <img src="https://nmap.org/images/sitelogo-nmap.svg" class="skill-icon" alt="Nmap"> Nmap
+</div>
+
+<strong>Cloud & OS:</strong>
+<div class="skill-list">
+  • <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="skill-icon" alt="Linux"> Linux (Daily Driver)
+  • ☁️ AWS (EC2/Cloud deployment)
+  • <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg" class="skill-icon" alt="Raspberry Pi"> Raspberry Pi (IoT)
+</div>
+
+<strong>Development Tools:</strong>
+<div class="skill-list">
+  • <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="skill-icon" alt="Git"> Git/GitHub
+  • <svg class="skill-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="20" width="80" height="60" rx="4" fill="#1a1a1a" stroke="#4CC2FF" stroke-width="2"/>
+      <rect x="12" y="22" width="76" height="8" fill="#333"/>
+      <circle cx="18" cy="26" r="2" fill="#ff5f56"/>
+      <circle cx="26" cy="26" r="2" fill="#ffbd2e"/>
+      <circle cx="34" cy="26" r="2" fill="#27ca3f"/>
+      <text x="20" y="45" font-family="monospace" font-size="8" fill="#4CC2FF">$</text>
+      <rect x="25" y="40" width="8" height="2" fill="#4CC2FF"/>
+      <text x="20" y="55" font-family="monospace" font-size="6" fill="#7EE787">user@host:~</text>
+      <rect x="20" y="60" width="4" height="8" fill="#4CC2FF" opacity="0.8"/>
+    </svg> Terminal/CLI
+</div>
+</div>`;
+                this.addOutput(skillsText);
+            }
+
+            showContact() {
+                const contactText = `<div class="section-title">Contact Information</div>
+<div class="section-content">
+📧 <strong>Email:</strong> johnghlendealdo@gmail.com
+🐙 <strong>GitHub:</strong> github.com/Sureinity
+📱 <strong>Phone:</strong> +63 909 939 5356
+
+<em>Feel free to reach out for collaboration opportunities!</em>
+</div>`;
+                this.addOutput(contactText);
+            }
+
+            showError(command) {
+                const errorText = `<div class="error">
+Command '${command}' not found.
+
+Type 'help' to see available commands.
+</div>`;
+                this.addOutput(errorText);
+            }
+        }
+
+        // Initialize terminal when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new TerminalPortfolio();
+        });
+    </script>
+</body>
+</html>
