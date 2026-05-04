@@ -85,6 +85,7 @@ body::before {
 
 .main-frame {
   position: relative;
+  isolation: isolate;
   --frame-offset: 1rem;
 }
 
@@ -109,6 +110,7 @@ body::before {
   width: 1px;
   background: var(--line);
   pointer-events: none;
+  z-index: 20;
 }
 
 .main-frame::before {
