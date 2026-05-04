@@ -1,65 +1,147 @@
-import Image from "next/image";
+import { ActivityGrid } from "@/components/activity-grid";
+import { BlogList } from "@/components/blog-list";
+import { MetadataGrid } from "@/components/metadata-grid";
+import { ProfileHero } from "@/components/profile-hero";
+import { ProjectAccordion } from "@/components/project-accordion";
+import { ScrollToTop } from "@/components/scroll-to-top";
+import { SectionPanel } from "@/components/section-panel";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { SocialLinksGrid } from "@/components/social-links-grid";
+import { StackCloud } from "@/components/stack-cloud";
+import { TimelineSection } from "@/components/timeline-section";
+import {
+  aboutParagraphs,
+  activityMonthLabels,
+  activityWeeks,
+  articleEntries,
+  educationItems,
+  experienceItems,
+  footerLinks,
+  heroProfile,
+  navLinks,
+  overviewItems,
+  paletteActions,
+  projects,
+  socialLinks,
+  stackCategories,
+} from "@/lib/template-content";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div className="app-shell">
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="animate-drift absolute left-[-8rem] top-24 h-64 w-64 rounded-full bg-[radial-gradient(circle,_rgba(79,124,255,0.24),_transparent_72%)] blur-3xl" />
+        <div className="animate-drift absolute right-[-5rem] top-44 h-72 w-72 rounded-full bg-[radial-gradient(circle,_rgba(249,115,91,0.18),_transparent_70%)] blur-3xl [animation-delay:1.8s]" />
+        <div className="animate-drift absolute bottom-16 left-1/3 h-72 w-72 rounded-full bg-[radial-gradient(circle,_rgba(57,182,166,0.18),_transparent_68%)] blur-3xl [animation-delay:3.2s]" />
+      </div>
+
+      <SiteHeader navLinks={navLinks} paletteActions={paletteActions} />
+
+      <main className="main-frame mx-auto flex max-w-6xl flex-col gap-0 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
+        <ProfileHero profile={heroProfile} />
+        <div className="panel-divider" />
+
+        <SectionPanel id="overview" title="Overview" srOnlyTitle>
+          <MetadataGrid items={overviewItems} />
+        </SectionPanel>
+        <div className="panel-divider" />
+
+        <SectionPanel id="social" title="Social Links" srOnlyTitle>
+          <SocialLinksGrid links={socialLinks} />
+        </SectionPanel>
+        <div className="panel-divider" />
+
+        <SectionPanel
+          id="about"
+          title="About"
+          description="A grounded summary section for explaining why you are moving toward DevOps or platform engineering, without overselling senior-level experience."
+        >
+          <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+            <div className="space-y-4">
+              {aboutParagraphs.map((paragraph) => (
+                <p
+                  key={paragraph}
+                  className="text-sm leading-8 text-[color:var(--muted-foreground)] sm:text-base"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            <aside className="panel-muted space-y-4 p-5">
+              <p className="eyebrow">Content note</p>
+              <p className="text-sm leading-7 text-[color:var(--muted-foreground)]">
+                This template keeps the voice practical and entry-level. Replace
+                the paragraphs with your real path into infrastructure,
+                automation, Linux, and systems work.
+              </p>
+            </aside>
+          </div>
+        </SectionPanel>
+        <div className="panel-divider" />
+
+        <SectionPanel
+          id="activity"
+          title="Contribution & Activity"
+          description="A reusable heatmap panel for GitHub contributions, learning streaks, or project activity. This implementation uses placeholder data so it stays frontend-only."
+        >
+          <ActivityGrid weeks={activityWeeks} monthLabels={activityMonthLabels} />
+        </SectionPanel>
+        <div className="panel-divider" />
+
+        <SectionPanel
+          id="projects"
+          title="Projects"
+          description="Expandable project entries work well for personal portfolios because they keep the page scannable while still leaving room for technical context, lessons, and links."
+          action={
+            <a href="/versions/v1" className="ghost-button text-sm">
+              Compare with v1
+            </a>
+          }
+        >
+          <ProjectAccordion projects={projects} />
+        </SectionPanel>
+        <div className="panel-divider" />
+
+        <SectionPanel
+          id="experience"
+          title="Experience"
+          description="A timeline or accordion section for real work, self-directed projects, apprenticeships, or lab-heavy learning experience. The sample content stays honest about being in progress."
+        >
+          <TimelineSection items={experienceItems} />
+        </SectionPanel>
+        <div className="panel-divider" />
+
+        <SectionPanel
+          id="education"
+          title="Education"
+          description="A separate education panel helps keep the resume structure familiar, even if part of your background is independent learning rather than formal infrastructure work."
+        >
+          <TimelineSection items={educationItems} />
+        </SectionPanel>
+        <div className="panel-divider" />
+
+        <SectionPanel
+          id="articles"
+          title="Blog / Articles"
+          description="Short writing entries help show how you think, what you are learning, and how you document your work. These links are placeholders you can replace later."
+        >
+          <BlogList articles={articleEntries} />
+        </SectionPanel>
+        <div className="panel-divider" />
+
+        <SectionPanel
+          id="stack"
+          title="Technology Stack"
+          description="Group tools into a few categories instead of listing everything in one long row. The goal is to communicate focus areas, not to turn the section into a checklist wall."
+        >
+          <StackCloud categories={stackCategories} />
+        </SectionPanel>
       </main>
+
+      <SiteFooter ownerName={heroProfile.name} links={footerLinks} />
+      <ScrollToTop />
     </div>
   );
 }
