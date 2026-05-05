@@ -140,7 +140,7 @@ body::before {
   height: 2.5rem;
   border-inline: none;
   background: transparent;
-  opacity: 0.65;
+  isolation: isolate;
 }
 
 .panel-divider::before {
@@ -153,10 +153,15 @@ body::before {
   background:
     repeating-linear-gradient(
       135deg,
-      color-mix(in srgb, var(--line-strong) 46%, transparent) 0,
-      color-mix(in srgb, var(--line-strong) 46%, transparent) 1px,
+      color-mix(in srgb, var(--line-strong) 32%, transparent) 0,
+      color-mix(in srgb, var(--line-strong) 32%, transparent) 1px,
       transparent 1px,
       transparent 12px
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--background-muted) 94%, var(--background) 6%),
+      color-mix(in srgb, var(--background-muted) 94%, var(--background) 6%)
     );
   box-shadow:
     inset 0 1px 0 var(--line),
