@@ -1,11 +1,17 @@
 import type { HeroProfile } from "@/lib/template-content";
-import { heroBadges, overviewItems } from "@/lib/template-content";
+import { HeroContactPanel } from "@/components/hero-contact-panel";
+import { overviewItems, socialLinks } from "@/lib/template-content";
 
 type ProfileHeroProps = {
   profile: HeroProfile;
 };
 
 const heroQuickItems = overviewItems.slice(0, 4);
+const heroContactLinks = socialLinks.map(({ title, handle, href }) => ({
+  title,
+  handle,
+  href,
+}));
 
 export function ProfileHero({ profile }: ProfileHeroProps) {
   return (
@@ -20,9 +26,27 @@ export function ProfileHero({ profile }: ProfileHeroProps) {
                 {profile.initials}
               </div>
             </div>
+            <HeroContactPanel links={heroContactLinks} />
+          </div>
+        </div>
+
+        <div className="space-y-6 lg:pt-2">
+          <div className="space-y-4">
+            <span className="eyebrow">{profile.role}</span>
+            <div className="space-y-3">
+              <h1 className="font-intro-serif max-w-4xl text-4xl text-[color:var(--foreground)] sm:text-5xl">
+                {profile.name}
+              </h1>
+              <p className="max-w-3xl text-lg leading-8 text-[color:var(--foreground)] sm:text-xl">
+                {profile.tagline}
+              </p>
+              <p className="max-w-3xl text-base leading-8 text-[color:var(--muted-foreground)] sm:text-lg">
+                {profile.summary}
+              </p>
+            </div>
           </div>
 
-          <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+          <dl className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             {heroQuickItems.map((item) => {
               const Icon = item.icon;
 
@@ -43,43 +67,6 @@ export function ProfileHero({ profile }: ProfileHeroProps) {
               );
             })}
           </dl>
-        </div>
-
-        <div className="space-y-6 lg:pt-2">
-          <div className="space-y-4">
-            <span className="eyebrow">{profile.role}</span>
-            <div className="space-y-3">
-              <h1 className="font-intro-serif max-w-4xl text-4xl text-[color:var(--foreground)] sm:text-5xl">
-                {profile.name}
-              </h1>
-              <p className="max-w-3xl text-lg leading-8 text-[color:var(--foreground)] sm:text-xl">
-                {profile.tagline}
-              </p>
-              <p className="max-w-3xl text-base leading-8 text-[color:var(--muted-foreground)] sm:text-lg">
-                {profile.summary}
-              </p>
-            </div>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {heroBadges.map((badge) => {
-              const Icon = badge.icon;
-
-              return (
-                <article
-                  key={badge.label}
-                  className="panel-muted flex items-center gap-3 px-4 py-3"
-                >
-                  <span className="icon-badge h-10 w-10 text-[color:var(--foreground)]">
-                    <Icon aria-hidden className="h-4 w-4" />
-                  </span>
-                  <p className="text-sm font-medium text-[color:var(--foreground)]">
-                    {badge.label}
-                  </p>
-                </article>
-              );
-            })}
-          </div>
         </div>
       </div>
     </section>

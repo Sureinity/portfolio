@@ -6,7 +6,6 @@ import { ScrollToTop } from "@/components/scroll-to-top";
 import { SectionPanel } from "@/components/section-panel";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { SocialLinksGrid } from "@/components/social-links-grid";
 import { StackCloud } from "@/components/stack-cloud";
 import { TimelineSection } from "@/components/timeline-section";
 import {
@@ -21,7 +20,6 @@ import {
   navLinks,
   paletteActions,
   projects,
-  socialLinks,
   stackCategories,
 } from "@/lib/template-content";
 
@@ -32,11 +30,6 @@ export default function Home() {
 
       <main className="main-frame mx-auto flex max-w-6xl flex-col gap-0 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
         <ProfileHero profile={heroProfile} />
-        <div className="panel-divider" />
-
-        <SectionPanel id="social" title="Social Links" srOnlyTitle>
-          <SocialLinksGrid links={socialLinks} />
-        </SectionPanel>
         <div className="panel-divider" />
 
         <SectionPanel
