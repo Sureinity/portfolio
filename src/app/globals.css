@@ -137,7 +137,7 @@ body::before {
 
 .panel-divider {
   position: relative;
-  height: 2.5rem;
+  height: 2.25rem;
   border-inline: none;
   background: transparent;
   isolation: isolate;
@@ -156,7 +156,7 @@ body::before {
       color-mix(in srgb, var(--line-strong) 32%, transparent) 0,
       color-mix(in srgb, var(--line-strong) 32%, transparent) 1px,
       transparent 1px,
-      transparent 12px
+      transparent 10px
     ),
     linear-gradient(
       180deg,
