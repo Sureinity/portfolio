@@ -156,7 +156,7 @@ body::before {
       color-mix(in srgb, var(--line-strong) 24%, transparent) 0,
       color-mix(in srgb, var(--line-strong) 24%, transparent) 1px,
       transparent 1px,
-      transparent 10px
+      transparent 8px
     ),
     linear-gradient(
       180deg,
