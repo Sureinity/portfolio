@@ -25,7 +25,14 @@ function subscribe(onStoreChange: () => void) {
 }
 
 function getSnapshot() {
-  return Date.now();
+  const now = new Date();
+  return new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    now.getHours(),
+    now.getMinutes(),
+  ).getTime();
 }
 
 function getServerSnapshot() {
