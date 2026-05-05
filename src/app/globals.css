@@ -180,6 +180,7 @@ body::before {
   padding: 0.45rem 0.8rem;
   font-family: var(--font-terminus), monospace;
   font-size: 0.8rem;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted-foreground);
@@ -206,6 +207,7 @@ body::before {
 .mono-detail {
   font-family: var(--font-terminus), monospace;
   font-size: 0.8rem;
+  font-weight: 700;
   letter-spacing: 0.04em;
 }
 
