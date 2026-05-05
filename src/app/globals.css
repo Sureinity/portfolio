@@ -49,10 +49,12 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   min-height: 100vh;
+  overflow-x: clip;
   background-color: var(--page-background);
   background-image:
     linear-gradient(to right, var(--page-grid-line) 1px, transparent 1px),
@@ -146,9 +148,8 @@ body::before {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
-  width: 100vw;
-  transform: translateX(-50%);
+  left: calc(50% - 50dvw);
+  right: calc(50% - 50dvw);
   background:
     repeating-linear-gradient(
       135deg,
@@ -273,10 +274,9 @@ input:focus-visible {
 .rule-t::before {
   content: "";
   position: absolute;
-  left: 50%;
-  width: 100vw;
+  left: calc(50% - 50dvw);
+  right: calc(50% - 50dvw);
   height: 1px;
-  transform: translateX(-50%);
   background: var(--line);
   pointer-events: none;
 }
