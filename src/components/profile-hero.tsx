@@ -1,5 +1,4 @@
 import type { HeroProfile } from "@/lib/template-content";
-import { ArrowUpRight, Globe } from "lucide-react";
 import { heroBadges } from "@/lib/template-content";
 
 type ProfileHeroProps = {
@@ -49,22 +48,6 @@ export function ProfileHero({ profile }: ProfileHeroProps) {
                 {profile.summary}
               </p>
             </div>
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <a href="#projects" className="action-link">
-              View projects
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-            <a
-              href="https://portfolio.ghlensui.xyz"
-              className="ghost-button"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Portfolio site
-              <Globe className="h-4 w-4" />
-            </a>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
