@@ -21,7 +21,7 @@ export function ProfileHero({ profile }: ProfileHeroProps) {
         <div className="lg:-mt-22">
           <div className="panel-muted overflow-hidden">
             <div className="rule-b flex items-center justify-center bg-[color:var(--background-muted)] px-6 py-8">
-              <div className="icon-badge h-28 w-28 rounded-[2rem] font-mono text-4xl font-semibold">
+              <div className="icon-badge h-28 w-28 rounded-full font-mono text-4xl font-semibold">
                 {profile.initials}
               </div>
             </div>
