@@ -11,6 +11,8 @@
   --accent: #4f7cff;
   --accent-soft: rgba(79, 124, 255, 0.14);
   --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.05);
+  --page-background: #0b1220;
+  --page-grid-line: rgba(148, 163, 184, 0.08);
   --activity-0: rgba(148, 163, 184, 0.15);
   --activity-1: rgba(79, 124, 255, 0.28);
   --activity-2: rgba(79, 124, 255, 0.45);
@@ -49,22 +51,17 @@ html {
 
 body {
   min-height: 100vh;
-  background:
-    linear-gradient(180deg, var(--background) 0%, color-mix(in srgb, var(--background) 92%, white 8%) 100%);
+  background-color: var(--page-background);
+  background-image:
+    linear-gradient(to right, var(--page-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--page-grid-line) 1px, transparent 1px);
+  background-size: 2rem 2rem;
   color: var(--foreground);
   font-family: var(--font-ibm-plex-sans), sans-serif;
 }
 
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(to right, rgba(148, 163, 184, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
-  background-size: 2.5rem 2.5rem;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent 92%);
+  content: none;
 }
 
 ::selection {
