@@ -126,25 +126,25 @@ export const heroProfile: HeroProfile = {
 
 export const overviewItems: OverviewItem[] = [
   {
-    label: "Primary track",
-    value: "Junior DevOps / Platform Engineering",
+    label: "Track",
+    value: "Junior DevOps / Platform",
     detail: "Focused on infrastructure, delivery, and operability",
     icon: BriefcaseBusiness,
   },
   {
-    label: "Current focus",
-    value: "Linux, automation, IaC, and CI/CD",
+    label: "Focus",
+    value: "Linux, automation, IaC, CI/CD",
     detail: "Learning by building deployment and infrastructure labs",
     icon: ServerCog,
   },
   {
-    label: "Current role",
+    label: "Work",
     value: "Part-time Linux system administrator",
     detail: "Growing practical systems experience while moving deeper into DevOps and platform work",
     icon: Calendar,
   },
   {
-    label: "Location",
+    label: "Base",
     value: "Philippines",
     detail: "Based in the Philippines",
     icon: MapPin,
