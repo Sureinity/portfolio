@@ -1,12 +1,12 @@
 import { ActivityGrid } from "@/components/activity-grid";
 import { BlogList } from "@/components/blog-list";
-import { IdentityStrip } from "@/components/identity-strip";
 import { ProfileHero } from "@/components/profile-hero";
 import { ProjectAccordion } from "@/components/project-accordion";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { SectionPanel } from "@/components/section-panel";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SocialLinksGrid } from "@/components/social-links-grid";
 import { StackCloud } from "@/components/stack-cloud";
 import { TimelineSection } from "@/components/timeline-section";
 import {
@@ -19,7 +19,6 @@ import {
   footerLinks,
   heroProfile,
   navLinks,
-  overviewItems,
   paletteActions,
   projects,
   socialLinks,
@@ -35,8 +34,8 @@ export default function Home() {
         <ProfileHero profile={heroProfile} />
         <div className="panel-divider" />
 
-        <SectionPanel id="overview" title="Overview" srOnlyTitle>
-          <IdentityStrip items={overviewItems} links={socialLinks} />
+        <SectionPanel id="social" title="Social Links" srOnlyTitle>
+          <SocialLinksGrid links={socialLinks} />
         </SectionPanel>
         <div className="panel-divider" />
 

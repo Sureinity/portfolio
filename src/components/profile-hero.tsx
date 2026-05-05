@@ -1,16 +1,11 @@
 import type { HeroProfile } from "@/lib/template-content";
-import { HeroContactPanel } from "@/components/hero-contact-panel";
-import { heroBadges, socialLinks } from "@/lib/template-content";
+import { heroBadges, overviewItems } from "@/lib/template-content";
 
 type ProfileHeroProps = {
   profile: HeroProfile;
 };
 
-const heroContactLinks = socialLinks.map(({ title, handle, href }) => ({
-  title,
-  handle,
-  href,
-}));
+const heroQuickItems = overviewItems.slice(0, 4);
 
 export function ProfileHero({ profile }: ProfileHeroProps) {
   return (
@@ -25,7 +20,6 @@ export function ProfileHero({ profile }: ProfileHeroProps) {
                 {profile.initials}
               </div>
             </div>
-            <HeroContactPanel links={heroContactLinks} />
           </div>
         </div>
 
@@ -44,6 +38,28 @@ export function ProfileHero({ profile }: ProfileHeroProps) {
               </p>
             </div>
           </div>
+
+          <dl className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            {heroQuickItems.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <div key={item.label} className="panel-muted min-w-0 px-4 py-4">
+                  <dt className="flex items-center gap-2">
+                    <span className="icon-badge h-9 w-9 text-[color:var(--foreground)]">
+                      <Icon aria-hidden className="h-4 w-4" />
+                    </span>
+                    <span className="mono-detail uppercase text-[color:var(--muted-foreground)]">
+                      {item.label}
+                    </span>
+                  </dt>
+                  <dd className="mt-3 text-sm leading-7 text-[color:var(--foreground)]">
+                    {item.value}
+                  </dd>
+                </div>
+              );
+            })}
+          </dl>
 
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {heroBadges.map((badge) => {
