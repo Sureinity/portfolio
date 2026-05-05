@@ -30,12 +30,6 @@ import {
 export default function Home() {
   return (
     <div className="app-shell">
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="animate-drift absolute left-[-8rem] top-24 h-64 w-64 rounded-full bg-[radial-gradient(circle,_rgba(79,124,255,0.24),_transparent_72%)] blur-3xl" />
-        <div className="animate-drift absolute right-[-5rem] top-44 h-72 w-72 rounded-full bg-[radial-gradient(circle,_rgba(249,115,91,0.18),_transparent_70%)] blur-3xl [animation-delay:1.8s]" />
-        <div className="animate-drift absolute bottom-16 left-1/3 h-72 w-72 rounded-full bg-[radial-gradient(circle,_rgba(57,182,166,0.18),_transparent_68%)] blur-3xl [animation-delay:3.2s]" />
-      </div>
-
       <SiteHeader navLinks={navLinks} paletteActions={paletteActions} />
 
       <main className="main-frame mx-auto flex max-w-6xl flex-col gap-0 px-4 pb-12 pt-6 sm:px-6 lg:px-8">
