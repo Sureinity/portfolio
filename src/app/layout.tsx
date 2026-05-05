@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import { Fraunces, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
@@ -20,6 +21,23 @@ const ibmPlexMono = IBM_Plex_Mono({
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const terminus = localFont({
+  src: [
+    {
+      path: "./fonts/TerminusTTF-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/TerminusTTF-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-terminus",
   display: "swap",
 });
 
@@ -71,7 +89,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${ibmPlexSans.variable} ${ibmPlexMono.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${ibmPlexSans.variable} ${ibmPlexMono.variable} ${fraunces.variable} ${terminus.variable} h-full antialiased`}
     >
       <body className="min-h-full">
         <ThemeProvider

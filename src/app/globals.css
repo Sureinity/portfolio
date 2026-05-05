@@ -178,9 +178,9 @@ body::before {
   border: none;
   background: color-mix(in srgb, var(--background-elevated) 86%, transparent);
   padding: 0.45rem 0.8rem;
-  font-family: var(--font-ibm-plex-mono), monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
+  font-family: var(--font-terminus), monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted-foreground);
 }
@@ -204,7 +204,7 @@ body::before {
 }
 
 .mono-detail {
-  font-family: var(--font-ibm-plex-mono), monospace;
+  font-family: var(--font-terminus), monospace;
   font-size: 0.8rem;
   letter-spacing: 0.04em;
 }
