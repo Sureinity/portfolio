@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 type SectionPanelProps = {
   id: string;
   title: string;
-  description?: string;
   children: ReactNode;
   srOnlyTitle?: boolean;
   action?: ReactNode;
@@ -12,7 +11,6 @@ type SectionPanelProps = {
 export function SectionPanel({
   id,
   title,
-  description,
   children,
   srOnlyTitle = false,
   action,
@@ -24,13 +22,8 @@ export function SectionPanel({
           <h2 className="sr-only">{title}</h2>
         ) : (
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-            <div className="space-y-2">
+            <div>
               <span className="eyebrow">{title}</span>
-              {description ? (
-                <p className="max-w-3xl text-sm leading-7 text-[color:var(--muted-foreground)] sm:text-base">
-                  {description}
-                </p>
-              ) : null}
             </div>
             {action}
           </div>
