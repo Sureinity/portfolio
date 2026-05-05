@@ -1,9 +1,16 @@
 import type { HeroProfile } from "@/lib/template-content";
-import { heroBadges } from "@/lib/template-content";
+import { HeroContactPanel } from "@/components/hero-contact-panel";
+import { heroBadges, socialLinks } from "@/lib/template-content";
 
 type ProfileHeroProps = {
   profile: HeroProfile;
 };
+
+const heroContactLinks = socialLinks.map(({ title, handle, href }) => ({
+  title,
+  handle,
+  href,
+}));
 
 export function ProfileHero({ profile }: ProfileHeroProps) {
   return (
@@ -18,19 +25,7 @@ export function ProfileHero({ profile }: ProfileHeroProps) {
                 {profile.initials}
               </div>
             </div>
-            <div className="space-y-4 px-5 py-5">
-              <div>
-                <p className="eyebrow">Current path</p>
-                <p className="mt-3 text-sm leading-7 text-[color:var(--muted-foreground)]">
-                  Building practical depth through Linux systems work, lab-based
-                  infrastructure practice, and steady exposure to automation and
-                  deployment workflows.
-                </p>
-              </div>
-              <p className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--background-elevated)] px-4 py-3 text-sm leading-7 text-[color:var(--muted-foreground)]">
-                {profile.status}
-              </p>
-            </div>
+            <HeroContactPanel links={heroContactLinks} />
           </div>
         </div>
 
