@@ -63,11 +63,11 @@ export default function Home() {
             </div>
 
             <aside className="panel-muted space-y-4 p-5">
-              <p className="eyebrow">Content note</p>
+              <p className="eyebrow">Current direction</p>
               <p className="text-sm leading-7 text-[color:var(--muted-foreground)]">
-                This template keeps the voice practical and entry-level. Replace
-                the paragraphs with your real path into infrastructure,
-                automation, Linux, and systems work.
+                Currently working part-time in Linux systems while continuing to
+                build hands-on depth in infrastructure, automation, networking,
+                and delivery workflows.
               </p>
             </aside>
           </div>

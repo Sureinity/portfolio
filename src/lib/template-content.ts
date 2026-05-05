@@ -107,26 +107,27 @@ export const navLinks: NavLink[] = [
 ];
 
 export const heroProfile: HeroProfile = {
-  name: "Your Name",
-  initials: "YN",
-  role: "Aspiring DevOps / Platform Engineer",
+  name: "John Ghlen Dealdo",
+  initials: "JGD",
+  role: "Junior DevOps / Platform Engineer",
   tagline:
     "Building reliable infrastructure, automation, and deployment workflows one practical system at a time.",
   summary:
     "I’m drawn to the parts of software delivery that sit below the interface: Linux, networking, infrastructure as code, CI/CD, and the steady operational habits that make systems easier to run and easier to trust.",
-  status: "Open to junior DevOps, platform, and infrastructure-focused opportunities",
+  status:
+    "Part-time Linux system administrator based in the Philippines, building toward junior DevOps and platform engineering work.",
   quickFacts: [
-    "Homelab-driven learning",
-    "Linux and networking curiosity",
+    "Part-time Linux system administrator",
+    "Philippines-based",
     "Automation-first mindset",
-    "Own the system end-to-end",
+    "Infrastructure-focused growth",
   ],
 };
 
 export const overviewItems: OverviewItem[] = [
   {
     label: "Primary track",
-    value: "DevOps / Platform Engineering",
+    value: "Junior DevOps / Platform Engineering",
     detail: "Focused on infrastructure, delivery, and operability",
     icon: BriefcaseBusiness,
   },
@@ -137,29 +138,29 @@ export const overviewItems: OverviewItem[] = [
     icon: ServerCog,
   },
   {
-    label: "Availability",
-    value: "Open to internships and junior roles",
-    detail: "Also open to project collaboration and learning communities",
+    label: "Current role",
+    value: "Part-time Linux system administrator",
+    detail: "Growing practical systems experience while moving deeper into DevOps and platform work",
     icon: Calendar,
   },
   {
     label: "Location",
-    value: "Add your city / country",
-    detail: "Customize this with your actual location or remote preference",
+    value: "Philippines",
+    detail: "Based in the Philippines",
     icon: MapPin,
   },
   {
     label: "Email",
-    value: "hello@your-email.dev",
+    value: "johnghlendealdo@gmail.com",
     detail: "Preferred inbox for hiring or collaboration",
-    href: "mailto:hello@your-email.dev",
+    href: "mailto:johnghlendealdo@gmail.com",
     icon: Mail,
   },
   {
-    label: "Resume",
-    value: "Resume PDF placeholder",
-    detail: "Link this to your hosted resume when ready",
-    href: "https://example.com/your-resume.pdf",
+    label: "Website",
+    value: "portfolio.ghlensui.xyz",
+    detail: "Primary public portfolio site",
+    href: "https://portfolio.ghlensui.xyz",
     icon: FileText,
   },
 ];
@@ -167,30 +168,30 @@ export const overviewItems: OverviewItem[] = [
 export const socialLinks: SocialLink[] = [
   {
     title: "GitHub",
-    handle: "@yourusername",
+    handle: "@Sureinity",
     note: "Repository home for infrastructure labs, deployment practice, and automation work.",
-    href: "https://github.com/yourusername",
+    href: "https://github.com/Sureinity",
     icon: FolderGit2,
   },
   {
     title: "LinkedIn",
-    handle: "linkedin.com/in/yourname",
-    note: "Best place to share an updated resume and your current role target.",
-    href: "https://www.linkedin.com/in/yourname",
+    handle: "linkedin.com/in/john-ghlen-dealdo-6a475539b",
+    note: "Professional profile with current role direction and experience updates.",
+    href: "https://www.linkedin.com/in/john-ghlen-dealdo-6a475539b",
     icon: Globe,
   },
   {
     title: "Email",
-    handle: "hello@your-email.dev",
-    note: "Use a direct address here for recruiters, engineers, or potential collaborators.",
-    href: "mailto:hello@your-email.dev",
+    handle: "johnghlendealdo@gmail.com",
+    note: "Direct contact for recruiters, engineers, or potential collaborators.",
+    href: "mailto:johnghlendealdo@gmail.com",
     icon: Inbox,
   },
   {
-    title: "Resume",
-    handle: "Download PDF",
-    note: "Point this to a hosted resume or file in your public portfolio assets.",
-    href: "https://example.com/your-resume.pdf",
+    title: "Website",
+    handle: "portfolio.ghlensui.xyz",
+    note: "Main portfolio domain for the current public version of the site.",
+    href: "https://portfolio.ghlensui.xyz",
     icon: FileText,
   },
 ];
@@ -468,9 +469,9 @@ export const stackCategories: StackCategory[] = [
 ];
 
 export const footerLinks = [
-  { label: "GitHub", href: "https://github.com/yourusername" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/yourname" },
-  { label: "Resume", href: "https://example.com/your-resume.pdf" },
+  { label: "GitHub", href: "https://github.com/Sureinity" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/john-ghlen-dealdo-6a475539b" },
+  { label: "Website", href: "https://portfolio.ghlensui.xyz" },
 ];
 
 export const paletteActions: PaletteAction[] = [
@@ -512,22 +513,22 @@ export const paletteActions: PaletteAction[] = [
   },
   {
     title: "Open GitHub",
-    description: "Go to the main code profile placeholder.",
-    href: "https://github.com/yourusername",
+    description: "Open the main GitHub profile for projects and labs.",
+    href: "https://github.com/Sureinity",
     group: "Links",
     external: true,
   },
   {
     title: "Send Email",
     description: "Open the portfolio contact email.",
-    href: "mailto:hello@your-email.dev",
+    href: "mailto:johnghlendealdo@gmail.com",
     group: "Links",
     external: true,
   },
   {
-    title: "Open Resume",
-    description: "Go to the hosted resume placeholder.",
-    href: "https://example.com/your-resume.pdf",
+    title: "Open Website",
+    description: "Open the public portfolio domain.",
+    href: "https://portfolio.ghlensui.xyz",
     group: "Links",
     external: true,
   },

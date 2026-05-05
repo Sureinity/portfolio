@@ -1,5 +1,5 @@
 import type { HeroProfile } from "@/lib/template-content";
-import { ArrowUpRight, Download } from "lucide-react";
+import { ArrowUpRight, Globe } from "lucide-react";
 import { heroBadges } from "@/lib/template-content";
 
 type ProfileHeroProps = {
@@ -21,10 +21,11 @@ export function ProfileHero({ profile }: ProfileHeroProps) {
             </div>
             <div className="space-y-4 px-5 py-5">
               <div>
-                <p className="eyebrow">Profile hero</p>
+                <p className="eyebrow">Current path</p>
                 <p className="mt-3 text-sm leading-7 text-[color:var(--muted-foreground)]">
-                  Replace the initials block with a profile photo, an
-                  illustrated avatar, or a simple personal mark.
+                  Building practical depth through Linux systems work, lab-based
+                  infrastructure practice, and steady exposure to automation and
+                  deployment workflows.
                 </p>
               </div>
               <p className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--background-elevated)] px-4 py-3 text-sm leading-7 text-[color:var(--muted-foreground)]">
@@ -56,11 +57,13 @@ export function ProfileHero({ profile }: ProfileHeroProps) {
               <ArrowUpRight className="h-4 w-4" />
             </a>
             <a
-              href="https://example.com/your-resume.pdf"
+              href="https://portfolio.ghlensui.xyz"
               className="ghost-button"
+              target="_blank"
+              rel="noreferrer"
             >
-              Resume placeholder
-              <Download className="h-4 w-4" />
+              Portfolio site
+              <Globe className="h-4 w-4" />
             </a>
           </div>
 

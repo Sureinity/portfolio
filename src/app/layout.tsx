@@ -56,9 +56,10 @@ const terminus = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Aspiring DevOps / Platform Engineer",
+  metadataBase: new URL("https://portfolio.ghlensui.xyz"),
+  title: "John Ghlen Dealdo | Junior DevOps / Platform Engineer",
   description:
-    "A resume-style developer portfolio focused on Linux, networking, infrastructure as code, automation, and reliable deployment workflows.",
+    "Portfolio of John Ghlen Dealdo, a Junior DevOps / Platform Engineer and part-time Linux system administrator based in the Philippines.",
   keywords: [
     "DevOps portfolio",
     "Platform engineer portfolio",
@@ -68,18 +69,18 @@ export const metadata: Metadata = {
     "Automation",
     "CI/CD",
   ],
-  authors: [{ name: "Your Name" }],
+  authors: [{ name: "John Ghlen Dealdo" }],
   openGraph: {
-    title: "Aspiring DevOps / Platform Engineer",
+    title: "John Ghlen Dealdo | Junior DevOps / Platform Engineer",
     description:
-      "A structured personal portfolio for showcasing infrastructure projects, learning progress, and platform engineering goals.",
+      "Portfolio of John Ghlen Dealdo focused on Linux systems, infrastructure, automation, and platform engineering growth.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aspiring DevOps / Platform Engineer",
+    title: "John Ghlen Dealdo | Junior DevOps / Platform Engineer",
     description:
-      "A panel-based developer resume template built with Next.js, TypeScript, and Tailwind CSS.",
+      "Portfolio of John Ghlen Dealdo focused on Linux systems, infrastructure, automation, and platform engineering growth.",
   },
   robots: {
     index: true,

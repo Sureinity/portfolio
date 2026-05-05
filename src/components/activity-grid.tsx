@@ -16,9 +16,9 @@ export function ActivityGrid({ weeks, monthLabels }: ActivityGridProps) {
     <div className="space-y-4">
       <div className="space-y-2">
         <p className="text-sm leading-7 text-[color:var(--muted-foreground)]">
-          A placeholder activity panel modeled after contribution heatmaps. Use
-          it for GitHub data later, or keep it as a visible learning cadence
-          tracker.
+          A visible activity panel for showing steady learning and hands-on
+          practice across Linux administration, automation, deployment, and
+          infrastructure topics.
         </p>
         <p className="mono-detail uppercase text-[color:var(--muted-foreground)]">
           Example summary: steady weekly practice across deployment, Linux,

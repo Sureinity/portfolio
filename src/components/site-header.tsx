@@ -17,14 +17,14 @@ export function SiteHeader({ navLinks, paletteActions }: SiteHeaderProps) {
             className="flex items-center gap-3 rounded-full px-1 py-1 transition hover:text-[color:var(--accent)]"
           >
             <span className="icon-badge h-11 w-11 rounded-full font-mono text-sm font-semibold">
-              DP
+              JGD
             </span>
             <span className="leading-tight">
               <span className="block text-sm font-semibold text-[color:var(--foreground)]">
-                Developer Resume Template
+                John Ghlen Dealdo
               </span>
               <span className="block text-xs text-[color:var(--muted-foreground)]">
-                Panel-based portfolio structure
+                Junior DevOps / Platform Engineer
               </span>
             </span>
           </a>
