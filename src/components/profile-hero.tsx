@@ -26,27 +26,9 @@ export function ProfileHero({ profile }: ProfileHeroProps) {
                 {profile.initials}
               </div>
             </div>
-            <HeroContactPanel links={heroContactLinks} />
-          </div>
-        </div>
-
-        <div className="space-y-6 lg:pt-2">
-          <div className="space-y-4">
-            <span className="eyebrow">{profile.role}</span>
-            <div className="space-y-3">
-              <h1 className="font-intro-serif max-w-4xl text-4xl text-[color:var(--foreground)] sm:text-5xl">
-                {profile.name}
-              </h1>
-              <p className="max-w-3xl text-lg leading-8 text-[color:var(--foreground)] sm:text-xl">
-                {profile.tagline}
-              </p>
-              <p className="max-w-3xl text-base leading-8 text-[color:var(--muted-foreground)] sm:text-lg">
-                {profile.summary}
-              </p>
-            </div>
           </div>
 
-          <dl className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
             {heroQuickItems.map((item) => {
               const Icon = item.icon;
 
@@ -67,6 +49,25 @@ export function ProfileHero({ profile }: ProfileHeroProps) {
               );
             })}
           </dl>
+        </div>
+
+        <div className="space-y-6 lg:pt-2">
+          <div className="space-y-4">
+            <span className="eyebrow">{profile.role}</span>
+            <div className="space-y-3">
+              <h1 className="font-intro-serif max-w-4xl text-4xl text-[color:var(--foreground)] sm:text-5xl">
+                {profile.name}
+              </h1>
+              <p className="max-w-3xl text-lg leading-8 text-[color:var(--foreground)] sm:text-xl">
+                {profile.tagline}
+              </p>
+              <p className="max-w-3xl text-base leading-8 text-[color:var(--muted-foreground)] sm:text-lg">
+                {profile.summary}
+              </p>
+            </div>
+          </div>
+
+          <HeroContactPanel links={heroContactLinks} />
         </div>
       </div>
     </section>
