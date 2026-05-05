@@ -6,8 +6,8 @@
   --background-muted: rgba(245, 247, 251, 0.95);
   --foreground: #0f172a;
   --muted-foreground: #546277;
-  --line: rgba(71, 85, 105, 0.24);
-  --line-strong: rgba(51, 65, 85, 0.4);
+  --line: rgba(30, 41, 59, 0.36);
+  --line-strong: rgba(15, 23, 42, 0.56);
   --accent: #4f7cff;
   --accent-soft: rgba(79, 124, 255, 0.14);
   --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.05);
