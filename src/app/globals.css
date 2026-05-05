@@ -59,7 +59,7 @@ body {
   background-image:
     linear-gradient(to right, var(--page-grid-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--page-grid-line) 1px, transparent 1px);
-  background-size: 2rem 2rem;
+  background-size: 1.75rem 1.75rem;
   color: var(--foreground);
   font-family: var(--font-ibm-plex-sans), sans-serif;
 }
