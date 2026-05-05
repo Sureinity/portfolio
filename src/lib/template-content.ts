@@ -175,7 +175,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     title: "LinkedIn",
-    handle: "linkedin.com/in/john-ghlen-dealdo-6a475539b",
+    handle: "John Ghlen Dealdo",
     note: "Professional profile with current role direction and experience updates.",
     href: "https://www.linkedin.com/in/john-ghlen-dealdo-6a475539b",
     icon: Globe,

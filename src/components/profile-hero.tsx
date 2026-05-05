@@ -26,6 +26,7 @@ export function ProfileHero({ profile }: ProfileHeroProps) {
                 {profile.initials}
               </div>
             </div>
+            <HeroContactPanel links={[]} />
           </div>
 
           <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
@@ -67,7 +68,7 @@ export function ProfileHero({ profile }: ProfileHeroProps) {
             </div>
           </div>
 
-          <HeroContactPanel links={heroContactLinks} />
+          <HeroContactPanel links={heroContactLinks} showTime={false} />
         </div>
       </div>
     </section>

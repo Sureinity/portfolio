@@ -8,6 +8,7 @@ type HeroContactPanelProps = {
     handle: string;
     href: string;
   }[];
+  showTime?: boolean;
 };
 
 const MANILA_TIME_FORMATTER = new Intl.DateTimeFormat("en-PH", {
@@ -100,13 +101,16 @@ function ContactIcon({ title }: { title: string }) {
   }
 }
 
-export function HeroContactPanel({ links }: HeroContactPanelProps) {
+export function HeroContactPanel({
+  links,
+  showTime = true,
+}: HeroContactPanelProps) {
   const timestamp = useSyncExternalStore(
     subscribe,
     getSnapshot,
     getServerSnapshot,
   );
-  const orderedTitles = ["Email", "GitHub", "LinkedIn", "Website"];
+  const orderedTitles = ["Email", "GitHub", "LinkedIn"];
   const orderedLinks = orderedTitles
     .map((title) => links.find((link) => link.title === title))
     .filter(
@@ -126,48 +130,54 @@ export function HeroContactPanel({ links }: HeroContactPanelProps) {
 
   return (
     <div className="space-y-3 px-4 py-4">
-      {orderedLinks.map((link) => (
-        <a
-          key={link.title}
-          href={link.href}
-          target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-          rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
-          aria-label={`${link.title}: ${link.handle}`}
-          title={link.title}
-          className="group flex items-center gap-3 rounded-2xl border border-[color:var(--line)] bg-[color:var(--background-elevated)] px-3 py-3 transition hover:-translate-y-0.5 hover:border-[color:var(--line-strong)] hover:bg-[color:var(--background-muted)]"
-        >
-          <span className="icon-badge h-11 w-11 shrink-0 rounded-xl text-[color:var(--foreground)]">
-            <ContactIcon title={link.title} />
-          </span>
-          <span className="min-w-0 flex-1">
-            <span className="block text-base font-semibold text-[color:var(--foreground)]">
-              {link.title}
-            </span>
-            <span className="mt-0.5 block truncate text-sm text-[color:var(--muted-foreground)]">
-              {link.handle}
-            </span>
-          </span>
-          <span className="shrink-0 text-[color:var(--muted-foreground)] transition group-hover:text-[color:var(--foreground)]">
-            <LaunchIcon />
-          </span>
-        </a>
-      ))}
+      {orderedLinks.length > 0 ? (
+        <div className="grid gap-3 sm:grid-cols-2">
+          {orderedLinks.map((link) => (
+            <a
+              key={link.title}
+              href={link.href}
+              target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+              rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
+              aria-label={`${link.title}: ${link.handle}`}
+              title={link.title}
+              className="group flex items-center gap-3 rounded-2xl border border-[color:var(--line)] bg-[color:var(--background-elevated)] px-3 py-3 transition hover:-translate-y-0.5 hover:border-[color:var(--line-strong)] hover:bg-[color:var(--background-muted)]"
+            >
+              <span className="icon-badge h-11 w-11 shrink-0 rounded-xl text-[color:var(--foreground)]">
+                <ContactIcon title={link.title} />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-base font-semibold text-[color:var(--foreground)]">
+                  {link.title}
+                </span>
+                <span className="mt-0.5 block truncate text-sm text-[color:var(--muted-foreground)]">
+                  {link.handle}
+                </span>
+              </span>
+              <span className="shrink-0 text-[color:var(--muted-foreground)] transition group-hover:text-[color:var(--foreground)]">
+                <LaunchIcon />
+              </span>
+            </a>
+          ))}
+        </div>
+      ) : null}
 
-      <div className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--background-elevated)] px-3 py-3">
-        <div className="flex items-center gap-3">
-          <span className="icon-badge h-11 w-11 shrink-0 rounded-xl text-[color:var(--foreground)]">
-            <ClockIcon />
-          </span>
-          <div className="min-w-0">
-            <p className="text-base font-semibold text-[color:var(--foreground)]">
-              Manila time
-            </p>
-            <p className="mt-0.5 text-sm text-[color:var(--muted-foreground)]">
-              {timeLabel}
-            </p>
+      {showTime ? (
+        <div className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--background-elevated)] px-3 py-3">
+          <div className="flex items-center gap-3">
+            <span className="icon-badge h-11 w-11 shrink-0 rounded-xl text-[color:var(--foreground)]">
+              <ClockIcon />
+            </span>
+            <div className="min-w-0">
+              <p className="text-base font-semibold text-[color:var(--foreground)]">
+                Manila time
+              </p>
+              <p className="mt-0.5 text-sm text-[color:var(--muted-foreground)]">
+                {timeLabel}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 }
