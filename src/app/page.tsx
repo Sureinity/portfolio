@@ -7,6 +7,7 @@ import { SectionPanel } from "@/components/section-panel";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { StackCloud } from "@/components/stack-cloud";
+import { TerminalDetailsCard } from "@/components/terminal-details-card";
 import { TimelineSection } from "@/components/timeline-section";
 import {
   aboutParagraphs,
@@ -36,7 +37,9 @@ export default function Home() {
           id="about"
           title="About"
         >
-          <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="space-y-6">
+            <TerminalDetailsCard />
+
             <div className="space-y-4">
               {aboutParagraphs.map((paragraph) => (
                 <p
@@ -47,15 +50,6 @@ export default function Home() {
                 </p>
               ))}
             </div>
-
-            <aside className="panel-muted space-y-4 p-5">
-              <p className="eyebrow">Current direction</p>
-              <p className="text-sm leading-7 text-[color:var(--muted-foreground)]">
-                Currently working part-time in Linux systems while continuing to
-                build hands-on depth in infrastructure, automation, networking,
-                and delivery workflows.
-              </p>
-            </aside>
           </div>
         </SectionPanel>
         <div className="panel-divider" />
