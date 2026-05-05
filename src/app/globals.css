@@ -11,8 +11,8 @@
   --accent: #4f7cff;
   --accent-soft: rgba(79, 124, 255, 0.14);
   --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.05);
-  --page-background: #0b1220;
-  --page-grid-line: rgba(148, 163, 184, 0.08);
+  --page-background: #eef3fb;
+  --page-grid-line: rgba(71, 85, 105, 0.08);
   --activity-0: rgba(148, 163, 184, 0.15);
   --activity-1: rgba(79, 124, 255, 0.28);
   --activity-2: rgba(79, 124, 255, 0.45);
@@ -31,6 +31,8 @@
   --accent: #7aa2ff;
   --accent-soft: rgba(122, 162, 255, 0.16);
   --shadow-soft: 0 18px 40px rgba(2, 6, 23, 0.34);
+  --page-background: #0b1220;
+  --page-grid-line: rgba(148, 163, 184, 0.08);
   --activity-0: rgba(148, 163, 184, 0.12);
   --activity-1: rgba(122, 162, 255, 0.3);
   --activity-2: rgba(122, 162, 255, 0.5);
