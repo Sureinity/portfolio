@@ -44,28 +44,38 @@ export function TerminalDetailsCard() {
   return (
     <div className="terminal-card grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-x-8 md:gap-y-4">
       <div className="space-y-4">
-        <div className="terminal-detail-item">
-          <TerminalSquare aria-hidden className="h-4 w-4" />
-          <span>Focus: Linux, automation, IaC, CI/CD</span>
+        <div className="terminal-detail-card">
+          <div className="terminal-detail-item">
+            <TerminalSquare aria-hidden className="h-4 w-4" />
+            <span>Focus: Linux, automation, IaC, CI/CD</span>
+          </div>
         </div>
-        <div className="terminal-detail-item">
-          <BriefcaseBusiness aria-hidden className="h-4 w-4" />
-          <span>Work: Part-time Linux sysadmin</span>
+        <div className="terminal-detail-card">
+          <div className="terminal-detail-item">
+            <BriefcaseBusiness aria-hidden className="h-4 w-4" />
+            <span>Work: Part-time Linux sysadmin</span>
+          </div>
         </div>
-        <div className="terminal-detail-item">
-          <Target aria-hidden className="h-4 w-4" />
-          <span>Track: Junior DevOps / Platform</span>
+        <div className="terminal-detail-card">
+          <div className="terminal-detail-item">
+            <Target aria-hidden className="h-4 w-4" />
+            <span>Track: Junior DevOps / Platform</span>
+          </div>
         </div>
       </div>
 
       <div className="space-y-4">
-        <div className="terminal-detail-item">
-          <Clock3 aria-hidden className="h-4 w-4" />
-          <span>{manilaTime}</span>
+        <div className="terminal-detail-card">
+          <div className="terminal-detail-item">
+            <Clock3 aria-hidden className="h-4 w-4" />
+            <span>{manilaTime}</span>
+          </div>
         </div>
-        <div className="terminal-detail-item">
-          <MapPin aria-hidden className="h-4 w-4" />
-          <span>Base: Philippines</span>
+        <div className="terminal-detail-card">
+          <div className="terminal-detail-item">
+            <MapPin aria-hidden className="h-4 w-4" />
+            <span>Base: Philippines</span>
+          </div>
         </div>
       </div>
     </div>
