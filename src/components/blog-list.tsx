@@ -24,7 +24,7 @@ export function BlogList({ articles }: BlogListProps) {
               <span aria-hidden>·</span>
               <span>{article.readingTime}</span>
             </div>
-            <h3 className="mt-3 text-lg font-semibold text-[color:var(--foreground)]">
+            <h3 className="font-editorial-serif mt-3 text-xl text-[color:var(--foreground)]">
               {article.title}
             </h3>
             <p className="mt-2 text-sm leading-7 text-[color:var(--muted-foreground)] sm:text-base">

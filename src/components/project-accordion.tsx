@@ -17,7 +17,7 @@ export function ProjectAccordion({ projects }: ProjectAccordionProps) {
           <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-4 py-4 sm:px-5">
             <div className="space-y-2">
               <div className="flex flex-wrap items-center gap-2">
-                <h3 className="text-lg font-semibold text-[color:var(--foreground)]">
+                <h3 className="font-editorial-serif text-xl text-[color:var(--foreground)]">
                   {project.title}
                 </h3>
                 <span className="mono-detail rounded-full border border-[color:var(--line)] bg-[color:var(--background-elevated)] px-2.5 py-1 text-[color:var(--muted-foreground)]">

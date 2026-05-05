@@ -38,7 +38,7 @@ export function ProfileHero({ profile }: ProfileHeroProps) {
           <div className="space-y-4">
             <span className="eyebrow">{profile.role}</span>
             <div className="space-y-3">
-              <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-[color:var(--foreground)] sm:text-5xl">
+              <h1 className="font-intro-serif max-w-4xl text-4xl text-[color:var(--foreground)] sm:text-5xl">
                 {profile.name}
               </h1>
               <p className="max-w-3xl text-lg leading-8 text-[color:var(--foreground)] sm:text-xl">

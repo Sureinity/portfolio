@@ -43,7 +43,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-ibm-plex-sans);
+  --font-sans: var(--font-public-sans);
   --font-mono: var(--font-ibm-plex-mono);
 }
 
@@ -61,7 +61,7 @@ body {
     linear-gradient(to bottom, var(--page-grid-line) 1px, transparent 1px);
   background-size: 1.75rem 1.75rem;
   color: var(--foreground);
-  font-family: var(--font-ibm-plex-sans), sans-serif;
+  font-family: var(--font-public-sans), sans-serif;
 }
 
 body::before {
@@ -72,9 +72,16 @@ body::before {
   background: rgba(79, 124, 255, 0.22);
 }
 
-.font-display {
-  font-family: var(--font-fraunces), serif;
-  font-variation-settings: "SOFT" 70, "WONK" 0;
+.font-intro-serif {
+  font-family: var(--font-instrument-serif), serif;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+.font-editorial-serif {
+  font-family: var(--font-newsreader), serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .app-shell {

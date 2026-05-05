@@ -23,7 +23,7 @@ export function SocialLinksGrid({ links }: SocialLinksGridProps) {
               <Icon aria-hidden className="h-5 w-5" />
             </span>
             <span className="min-w-0 flex-1">
-              <span className="block font-semibold text-[color:var(--foreground)]">
+              <span className="font-editorial-serif block text-lg text-[color:var(--foreground)]">
                 {link.title}
               </span>
               <span className="mt-1 block text-sm text-[color:var(--muted-foreground)]">

@@ -17,7 +17,7 @@ export function StackCloud({ categories }: StackCloudProps) {
                 <Icon aria-hidden className="h-5 w-5" />
               </span>
               <div>
-                <h3 className="font-semibold text-[color:var(--foreground)]">
+                <h3 className="font-editorial-serif text-lg text-[color:var(--foreground)]">
                   {category.title}
                 </h3>
                 <p className="mono-detail text-[color:var(--muted-foreground)]">
