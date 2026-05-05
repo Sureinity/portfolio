@@ -154,8 +154,8 @@ body::before {
     repeating-linear-gradient(
       135deg,
       color-mix(in srgb, var(--line-strong) 32%, transparent) 0,
-      color-mix(in srgb, var(--line-strong) 32%, transparent) 1px,
-      transparent 1px,
+      color-mix(in srgb, var(--line-strong) 32%, transparent) 0.75px,
+      transparent 0.75px,
       transparent 10px
     ),
     linear-gradient(
