@@ -85,11 +85,6 @@ export default function Home() {
         <SectionPanel
           id="projects"
           title="Projects"
-          action={
-            <a href="/versions/v1" className="ghost-button text-sm">
-              Compare with v1
-            </a>
-          }
         >
           <ProjectAccordion projects={projects} />
         </SectionPanel>

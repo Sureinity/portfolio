@@ -127,8 +127,7 @@ export function CommandPalette({ actions }: CommandPaletteProps) {
                     Command palette
                   </p>
                   <p className="text-sm text-[color:var(--muted-foreground)]">
-                    Jump to sections, open links, or switch to the preserved v1
-                    design.
+                    Jump to sections or open portfolio links.
                   </p>
                 </div>
               </div>

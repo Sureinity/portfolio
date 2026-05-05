@@ -62,9 +62,6 @@ export function ProfileHero({ profile }: ProfileHeroProps) {
               Resume placeholder
               <Download className="h-4 w-4" />
             </a>
-            <a href="/versions/v1" className="ghost-button">
-              Previous concept
-            </a>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">

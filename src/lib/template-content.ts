@@ -471,7 +471,6 @@ export const footerLinks = [
   { label: "GitHub", href: "https://github.com/yourusername" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/yourname" },
   { label: "Resume", href: "https://example.com/your-resume.pdf" },
-  { label: "Version 1", href: "/versions/v1" },
 ];
 
 export const paletteActions: PaletteAction[] = [
@@ -531,12 +530,6 @@ export const paletteActions: PaletteAction[] = [
     href: "https://example.com/your-resume.pdf",
     group: "Links",
     external: true,
-  },
-  {
-    title: "Open Version 1",
-    description: "View the previous preserved homepage concept.",
-    href: "/versions/v1",
-    group: "Versions",
   },
 ];
 
