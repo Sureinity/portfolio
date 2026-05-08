@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 import {
   BriefcaseBusiness,
   Clock3,
@@ -16,25 +16,17 @@ const MANILA_TIME_FORMATTER = new Intl.DateTimeFormat("en-PH", {
   hour12: true,
 });
 
-function subscribe(onStoreChange: () => void) {
-  const intervalId = window.setInterval(onStoreChange, 30_000);
-  return () => window.clearInterval(intervalId);
-}
-
-function getSnapshot() {
-  return Date.now();
-}
-
-function getServerSnapshot() {
-  return 0;
-}
-
 export function TerminalDetailsCard() {
-  const timestamp = useSyncExternalStore(
-    subscribe,
-    getSnapshot,
-    getServerSnapshot,
-  );
+  const [timestamp, setTimestamp] = useState(0);
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => setTimestamp(Date.now()), 0);
+    const intervalId = window.setInterval(() => setTimestamp(Date.now()), 30_000);
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.clearInterval(intervalId);
+    };
+  }, []);
 
   const manilaTime =
     timestamp === 0
