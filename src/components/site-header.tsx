@@ -1,5 +1,5 @@
+import Image from "next/image";
 import type { NavLink, PaletteAction } from "@/lib/template-content";
-import { CommandPalette } from "@/components/command-palette";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 type SiteHeaderProps = {
@@ -7,26 +7,34 @@ type SiteHeaderProps = {
   paletteActions: PaletteAction[];
 };
 
-export function SiteHeader({ navLinks, paletteActions }: SiteHeaderProps) {
+export function SiteHeader({ navLinks }: SiteHeaderProps) {
   return (
-    <header className="sticky top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8">
-      <div className="panel mx-auto max-w-6xl px-3 py-3">
+    <header className="site-header sticky top-0 z-50 px-4 pt-2 sm:px-6 lg:px-8">
+      <div className="panel site-chrome-panel mx-auto px-3 py-3">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <a
             href="#top"
-            className="flex items-center gap-3 rounded-full px-1 py-1 transition hover:text-[color:var(--accent)]"
+            className="site-brand-logo"
+            aria-label="Back to top"
           >
-            <span className="icon-badge h-11 w-11 rounded-full font-mono text-sm font-semibold">
-              JGD
-            </span>
-            <span className="leading-tight">
-              <span className="block text-sm font-semibold text-[color:var(--foreground)]">
-                John Ghlen Dealdo
-              </span>
-              <span className="block text-xs text-[color:var(--muted-foreground)]">
-                Junior DevOps / Platform Engineer
-              </span>
-            </span>
+            <Image
+              src="/brand/icon-shorthand-boxed-light.svg"
+              alt=""
+              width={256}
+              height={256}
+              unoptimized
+              aria-hidden
+              className="h-full w-full object-cover object-center dark:hidden"
+            />
+            <Image
+              src="/brand/icon-shorthand-boxed-dark.svg"
+              alt=""
+              width={256}
+              height={256}
+              unoptimized
+              aria-hidden
+              className="hidden h-full w-full object-cover object-center dark:block"
+            />
           </a>
 
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
@@ -39,7 +47,7 @@ export function SiteHeader({ navLinks, paletteActions }: SiteHeaderProps) {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="inline-flex rounded-full px-4 py-2 text-sm text-[color:var(--muted-foreground)] transition hover:bg-[color:var(--accent-soft)] hover:text-[color:var(--foreground)]"
+                      className="inline-flex rounded-full px-4 py-2 text-sm text-[color:var(--muted-foreground)] transition hover:text-[color:var(--foreground)]"
                     >
                       {link.label}
                     </a>
@@ -49,7 +57,6 @@ export function SiteHeader({ navLinks, paletteActions }: SiteHeaderProps) {
             </nav>
 
             <div className="flex items-center gap-2">
-              <CommandPalette actions={paletteActions} />
               <ThemeToggle />
             </div>
           </div>

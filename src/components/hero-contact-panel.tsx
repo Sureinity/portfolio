@@ -85,14 +85,6 @@ function ClockIcon() {
   );
 }
 
-function LaunchIcon() {
-  return (
-    <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4 fill-current">
-      <path d="M8.22 5.72h10.06v10.06h-2.25V9.56l-8.25 8.25-1.56-1.56 8.25-8.25H8.22Z" />
-    </svg>
-  );
-}
-
 function ContactIcon({ title }: { title: string }) {
   switch (title) {
     case "Email":
@@ -136,35 +128,29 @@ export function HeroContactPanel({
       : `Philippines · ${MANILA_TIME_FORMATTER.format(timestamp)} · GMT+8`;
 
   return (
-    <div className="space-y-3 px-4 py-4">
+    <div className="space-y-3 px-0 py-2">
       {orderedLinks.length > 0 ? (
-        <div className="grid gap-3 sm:grid-cols-2">
-          {orderedLinks.map((link) => (
-            <a
-              key={link.title}
-              href={link.href}
-              target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-              rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
-              aria-label={`${link.title}: ${link.handle}`}
-              title={link.title}
-              className="group flex items-center gap-3 rounded-2xl border border-[color:var(--line)] bg-[color:var(--background-elevated)] px-3 py-3 transition hover:-translate-y-0.5 hover:border-[color:var(--line-strong)] hover:bg-[color:var(--background-muted)]"
-            >
-              <span className="icon-badge h-11 w-11 shrink-0 rounded-xl text-[color:var(--foreground)]">
+        <div className="profile-link-table" aria-label="Profile links">
+          {orderedLinks.map((link) => {
+            const identity = link.handle.startsWith("@")
+              ? link.handle.slice(1)
+              : link.handle;
+            const detail = `${link.title.toLowerCase()} // ${identity}`;
+
+            return (
+              <a
+                key={link.title}
+                href={link.href}
+                target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
+                aria-label={detail}
+                className="profile-link-cell info-hover"
+                data-hover-detail={detail}
+              >
                 <ContactIcon title={link.title} />
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block text-base font-semibold text-[color:var(--foreground)]">
-                  {link.title}
-                </span>
-                <span className="mt-0.5 block truncate text-sm text-[color:var(--muted-foreground)]">
-                  {link.handle}
-                </span>
-              </span>
-              <span className="shrink-0 text-[color:var(--muted-foreground)] transition group-hover:text-[color:var(--foreground)]">
-                <LaunchIcon />
-              </span>
-            </a>
-          ))}
+              </a>
+            );
+          })}
         </div>
       ) : null}
 

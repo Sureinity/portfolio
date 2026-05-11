@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import {
   BriefcaseBusiness,
   Clock3,
+  Mail,
   MapPin,
   Target,
   TerminalSquare,
@@ -30,45 +31,61 @@ export function TerminalDetailsCard() {
 
   const manilaTime =
     timestamp === 0
-      ? "Manila time: --:-- -- // GMT+8"
-      : `Manila time: ${MANILA_TIME_FORMATTER.format(timestamp)} // GMT+8`;
+      ? "--:-- -- // GMT+8"
+      : `${MANILA_TIME_FORMATTER.format(timestamp)} // GMT+8`;
+
+  const leftDetails = [
+    {
+      icon: TerminalSquare,
+      value: "Linux, infra., automation, IaC, CI/CD",
+    },
+    {
+      icon: BriefcaseBusiness,
+      value: "Part-time Linux system administrator",
+    },
+    {
+      icon: Target,
+      value: "DevOps / Platform",
+    },
+    {
+      icon: MapPin,
+      value: "Philippines",
+    },
+  ];
+
+  const rightDetails = [
+    {
+      icon: Clock3,
+      value: manilaTime,
+    },
+    {
+      icon: Mail,
+      value: "johnghlendealdo@gmail.com",
+    },
+  ];
 
   return (
-    <div className="terminal-card grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-x-8 md:gap-y-4">
-      <div className="space-y-4">
-        <div className="terminal-detail-card">
-          <div className="terminal-detail-item">
-            <TerminalSquare aria-hidden className="h-4 w-4" />
-            <span>Focus: Linux, automation, IaC, CI/CD</span>
+    <div className="terminal-card terminal-detail-grid">
+      <div className="terminal-detail-column">
+        {leftDetails.map(({ icon: Icon, value }) => (
+          <div key={value} className="terminal-detail-item">
+            <span className="terminal-detail-icon">
+              <Icon aria-hidden className="h-4 w-4" />
+            </span>
+            <span>{value}</span>
           </div>
-        </div>
-        <div className="terminal-detail-card">
-          <div className="terminal-detail-item">
-            <BriefcaseBusiness aria-hidden className="h-4 w-4" />
-            <span>Work: Part-time Linux sysadmin</span>
-          </div>
-        </div>
-        <div className="terminal-detail-card">
-          <div className="terminal-detail-item">
-            <Target aria-hidden className="h-4 w-4" />
-            <span>Track: Junior DevOps / Platform</span>
-          </div>
-        </div>
+        ))}
       </div>
 
-      <div className="space-y-4">
-        <div className="terminal-detail-card">
-          <div className="terminal-detail-item">
-            <Clock3 aria-hidden className="h-4 w-4" />
-            <span>{manilaTime}</span>
+      <div className="terminal-detail-column terminal-detail-column-offset">
+        {rightDetails.map(({ icon: Icon, value }) => (
+          <div key={value} className="terminal-detail-item">
+            <span className="terminal-detail-icon">
+              <Icon aria-hidden className="h-4 w-4" />
+            </span>
+            <span>{value}</span>
           </div>
-        </div>
-        <div className="terminal-detail-card">
-          <div className="terminal-detail-item">
-            <MapPin aria-hidden className="h-4 w-4" />
-            <span>Base: Philippines</span>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

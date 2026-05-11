@@ -1,9 +1,13 @@
+import Image from "next/image";
+import type { ReactNode } from "react";
 import type { HeroProfile } from "@/lib/template-content";
 import { HeroContactPanel } from "@/components/hero-contact-panel";
+import { RoleSwitcher } from "@/components/role-switcher";
 import { socialLinks } from "@/lib/template-content";
 
 type ProfileHeroProps = {
   profile: HeroProfile;
+  details: ReactNode;
 };
 
 const heroContactLinks = socialLinks.map(({ title, handle, href }) => ({
@@ -12,35 +16,62 @@ const heroContactLinks = socialLinks.map(({ title, handle, href }) => ({
   href,
 }));
 
-export function ProfileHero({ profile }: ProfileHeroProps) {
+export function ProfileHero({ profile, details }: ProfileHeroProps) {
   return (
-    <section id="top" className="panel animate-rise overflow-hidden">
-      <div className="surface-pattern rule-b h-36 sm:h-44" />
+    <section id="top" className="panel hero-panel animate-rise overflow-hidden">
+      <div className="surface-pattern rule-b hero-logo-strip">
+        <div className="hero-brand-icon">
+          <Image
+            src="/brand/primary-logo-dark.svg"
+            alt=""
+            width={430}
+            height={115}
+            unoptimized
+            aria-hidden
+            className="h-full w-full object-contain object-center"
+          />
+        </div>
+      </div>
 
-      <div className="flex flex-col items-center gap-6 px-5 py-5 text-center sm:px-6">
-        <div className="-mt-22">
-          <div className="panel-muted overflow-hidden">
-            <div className="rule-b flex items-center justify-center bg-[color:var(--background-muted)] px-6 py-8">
-              <div className="icon-badge h-28 w-28 rounded-full font-mono text-4xl font-semibold">
-                {profile.initials}
+      <div className="flex flex-col items-center gap-6 px-5 pb-5 pt-0 text-center sm:px-6">
+        <div className="w-full max-w-4xl space-y-6">
+          <div className="profile-portrait-shell">
+            <div className="profile-portrait-frame">
+              <div className="profile-portrait-image">
+                <Image
+                  src="/assets/profile-bg-dark-gray.png"
+                  alt={`${profile.name} profile picture`}
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 11rem, 15rem"
+                  className="object-cover object-center dark:hidden"
+                />
+                <Image
+                  src="/assets/profile-bg-light.png"
+                  alt={`${profile.name} profile picture`}
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 11rem, 15rem"
+                  className="hidden object-cover object-center dark:block"
+                />
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="w-full max-w-4xl space-y-6">
           <div className="space-y-4">
-            <span className="eyebrow">{profile.role}</span>
-            <div className="space-y-3">
+            <div className="hero-identity-band space-y-3">
               <h1 className="font-intro-serif text-4xl text-[color:var(--foreground)] sm:text-5xl">
                 {profile.name}
               </h1>
-              <p className="mx-auto max-w-3xl text-lg leading-8 text-[color:var(--foreground)] sm:text-xl">
-                {profile.tagline}
-              </p>
-              <p className="mx-auto max-w-3xl text-base leading-8 text-[color:var(--muted-foreground)] sm:text-lg">
-                {profile.summary}
-              </p>
+              <span className="eyebrow">
+                <RoleSwitcher />
+              </span>
+            </div>
+
+            <div className="space-y-3">
+              <div className="mx-auto w-full max-w-3xl">
+                {details}
+              </div>
             </div>
           </div>
 

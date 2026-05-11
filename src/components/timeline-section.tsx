@@ -12,7 +12,7 @@ export function TimelineSection({ items }: TimelineSectionProps) {
         <details
           key={`${item.organization}-${item.title}`}
           open={item.open}
-          className="group panel-muted overflow-hidden"
+          className="dropdown-card group panel-muted overflow-hidden"
         >
           <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-4 py-4 sm:px-5">
             <div className="space-y-2">
@@ -24,9 +24,25 @@ export function TimelineSection({ items }: TimelineSectionProps) {
                   {item.mode}
                 </span>
               </div>
-              <p className="text-sm text-[color:var(--foreground)] sm:text-base">
-                {item.organization}
-              </p>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm sm:text-base">
+                {item.organizationUrl ? (
+                  <a
+                    href={item.organizationUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[color:var(--foreground)] underline decoration-[color:var(--line-strong)] underline-offset-4 transition hover:text-[color:var(--muted-foreground)]"
+                  >
+                    {item.organization}
+                  </a>
+                ) : (
+                  <span className="text-[color:var(--foreground)]">{item.organization}</span>
+                )}
+                {item.location ? (
+                  <span className="mono-detail text-[color:var(--muted-foreground)]">
+                    {item.location}
+                  </span>
+                ) : null}
+              </div>
               <p className="mono-detail text-[color:var(--muted-foreground)]">
                 {item.period}
               </p>
@@ -37,7 +53,7 @@ export function TimelineSection({ items }: TimelineSectionProps) {
             />
           </summary>
 
-          <div className="rule-t px-4 py-4 sm:px-5">
+          <div className="dropdown-content rule-t px-4 py-4 sm:px-5">
             <div className="space-y-4">
               <p className="text-sm leading-7 text-[color:var(--muted-foreground)] sm:text-base">
                 {item.summary}

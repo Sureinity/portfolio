@@ -57,10 +57,12 @@ const terminus = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://portfolio.ghlensui.xyz"),
-  title: "John Ghlen Dealdo | Junior DevOps / Platform Engineer",
+  applicationName: "John Ghlen Dealdo Portfolio",
+  title: "John Ghlen Dealdo | DevOps Portfolio",
   description:
-    "Portfolio of John Ghlen Dealdo, a Junior DevOps / Platform Engineer and part-time Linux system administrator based in the Philippines.",
+    "The DevOps portfolio of John Ghlen Dealdo, a DevOps / Platform Engineer and part-time Linux system administrator based in the Philippines.",
   keywords: [
+    "John Ghlen Dealdo",
     "DevOps portfolio",
     "Platform engineer portfolio",
     "Linux",
@@ -71,16 +73,17 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "John Ghlen Dealdo" }],
   openGraph: {
-    title: "John Ghlen Dealdo | Junior DevOps / Platform Engineer",
+    siteName: "John Ghlen Dealdo Portfolio",
+    title: "John Ghlen Dealdo | DevOps Portfolio",
     description:
-      "Portfolio of John Ghlen Dealdo focused on Linux systems, infrastructure, automation, and platform engineering growth.",
+      "The portfolio of John Ghlen Dealdo focused on Linux systems, infrastructure, automation, and platform engineering growth.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "John Ghlen Dealdo | Junior DevOps / Platform Engineer",
+    title: "John Ghlen Dealdo | DevOps Portfolio",
     description:
-      "Portfolio of John Ghlen Dealdo focused on Linux systems, infrastructure, automation, and platform engineering growth.",
+      "The portfolio of John Ghlen Dealdo focused on Linux systems, infrastructure, automation, and platform engineering growth.",
   },
   robots: {
     index: true,

@@ -1,5 +1,6 @@
 import type { ProjectEntry } from "@/lib/template-content";
 import { ArrowUpRight, ChevronDown, FolderGit2 } from "lucide-react";
+import { MermaidDiagram } from "./mermaid-diagram";
 
 type ProjectAccordionProps = {
   projects: ProjectEntry[];
@@ -12,7 +13,7 @@ export function ProjectAccordion({ projects }: ProjectAccordionProps) {
         <details
           key={project.title}
           open={index === 0}
-          className="group panel-muted overflow-hidden"
+          className="dropdown-card group panel-muted overflow-hidden"
         >
           <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-4 py-4 sm:px-5">
             <div className="space-y-2">
@@ -37,9 +38,13 @@ export function ProjectAccordion({ projects }: ProjectAccordionProps) {
             />
           </summary>
 
-          <div className="rule-t px-4 py-4 sm:px-5">
+          <div className="dropdown-content rule-t px-4 py-4 sm:px-5">
             <div className="grid gap-5 lg:grid-cols-[1fr_280px]">
               <div className="space-y-4">
+                <p className="text-sm leading-7 text-[color:var(--muted-foreground)] sm:text-base">
+                  {project.detail}
+                </p>
+
                 <div>
                   <p className="mono-detail uppercase text-[color:var(--muted-foreground)]">
                     What this project covers
@@ -53,6 +58,37 @@ export function ProjectAccordion({ projects }: ProjectAccordionProps) {
                     ))}
                   </ul>
                 </div>
+
+                {project.diagram ? (
+                  <div>
+                    <p className="mono-detail uppercase text-[color:var(--muted-foreground)]">
+                      Compact schema
+                    </p>
+                    <MermaidDiagram chart={project.diagram} />
+                  </div>
+                ) : null}
+
+                <div>
+                  <p className="mono-detail uppercase text-[color:var(--muted-foreground)]">
+                    Sequence
+                  </p>
+                  <ol className="project-timeline mt-4">
+                    {project.timeline.map((step) => (
+                      <li key={step.title} className="project-timeline-item">
+                        <span aria-hidden className="project-timeline-dot" />
+                        <div className="space-y-1">
+                          <h4 className="text-sm font-semibold text-[color:var(--foreground)]">
+                            {step.title}
+                          </h4>
+                          <p className="text-sm leading-7 text-[color:var(--muted-foreground)]">
+                            {step.description}
+                          </p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+
                 <div className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--background-elevated)] px-4 py-4">
                   <p className="mono-detail uppercase text-[color:var(--muted-foreground)]">
                     What I learned
@@ -81,24 +117,28 @@ export function ProjectAccordion({ projects }: ProjectAccordionProps) {
                 </div>
 
                 <div className="flex flex-wrap gap-3">
-                  <a
-                    href={project.repoUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="ghost-button"
-                  >
-                    <FolderGit2 className="h-4 w-4" />
-                    GitHub
-                  </a>
-                  <a
-                    href={project.demoUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="ghost-button"
-                  >
-                    <ArrowUpRight className="h-4 w-4" />
-                    Demo
-                  </a>
+                  {project.repoUrl ? (
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="ghost-button"
+                    >
+                      <FolderGit2 className="h-4 w-4" />
+                      GitHub
+                    </a>
+                  ) : null}
+                  {project.demoUrl ? (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="ghost-button"
+                    >
+                      <ArrowUpRight className="h-4 w-4" />
+                      Demo
+                    </a>
+                  ) : null}
                 </div>
               </div>
             </div>

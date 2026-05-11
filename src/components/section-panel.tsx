@@ -6,6 +6,7 @@ type SectionPanelProps = {
   children: ReactNode;
   srOnlyTitle?: boolean;
   action?: ReactNode;
+  contentClassName?: string;
 };
 
 export function SectionPanel({
@@ -14,10 +15,11 @@ export function SectionPanel({
   children,
   srOnlyTitle = false,
   action,
+  contentClassName,
 }: SectionPanelProps) {
   return (
     <section id={id} className="panel overflow-hidden scroll-mt-28">
-      <header className="rule-b px-5 py-4 sm:px-6">
+      <header className="section-panel-header px-5 py-4 sm:px-6">
         {srOnlyTitle ? (
           <h2 className="sr-only">{title}</h2>
         ) : (
@@ -29,7 +31,7 @@ export function SectionPanel({
           </div>
         )}
       </header>
-      <div className="px-5 py-5 sm:px-6 sm:py-6">{children}</div>
+      <div className={`px-5 py-5 sm:px-6 sm:py-6 ${contentClassName ?? ""}`}>{children}</div>
     </section>
   );
 }

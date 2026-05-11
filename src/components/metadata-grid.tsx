@@ -27,7 +27,7 @@ export function MetadataGrid({ items }: MetadataGridProps) {
                   href={item.href}
                   target={item.href.startsWith("mailto:") ? undefined : "_blank"}
                   rel={item.href.startsWith("mailto:") ? undefined : "noreferrer"}
-                  className="inline-flex items-center gap-2 text-base font-semibold text-[color:var(--foreground)] transition hover:text-[color:var(--accent)]"
+                  className="inline-flex items-center gap-2 text-base font-semibold text-[color:var(--foreground)] transition hover:brightness-125"
                 >
                   {item.value}
                   <ArrowUpRight className="h-4 w-4" />

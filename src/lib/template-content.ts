@@ -64,16 +64,24 @@ export type ProjectEntry = {
   summary: string;
   period: string;
   status: string;
+  detail: string;
   highlights: string[];
+  timeline: {
+    title: string;
+    description: string;
+  }[];
+  diagram?: string;
   stack: string[];
-  repoUrl: string;
-  demoUrl: string;
+  repoUrl?: string;
+  demoUrl?: string;
   learned: string;
 };
 
 export type TimelineEntry = {
   title: string;
   organization: string;
+  organizationUrl?: string;
+  location?: string;
   period: string;
   mode: string;
   summary: string;
@@ -97,25 +105,32 @@ export type StackCategory = {
   items: string[];
 };
 
+export type StackLogoItem = {
+  name: string;
+  logoSrc: string;
+  contrastLogoSrc?: string;
+  display?: "default" | "docker";
+};
+
 export const navLinks: NavLink[] = [
   { label: "About", href: "#about" },
   { label: "Activity", href: "#activity" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
-  { label: "Blog", href: "#articles" },
+  // { label: "Blog", href: "#articles" },
   { label: "Stack", href: "#stack" },
 ];
 
 export const heroProfile: HeroProfile = {
   name: "John Ghlen Dealdo",
   initials: "JGD",
-  role: "Junior DevOps / Platform Engineer",
+  role: "DevOps / Platform Engineer",
   tagline:
     "Building reliable infrastructure, automation, and deployment workflows one practical system at a time.",
   summary:
     "I’m drawn to the parts of software delivery that sit below the interface: Linux, networking, infrastructure as code, CI/CD, and the steady operational habits that make systems easier to run and easier to trust.",
   status:
-    "Part-time Linux system administrator based in the Philippines, building toward junior DevOps and platform engineering work.",
+    "Part-time Linux system administrator based in the Philippines, building toward DevOps and platform engineering work.",
   quickFacts: [
     "Part-time Linux system administrator",
     "Philippines-based",
@@ -127,7 +142,7 @@ export const heroProfile: HeroProfile = {
 export const overviewItems: OverviewItem[] = [
   {
     label: "Track",
-    value: "Junior DevOps / Platform",
+    value: "DevOps / Platform",
     detail: "Focused on infrastructure, delivery, and operability",
     icon: BriefcaseBusiness,
   },
@@ -197,191 +212,242 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const aboutParagraphs = [
-  "I enjoy technical work that rewards curiosity and careful problem solving. The more I learn about the layers underneath an application, the more interested I become in the path from code to running service.",
-  "Linux, networking, infrastructure as code, container workflows, and deployment automation all appeal to me for the same reason: they turn abstract systems into something I can observe, improve, and maintain responsibly.",
-  "My goal is not to sound more experienced than I am. I want to keep building practical depth, document what I learn, and become the kind of engineer who can own infrastructure with clarity from setup through troubleshooting.",
-];
-
-const activitySeed = [0, 1, 0, 2, 1, 3, 0, 1, 2, 0, 4, 1, 0, 2];
-
-export const activityWeeks = Array.from({ length: 28 }, (_, weekIndex) =>
-  Array.from({ length: 7 }, (_, dayIndex) => {
-    const seed = activitySeed[(weekIndex + dayIndex) % activitySeed.length];
-
-    if ((weekIndex + 2 * dayIndex) % 17 === 0) {
-      return 4;
-    }
-
-    if ((weekIndex + dayIndex) % 9 === 0) {
-      return Math.min(seed + 1, 3);
-    }
-
-    return seed;
-  }),
-);
-
-export const activityMonthLabels = [
-  "Nov",
-  "",
-  "",
-  "",
-  "Dec",
-  "",
-  "",
-  "",
-  "Jan",
-  "",
-  "",
-  "",
-  "Feb",
-  "",
-  "",
-  "",
-  "Mar",
-  "",
-  "",
-  "",
-  "Apr",
-  "",
-  "",
-  "",
-  "May",
-  "",
-  "",
-  "",
+  "I like poking around the **weird layers underneath apps** until I accidentally become emotionally attached to a **Linux server**.",
+  "The deeper I go into **Linux**, **networking**, **containers**, **IaC**, and **deployment automation**, the more I realize: **complexity doesn’t disappear**—it just gets distributed across layers you slowly learn to see.",
+  "I enjoy technical work that rewards **curiosity**, **patience**, and the ability to stare at **logs** until they eventually start making sense.",
+  "I also care about **ownership**—not in a buzzword sense, but in the practical **DevOps** way: if I build or touch a system, I want to understand it **end-to-end**, be responsible for how it behaves in **production**, and be the person who can actually **debug it when it breaks at 2 AM**.",
+  "I’m not trying to act like some **10x infrastructure wizard**. I’m just out here slowly collecting **practical skills**, **documenting what I learn**, and trying to become the kind of engineer who can confidently say: **“give me 20 minutes and I’ll probably figure it out.\"**",
 ];
 
 export const projects: ProjectEntry[] = [
   {
-    title: "Self-hosted deployment lab",
+    title: "Gated Proxmox Management via OPNsense",
     summary:
-      "A personal environment for testing service exposure, reverse proxies, DNS, and deployment flow in a setup that can be rebuilt from scratch.",
-    period: "Ongoing lab",
+      "A hardened virtualized network design that moves hypervisor administration behind a firewall VM and VPN-only access path.",
+    period: "Part-time infra project",
+    status: "Strongest case study",
+    detail:
+      "The goal was to reduce direct management exposure while keeping rollback, baseline capture, and operator access clear enough for a risky network cutover.",
+    highlights: [
+      "Designed a two-bridge Proxmox layout with a public WAN bridge and isolated private management bridge.",
+      "Placed OPNsense between public ingress and private administration paths.",
+      "Sequenced baseline capture, rollback prep, VPN validation, cutover, and post-cutover handover.",
+    ],
+    timeline: [
+      {
+        title: "Approve topology",
+        description:
+          "Confirm bridge roles, address ownership, private subnet boundaries, and the VPN-first operator path.",
+      },
+      {
+        title: "Capture baseline",
+        description:
+          "Record interfaces, routes, hostname behavior, access model, TLS state, and rollback requirements.",
+      },
+      {
+        title: "Build network base",
+        description:
+          "Create public and private bridges, deploy OPNsense, enable private LAN services, and validate a test VM.",
+      },
+      {
+        title: "Validate VPN entry",
+        description:
+          "Enable WireGuard, test external admin access, and keep management public until the private route works.",
+      },
+      {
+        title: "Cut over management",
+        description:
+          "Move hypervisor administration to the private bridge and confirm the old public path is closed.",
+      },
+      {
+        title: "Harden and hand over",
+        description:
+          "Document final access, certificate behavior, validation evidence, and recovery procedures.",
+      },
+    ],
+    diagram: `flowchart LR
+  internet[Public network] --> wan[Public bridge]
+  wan --> fw[OPNsense VM]
+  admin[Admin client] --> vpn[WireGuard]
+  vpn --> fw
+  fw --> lan[Private bridge]
+  lan --> pve[Hypervisor management]
+  lan --> guests[Private workloads]`,
+    stack: ["Proxmox VE", "OPNsense", "WireGuard", "Linux networking", "Bash", "Cloud-init"],
+    learned:
+      "I learned that infrastructure hardening is mostly sequencing: prove recovery first, validate the new path second, and only then remove the old exposure.",
+  },
+  {
+    title: "Proxmox Provisioning Control Plane",
+    summary:
+      "A containerized API and worker flow for requesting, validating, and provisioning virtual machines through a controlled interface.",
+    period: "Part-time platform project",
+    status: "Implemented",
+    detail:
+      "This project turns manual VM creation into an API-backed workflow with validation, job tracking, and integration hooks for an internal low-code interface.",
+    highlights: [
+      "Built a FastAPI service around Proxmox API operations and VM request validation.",
+      "Used Docker Compose to run the API, database, and integration layer consistently.",
+      "Separated request intake from provisioning work so failures can be tracked instead of hidden.",
+    ],
+    timeline: [
+      {
+        title: "Define request contract",
+        description:
+          "Model VM inputs, environment values, and validation rules before touching the hypervisor API.",
+      },
+      {
+        title: "Containerize service",
+        description:
+          "Package the API and supporting services with Docker Compose for repeatable local and server runs.",
+      },
+      {
+        title: "Add job handling",
+        description:
+          "Track provisioning status through database-backed jobs instead of relying on one-shot scripts.",
+      },
+      {
+        title: "Integrate interface",
+        description:
+          "Connect the request workflow to a low-code front end while keeping provisioning logic in the API.",
+      },
+    ],
+    diagram: `flowchart LR
+  ui[Request UI] --> api[FastAPI service]
+  api --> db[(Job database)]
+  api --> worker[Provisioning worker]
+  worker --> proxmox[Proxmox API]
+  proxmox --> vm[Virtual machine]`,
+    stack: ["FastAPI", "Python", "Docker Compose", "PostgreSQL", "Proxmox API"],
+    learned:
+      "I learned how platform work changes when the goal is not just to create infrastructure, but to make the request path auditable and repeatable.",
+  },
+  {
+    title: "Proxmox Private VM Access with WireGuard",
+    summary:
+      "A public infrastructure lab that uses Ansible and Terraform to bootstrap private VM access behind WireGuard.",
+    period: "Public GitHub project",
     status: "Active",
+    detail:
+      "This project separates host preparation from VM lifecycle management: Ansible handles the Proxmox host baseline while Terraform manages VM resources.",
     highlights: [
-      "Containerized multiple services and documented how they move from local build to reachable application.",
-      "Practiced mapping DNS, ports, reverse proxy rules, and host-level service management together.",
-      "Used the lab as a safe place to test changes, failure cases, and recovery steps.",
+      "Used Ansible roles and playbooks for repeatable Proxmox host bootstrap.",
+      "Used Terraform modules and environments for VM lifecycle boundaries.",
+      "Added CI checks for Terraform formatting and Ansible syntax validation.",
     ],
-    stack: ["Docker", "Linux", "Nginx", "DNS", "SSH"],
-    repoUrl: "https://github.com/yourusername/self-hosted-deployment-lab",
-    demoUrl: "https://example.com/self-hosted-deployment-lab",
+    timeline: [
+      {
+        title: "Bootstrap host",
+        description:
+          "Prepare Proxmox dependencies and baseline configuration with Ansible.",
+      },
+      {
+        title: "Define VM lifecycle",
+        description:
+          "Use Terraform modules and environment folders to describe private VM resources.",
+      },
+      {
+        title: "Gate access",
+        description:
+          "Use WireGuard as the administrative entry point for private resources.",
+      },
+      {
+        title: "Validate changes",
+        description:
+          "Run CI checks before infrastructure definitions are treated as usable.",
+      },
+    ],
+    diagram: `flowchart LR
+  gha[GitHub Actions] --> checks[Format and syntax checks]
+  ansible[Ansible] --> host[Proxmox host]
+  terraform[Terraform] --> vm[Private VMs]
+  wg[WireGuard] --> vm`,
+    stack: ["Terraform", "Ansible", "Proxmox VE", "WireGuard", "GitHub Actions", "Makefile"],
+    repoUrl: "https://github.com/Sureinity/proxmox-private-vm-access-wireguard",
     learned:
-      "I learned that deployment confidence grows when networking, service ownership, and rollback thinking are documented alongside the code.",
+      "I learned why IaC ownership boundaries matter: host state, VM state, and access paths should not be mixed into one unclear automation layer.",
   },
   {
-    title: "Dockerized Django deployment pipeline",
+    title: "Web Security Chaos Toolkit",
     summary:
-      "A repeatable workflow for packaging a Django app, checking build quality, and preparing a more reliable deployment path between local and server environments.",
-    period: "Project template",
-    status: "Ready to expand",
+      "A DevSecOps-oriented CLI toolkit for orchestrating web audits, scanners, and controlled failure experiments.",
+    period: "Public GitHub project",
+    status: "Active",
+    detail:
+      "This project focuses on operational security workflows: repeatable scans, structured outputs, local lab services, and adapter-based tooling.",
     highlights: [
-      "Structured the app to build cleanly inside containers with environment-specific configuration.",
-      "Added a pipeline path for linting, tests, and image build steps before release.",
-      "Used the project to understand what makes a deployment easier to trust over time.",
+      "Built a Python CLI with typed configuration and scanner orchestration.",
+      "Used Docker Compose to run supporting security and chaos-testing services.",
+      "Added tests, linting, typing, and pre-commit checks to keep the toolkit maintainable.",
     ],
-    stack: ["Django", "Docker", "GitHub Actions", "PostgreSQL"],
-    repoUrl: "https://github.com/yourusername/dockerized-django-pipeline",
-    demoUrl: "https://example.com/dockerized-django-pipeline",
-    learned:
-      "I learned why repeatable builds, explicit configuration, and simple health checks matter before an app feels production-minded.",
-  },
-  {
-    title: "Proxmox and OPNsense infrastructure lab",
-    summary:
-      "A homelab environment for exploring virtual machines, segmented networks, firewall decisions, and how infrastructure layout affects day-two operations.",
-    period: "Homelab track",
-    status: "Iterating",
-    highlights: [
-      "Experimented with virtualized services and isolated network segments.",
-      "Practiced basic firewall and routing concepts in a more realistic environment.",
-      "Used failures in the lab to understand how network assumptions break deployments.",
+    timeline: [
+      {
+        title: "Model audit workflows",
+        description:
+          "Define CLI commands, configuration, and output formats before adding scanners.",
+      },
+      {
+        title: "Attach tool adapters",
+        description:
+          "Wrap security tools behind consistent interfaces for repeatable execution.",
+      },
+      {
+        title: "Run local lab services",
+        description:
+          "Use Compose-managed services for scanner and chaos-testing workflows.",
+      },
+      {
+        title: "Enforce quality gates",
+        description:
+          "Use tests, linting, typing, and pre-commit checks to catch toolchain drift.",
+      },
     ],
-    stack: ["Proxmox", "OPNsense", "VLANs", "Linux", "Networking"],
-    repoUrl: "https://github.com/yourusername/proxmox-opnsense-lab",
-    demoUrl: "https://example.com/proxmox-opnsense-lab",
+    diagram: `flowchart LR
+  cli[Python CLI] --> adapters[Tool adapters]
+  adapters --> scanners[Security scanners]
+  cli --> compose[Compose lab]
+  compose --> target[Test targets]
+  scanners --> reports[Structured reports]`,
+    stack: ["Python", "Docker Compose", "ZAP", "Nuclei", "Nmap", "Trivy", "Semgrep", "pytest"],
+    repoUrl: "https://github.com/Sureinity/websec-chaos-toolkit",
     learned:
-      "I learned that infrastructure clarity matters early. Good network boundaries make troubleshooting faster long before the application layer changes.",
-  },
-  {
-    title: "GitHub Actions CI/CD workflow",
-    summary:
-      "A reusable CI/CD workflow for validating changes, building artifacts, and creating a cleaner path from commit to deployable output.",
-    period: "Reusable template",
-    status: "Reference setup",
-    highlights: [
-      "Split checks into clear pipeline stages so failures are easier to trace.",
-      "Used the workflow as a baseline for future app deployment projects.",
-      "Built around the idea that automation should reduce repeated manual work, not hide it.",
-    ],
-    stack: ["GitHub Actions", "Docker", "YAML", "CI/CD"],
-    repoUrl: "https://github.com/yourusername/github-actions-cicd-workflow",
-    demoUrl: "https://example.com/github-actions-cicd-workflow",
-    learned:
-      "I learned that even small pipelines improve confidence when they make quality checks visible and consistent.",
-  },
-  {
-    title: "Linux server automation scripts",
-    summary:
-      "A collection of scripts for server bootstrapping, package setup, user management, and other repeatable administration steps.",
-    period: "Script library",
-    status: "Growing",
-    highlights: [
-      "Captured common setup tasks in scripts instead of repeating them manually.",
-      "Used the library to practice idempotent habits and cleaner shell workflows.",
-      "Kept the scripts readable so they double as documentation for future rebuilds.",
-    ],
-    stack: ["Bash", "Linux", "Systemd", "Automation"],
-    repoUrl: "https://github.com/yourusername/linux-server-automation-scripts",
-    demoUrl: "https://example.com/linux-server-automation-scripts",
-    learned:
-      "I learned that small automation wins add up quickly when you need to rebuild, validate, or hand off a system later.",
+      "I learned that security tooling becomes more useful when it produces consistent evidence instead of one-off terminal output.",
   },
 ];
 
 export const experienceItems: TimelineEntry[] = [
   {
-    title: "Independent infrastructure lab builder",
-    organization: "Self-directed practice",
-    period: "Current",
-    mode: "Hands-on learning",
+    title: "Linux SysAdmin / System Engineer",
+    organization: "Helity",
+    location: "Europe/Berlin",
+    period: "December 2025 - Present",
+    mode: "Part-time",
     summary:
-      "Building personal lab environments to understand deployments, Linux administration, service exposure, and how infrastructure decisions affect reliability.",
+      "Supporting infrastructure and platform work across Proxmox-based systems, secure service deployment, and internal automation workflows.",
     bullets: [
-      "Practice deploying and managing services in environments I can break and rebuild safely.",
-      "Document the setup path, common failure points, and recovery steps for each lab iteration.",
-      "Use each project to connect Linux, networking, containers, and CI/CD into one coherent flow.",
+      "Designed and documented Proxmox VE networking around OPNsense, private VM bridges, DHCP/NAT boundaries, and WireGuard-based administrative access.",
+      "Built a FastAPI provisioning worker that integrates Budibase, PostgreSQL, Docker Compose, and the Proxmox API for queued VM clone requests.",
+      "Prepared Coolify, Traefik, CrowdSec, internal TLS, WAF verification, and operational notes for a secure self-hosted application platform.",
+      "Created validation, rollback, and infrastructure collection scripts to make system changes easier to verify and recover.",
     ],
-    stack: ["Linux", "Docker", "Nginx", "DNS", "Virtualization"],
+    stack: ["Linux", "Proxmox VE", "OPNsense", "WireGuard", "Docker Compose", "FastAPI", "PostgreSQL", "Coolify", "Traefik", "CrowdSec", "Bash"],
     open: true,
   },
   {
-    title: "Application delivery practice",
-    organization: "Portfolio projects",
-    period: "Recent work",
-    mode: "Project-based",
+    title: "Internship (DevOps)",
+    organization: "Infosoft",
+    organizationUrl: "https://infosoft.poolreno.com/",
+    location: "Davao City, Philippines",
+    period: "March 2026 - June 2026 (Expected)",
+    mode: "Internship",
     summary:
-      "Focused on making application deployment workflows clearer, more repeatable, and easier to validate before release.",
+      "Contributing to the team’s DevOps direction by improving development workflows, container practices, and security-focused automation.",
     bullets: [
-      "Package apps in containers and structure configuration for cleaner environment changes.",
-      "Set up CI/CD steps that surface failures early and reduce manual release work.",
-      "Treat deployment quality as part of the project rather than something added at the end.",
+      "Introduced DevOps practices and alternative workflow approaches, including infrastructure as code, configuration as code, CI/CD, and documentation frameworks.",
+      "Trimmed and optimized the team’s Docker-based PHP/Laravel development environment template to make local setup lighter and easier to maintain.",
+      "Developed the Web Security Chaos Toolkit, a Python-based DevSecOps CLI for repeatable web audits, scanner orchestration, Docker Compose lab services, and structured security evidence.",
     ],
-    stack: ["GitHub Actions", "Docker", "Django", "Bash"],
-  },
-  {
-    title: "Automation and scripting practice",
-    organization: "Personal toolset",
-    period: "Ongoing",
-    mode: "Incremental improvement",
-    summary:
-      "Collecting scripts and repeatable workflows for server setup, maintenance, and operational housekeeping.",
-    bullets: [
-      "Automate repeated administration steps instead of relying on memory or ad hoc notes.",
-      "Use scripts as both tooling and documentation for how a machine should be prepared.",
-      "Improve confidence by making rebuilds and verification steps easier to repeat.",
-    ],
-    stack: ["Bash", "Python", "SSH", "System administration"],
+    stack: ["Docker", "Laravel", "PHP", "CI/CD", "Documentation", "Python", "Docker Compose", "DevSecOps"],
   },
 ];
 
@@ -468,6 +534,31 @@ export const stackCategories: StackCategory[] = [
   },
 ];
 
+export const stackLogoItems: StackLogoItem[] = [
+  {
+    name: "Ansible",
+    logoSrc: "/stack/theme/ansible-light.png",
+    contrastLogoSrc: "/stack/theme/ansible-dark.png",
+  },
+  { name: "Terraform", logoSrc: "/stack/theme/terraform.png" },
+  { name: "Azure", logoSrc: "/stack/theme/azure.png" },
+  {
+    name: "Bash",
+    logoSrc: "/stack/theme/bash-light.png",
+    contrastLogoSrc: "/stack/theme/bash-dark.png",
+  },
+  { name: "Python", logoSrc: "/stack/theme/python.png" },
+  { name: "Git", logoSrc: "/stack/theme/git.png" },
+  {
+    name: "GitHub",
+    logoSrc: "/stack/theme/github-light.png",
+    contrastLogoSrc: "/stack/theme/github-dark.png",
+  },
+  { name: "GitHub Actions", logoSrc: "/stack/theme/githubactions.png" },
+  { name: "Docker | Docker Compose", logoSrc: "/stack/theme/docker.png", display: "docker" },
+  { name: "Proxmox VE", logoSrc: "/stack/theme/proxmox.png" },
+];
+
 export const footerLinks = [
   { label: "GitHub", href: "https://github.com/Sureinity" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/john-ghlen-dealdo-6a475539b" },
@@ -499,12 +590,12 @@ export const paletteActions: PaletteAction[] = [
     href: "#experience",
     group: "Sections",
   },
-  {
-    title: "Jump to Articles",
-    description: "Open the blog and writing section.",
-    href: "#articles",
-    group: "Sections",
-  },
+  // {
+  //   title: "Jump to Articles",
+  //   description: "Open the blog and writing section.",
+  //   href: "#articles",
+  //   group: "Sections",
+  // },
   {
     title: "Jump to Stack",
     description: "Review the technology categories and tools.",

@@ -174,7 +174,7 @@ export function CommandPalette({ actions }: CommandPaletteProps) {
                             key={`${group}-${action.title}`}
                             type="button"
                             onClick={() => runAction(action)}
-                            className="flex w-full items-start justify-between gap-4 rounded-2xl border border-[color:var(--line)] bg-[color:var(--background-muted)] px-4 py-3 text-left transition hover:border-[color:var(--line-strong)] hover:bg-[color:var(--accent-soft)]"
+                            className="flex w-full items-start justify-between gap-4 rounded-2xl border border-[color:var(--line)] bg-[color:var(--background-muted)] px-4 py-3 text-left transition hover:border-[color:var(--line-strong)] hover:bg-[color:var(--background-elevated)]"
                           >
                             <span>
                               <span className="block font-medium text-[color:var(--foreground)]">

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="115" viewBox="0 0 430 115" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Primary logo light theme">
+<style>
+  @font-face {
+    font-family: "Slaine JP";
+    src: url("../fonts/MPLUSRounded1c-Regular.ttf") format("truetype");
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: "Slaine Mono";
+    src: url("../fonts/IBMPlexMono-Medium.ttf") format("truetype");
+    font-weight: 500 900;
+  }
+  .jp { font-family: "Slaine JP", sans-serif; font-weight: 400; }
+  .mono { font-family: "Slaine Mono", monospace; font-weight: 800; }
+  .latin { font-family: "Slaine Mono", monospace; font-weight: 500; letter-spacing: .34em; }
+</style>
+<rect width="100%" height="100%" fill="#fafafa"/>
+<g transform="translate(62 20)">
+    <text class="mono" x="0" y="54.448" font-size="66.400" fill="#d97706" transform="translate(0.000 0.000) scale(1.480 1.120)">&gt;</text>
+    <text class="jp" x="56.320" y="46.938" font-size="55.680" fill="#d97706">ス</text>
+    <rect x="59.520" y="59.520" width="52.800" height="11.520" fill="#d97706"/>
+    <text class="jp" x="115.000" y="48.307" font-size="56.960" fill="#d97706" letter-spacing="0.015em">レイン。</text>
+  </g>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="176" height="158" viewBox="0 0 176 158" role="img" aria-label="Icon shorthand boxed dark theme">
+<style>
+  @font-face {
+    font-family: "Slaine JP";
+    src: url("../fonts/MPLUSRounded1c-Regular.ttf") format("truetype");
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: "Slaine Mono";
+    src: url("../fonts/IBMPlexMono-Medium.ttf") format("truetype");
+    font-weight: 500 900;
+  }
+  .jp { font-family: "Slaine JP", sans-serif; font-weight: 400; }
+  .mono { font-family: "Slaine Mono", monospace; font-weight: 800; }
+  .latin { font-family: "Slaine Mono", monospace; font-weight: 500; letter-spacing: .34em; }
+</style>
+<rect width="100%" height="100%" fill="#050505"/>
+<rect x="1" y="1" width="174" height="156" fill="none" stroke="#111111" stroke-width="2"/>
+  <g transform="translate(24 22)">
+    <text class="mono" x="0" y="48.806" font-size="59.520" fill="#f59e0b" transform="translate(1.920 8.960) scale(1.480 1.120)">&gt;</text>
+    <text class="jp" x="52.480" y="53.024" font-size="43.200" fill="#f59e0b">ス</text>
+    <rect x="51.200" y="59.520" width="46.080" height="11.520" fill="#f59e0b"/>
+    <text class="jp" x="97.600" y="52.736" font-size="44.800" fill="#f59e0b">。</text>
+  </g>
+</svg>
