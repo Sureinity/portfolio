@@ -122,7 +122,7 @@ export const navLinks: NavLink[] = [
 ];
 
 export const heroProfile: HeroProfile = {
-  name: "John Ghlen Dealdo",
+  name: "John Ghlen",
   initials: "JGD",
   role: "DevOps / Platform Engineer",
   tagline:
