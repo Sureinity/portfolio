@@ -129,7 +129,7 @@ export default function Home() {
         </SectionPanel>
       </main>
 
-      <SiteFooter ownerName={heroProfile.name} />
+      <SiteFooter ownerName="John Ghlen" />
       <ScrollToTop />
     </div>
   );
