@@ -81,6 +81,9 @@ export type TimelineEntry = {
   title: string;
   organization: string;
   organizationUrl?: string;
+  organizationLogoSrc?: string;
+  organizationLogoAlt?: string;
+  organizationLogoFallback?: "not-allowed";
   location?: string;
   period: string;
   mode: string;
@@ -419,6 +422,7 @@ export const experienceItems: TimelineEntry[] = [
   {
     title: "Linux SysAdmin / System Engineer",
     organization: "Helity",
+    organizationLogoFallback: "not-allowed",
     location: "Europe/Berlin",
     period: "December 2025 - Present",
     mode: "Part-time",
@@ -437,6 +441,8 @@ export const experienceItems: TimelineEntry[] = [
     title: "Internship (DevOps)",
     organization: "Infosoft",
     organizationUrl: "https://infosoft.poolreno.com/",
+    organizationLogoSrc: "/organizations/infosoft.png",
+    organizationLogoAlt: "Infosoft logo",
     location: "Davao City, Philippines",
     period: "March 2026 - June 2026 (Expected)",
     mode: "Internship",
@@ -453,31 +459,21 @@ export const experienceItems: TimelineEntry[] = [
 
 export const educationItems: TimelineEntry[] = [
   {
-    title: "Formal education entry",
-    organization: "Add your school or program",
-    period: "Add years attended",
-    mode: "Degree or diploma",
+    title: "Bachelor of Science in Information Technology",
+    organization: "University of Mindanao - Digos College",
+    organizationUrl: "https://www.facebook.com/umdigoscollege/",
+    organizationLogoSrc: "/organizations/um-digos-college.png",
+    organizationLogoAlt: "University of Mindanao - Digos College logo",
+    period: "August 2023 - July 2026 (Expected)",
+    mode: "Undergraduate",
     summary:
-      "Replace this with your actual education background, concentration, and relevant coursework or capstone details.",
+      "Focused on Linux, web development, cybersecurity, and machine learning while building a stronger foundation for DevOps and platform engineering work.",
     bullets: [
-      "Mention any systems, networking, or software engineering coursework that supports your current goals.",
-      "Note projects, labs, or group work that shaped your interest in infrastructure or automation.",
+      "Built fundamentals across programming, systems, web application development, and security-aware software practices.",
+      "Used coursework and self-directed projects to connect Linux, infrastructure, automation, and practical deployment workflows.",
     ],
-    stack: ["Operating systems", "Networking", "Programming"],
+    stack: ["Linux", "Web Development", "Cybersecurity", "Machine Learning", "Information Technology"],
     open: true,
-  },
-  {
-    title: "Self-directed study path",
-    organization: "Courses, labs, and documentation",
-    period: "Ongoing",
-    mode: "Independent learning",
-    summary:
-      "Acknowledge that practical lab work, documentation, and repeated experimentation are part of your education too.",
-    bullets: [
-      "Study Terraform, Kubernetes, observability, and security-aware deployment practices through projects.",
-      "Keep notes on what works, what breaks, and what needs deeper understanding.",
-    ],
-    stack: ["Terraform", "Kubernetes", "Cloud", "Observability"],
   },
 ];
 

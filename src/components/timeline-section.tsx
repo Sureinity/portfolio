@@ -1,5 +1,6 @@
+import Image from "next/image";
 import type { TimelineEntry } from "@/lib/template-content";
-import { ChevronDown } from "lucide-react";
+import { Ban, ChevronDown } from "lucide-react";
 
 type TimelineSectionProps = {
   items: TimelineEntry[];
@@ -25,18 +26,39 @@ export function TimelineSection({ items }: TimelineSectionProps) {
                 </span>
               </div>
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm sm:text-base">
-                {item.organizationUrl ? (
-                  <a
-                    href={item.organizationUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-[color:var(--foreground)] underline decoration-[color:var(--line-strong)] underline-offset-4 transition hover:text-[color:var(--muted-foreground)]"
-                  >
-                    {item.organization}
-                  </a>
-                ) : (
-                  <span className="text-[color:var(--foreground)]">{item.organization}</span>
-                )}
+                <span className="inline-flex items-center gap-2">
+                  {item.organizationLogoSrc ? (
+                    <span className="relative inline-flex h-7 w-7 overflow-hidden border border-[color:var(--line)] bg-[color:var(--background-elevated)]">
+                      <Image
+                        src={item.organizationLogoSrc}
+                        alt={item.organizationLogoAlt ?? `${item.organization} logo`}
+                        fill
+                        sizes="28px"
+                        className="object-cover object-center"
+                      />
+                    </span>
+                  ) : item.organizationLogoFallback === "not-allowed" ? (
+                    <span
+                      aria-hidden
+                      className="inline-flex h-7 w-7 items-center justify-center border border-[color:var(--line)] bg-[color:var(--background-elevated)] text-[color:var(--muted-foreground)]"
+                    >
+                      <Ban className="h-4 w-4" />
+                    </span>
+                  ) : null}
+
+                  {item.organizationUrl ? (
+                    <a
+                      href={item.organizationUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-[color:var(--foreground)] underline decoration-[color:var(--line-strong)] underline-offset-4 transition hover:text-[color:var(--muted-foreground)]"
+                    >
+                      {item.organization}
+                    </a>
+                  ) : (
+                    <span className="text-[color:var(--foreground)]">{item.organization}</span>
+                  )}
+                </span>
                 {item.location ? (
                   <span className="mono-detail text-[color:var(--muted-foreground)]">
                     {item.location}
