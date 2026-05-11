@@ -1,0 +1,20 @@
+# Local production-style run.
+# Use this to verify the same Docker image that production uses, without Traefik.
+
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: devops-portfolio:local
+    container_name: devops-portfolio-local
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      HOSTNAME: 0.0.0.0
+      PORT: 3000
+    ports:
+      # Browser URL: http://localhost:${PORTFOLIO_LOCAL_PORT:-3000}
+      # Override if 3000 is already used:
+      # PORTFOLIO_LOCAL_PORT=3001 docker compose -f docker-compose.local.yml up -d --build
+      - "${PORTFOLIO_LOCAL_PORT:-3000}:3000"

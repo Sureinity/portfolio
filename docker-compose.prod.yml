@@ -1,0 +1,90 @@
+# Production deployment for one dedicated server.
+# This file runs both:
+# - portfolio: the Next.js standalone app
+# - traefik: reverse proxy, HTTPS entrypoint, and Let's Encrypt certificate handling
+#
+# Expected flow:
+# Internet -> Traefik :80/:443 -> portfolio container :3000
+#
+# Before first deploy:
+# 1. Copy deploy.env.example to .env on the server.
+# 2. Set PORTFOLIO_DOMAIN and TRAEFIK_ACME_EMAIL.
+# 3. Point the domain DNS A/AAAA record to this server.
+# 4. Run: docker compose --env-file .env -f docker-compose.prod.yml up -d --build
+
+services:
+  traefik:
+    image: traefik:v3.6.2
+    container_name: portfolio-traefik
+    restart: unless-stopped
+    command:
+      # Docker provider lets Traefik discover containers through labels.
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+
+      # HTTP and HTTPS public entrypoints.
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+
+      # Redirect all plain HTTP traffic to HTTPS.
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+
+      # Let's Encrypt HTTP challenge. Port 80 must be reachable from the internet.
+      - "--certificatesresolvers.${TRAEFIK_CERTRESOLVER:-letsencrypt}.acme.email=${TRAEFIK_ACME_EMAIL:?set TRAEFIK_ACME_EMAIL}"
+      - "--certificatesresolvers.${TRAEFIK_CERTRESOLVER:-letsencrypt}.acme.storage=/letsencrypt/acme.json"
+      - "--certificatesresolvers.${TRAEFIK_CERTRESOLVER:-letsencrypt}.acme.httpchallenge=true"
+      - "--certificatesresolvers.${TRAEFIK_CERTRESOLVER:-letsencrypt}.acme.httpchallenge.entrypoint=web"
+
+      # Keep dashboard disabled unless explicitly enabled through the env file.
+      - "--api.dashboard=${TRAEFIK_DASHBOARD:-false}"
+      - "--log.level=${TRAEFIK_LOG_LEVEL:-INFO}"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # Required so Traefik can read Docker labels from running containers.
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+      # Stores Let's Encrypt certificates. Keep this volume across redeploys.
+      - traefik-letsencrypt:/letsencrypt
+    networks:
+      - web
+
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: devops-portfolio:prod
+    container_name: devops-portfolio
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      HOSTNAME: 0.0.0.0
+      PORT: 3000
+    expose:
+      # Exposed only to Traefik on the internal Docker network, not to the host firewall.
+      - "3000"
+    labels:
+      - "traefik.enable=true"
+
+      # Route requests for the portfolio domain to this service.
+      - "traefik.http.routers.portfolio.rule=Host(`${PORTFOLIO_DOMAIN:?set PORTFOLIO_DOMAIN}`)"
+      - "traefik.http.routers.portfolio.entrypoints=websecure"
+      - "traefik.http.routers.portfolio.tls=true"
+      - "traefik.http.routers.portfolio.tls.certresolver=${TRAEFIK_CERTRESOLVER:-letsencrypt}"
+
+      # Tell Traefik which internal port the Next.js server listens on.
+      - "traefik.http.services.portfolio.loadbalancer.server.port=3000"
+    depends_on:
+      - traefik
+    networks:
+      - web
+
+networks:
+  web:
+    name: ${TRAEFIK_NETWORK:-portfolio-web}
+
+volumes:
+  traefik-letsencrypt:
+
