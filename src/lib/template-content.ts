@@ -555,7 +555,7 @@ export const stackLogoItems: StackLogoItem[] = [
     contrastLogoSrc: "/stack/theme/github-dark.png",
   },
   { name: "GitHub Actions", logoSrc: "/stack/theme/githubactions.png" },
-  { name: "Docker | Docker Compose", logoSrc: "/stack/theme/docker.png", display: "docker" },
+  { name: "Docker | Docker Compose", logoSrc: "/stack/theme/docker-simpleicons.png", display: "docker" },
   { name: "Proxmox VE", logoSrc: "/stack/theme/proxmox.png" },
 ];
 
