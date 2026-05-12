@@ -28,7 +28,7 @@ export function TimelineSection({ items }: TimelineSectionProps) {
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm sm:text-base">
                 <span className="inline-flex min-w-0 items-center gap-2">
                   {item.organizationLogoSrc ? (
-                    <span className="relative inline-flex h-7 w-7 overflow-hidden border border-[color:var(--line)] bg-[color:var(--background-elevated)]">
+                    <span className="relative inline-flex h-7 w-7 overflow-hidden rounded-full border border-[color:var(--line)] bg-[color:var(--background-elevated)]">
                       <Image
                         src={item.organizationLogoSrc}
                         alt={item.organizationLogoAlt ?? `${item.organization} logo`}
@@ -40,7 +40,7 @@ export function TimelineSection({ items }: TimelineSectionProps) {
                   ) : item.organizationLogoFallback === "not-allowed" ? (
                     <span
                       aria-hidden
-                      className="inline-flex h-7 w-7 items-center justify-center border border-[color:var(--line)] bg-[color:var(--background-elevated)] text-[color:var(--muted-foreground)]"
+                      className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--background-elevated)] text-[color:var(--muted-foreground)]"
                     >
                       <Ban className="h-4 w-4" />
                     </span>
