@@ -15,10 +15,10 @@ export function ProjectAccordion({ projects }: ProjectAccordionProps) {
           open={index === 0}
           className="dropdown-card group panel-muted overflow-hidden"
         >
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-4 py-4 sm:px-5">
-            <div className="space-y-2">
+          <summary className="flex cursor-pointer list-none items-start justify-between gap-3 px-4 py-4 sm:gap-4 sm:px-5">
+            <div className="min-w-0 space-y-2">
               <div className="flex flex-wrap items-center gap-2">
-                <h3 className="font-editorial-serif text-xl text-[color:var(--foreground)]">
+                <h3 className="min-w-0 break-words font-editorial-serif text-xl text-[color:var(--foreground)]">
                   {project.title}
                 </h3>
                 <span className="mono-detail rounded-full border border-[color:var(--line)] bg-[color:var(--background-elevated)] px-2.5 py-1 text-[color:var(--muted-foreground)]">
@@ -39,7 +39,7 @@ export function ProjectAccordion({ projects }: ProjectAccordionProps) {
           </summary>
 
           <div className="dropdown-content rule-t px-4 py-4 sm:px-5">
-            <div className="grid gap-5 lg:grid-cols-[1fr_280px]">
+            <div className="grid min-w-0 gap-5 lg:grid-cols-[minmax(0,1fr)_280px]">
               <div className="space-y-4">
                 <p className="text-sm leading-7 text-[color:var(--muted-foreground)] sm:text-base">
                   {project.detail}

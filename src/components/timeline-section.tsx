@@ -15,10 +15,10 @@ export function TimelineSection({ items }: TimelineSectionProps) {
           open={item.open}
           className="dropdown-card group panel-muted overflow-hidden"
         >
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-4 py-4 sm:px-5">
-            <div className="space-y-2">
+          <summary className="flex cursor-pointer list-none items-start justify-between gap-3 px-4 py-4 sm:gap-4 sm:px-5">
+            <div className="min-w-0 space-y-2">
               <div className="flex flex-wrap items-center gap-2">
-                <h3 className="font-editorial-serif text-xl text-[color:var(--foreground)]">
+                <h3 className="min-w-0 break-words font-editorial-serif text-xl text-[color:var(--foreground)]">
                   {item.title}
                 </h3>
                 <span className="mono-detail rounded-full border border-[color:var(--line)] bg-[color:var(--background-elevated)] px-2.5 py-1 text-[color:var(--muted-foreground)]">
@@ -26,7 +26,7 @@ export function TimelineSection({ items }: TimelineSectionProps) {
                 </span>
               </div>
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm sm:text-base">
-                <span className="inline-flex items-center gap-2">
+                <span className="inline-flex min-w-0 items-center gap-2">
                   {item.organizationLogoSrc ? (
                     <span className="relative inline-flex h-7 w-7 overflow-hidden border border-[color:var(--line)] bg-[color:var(--background-elevated)]">
                       <Image
@@ -51,12 +51,12 @@ export function TimelineSection({ items }: TimelineSectionProps) {
                       href={item.organizationUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-[color:var(--foreground)] underline decoration-[color:var(--line-strong)] underline-offset-4 transition hover:text-[color:var(--muted-foreground)]"
+                      className="min-w-0 break-words text-[color:var(--foreground)] underline decoration-[color:var(--line-strong)] underline-offset-4 transition hover:text-[color:var(--muted-foreground)]"
                     >
                       {item.organization}
                     </a>
                   ) : (
-                    <span className="text-[color:var(--foreground)]">{item.organization}</span>
+                    <span className="min-w-0 break-words text-[color:var(--foreground)]">{item.organization}</span>
                   )}
                 </span>
                 {item.location ? (

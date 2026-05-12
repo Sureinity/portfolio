@@ -12,7 +12,7 @@ export function SiteHeader({ navLinks }: SiteHeaderProps) {
   return (
     <header className="site-header sticky top-0 z-50 px-4 pt-2 sm:px-6 lg:px-8">
       <div className="panel site-chrome-panel mx-auto px-3 py-3">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-3">
           <a
             href="#top"
             className="site-brand-logo"
@@ -38,12 +38,12 @@ export function SiteHeader({ navLinks }: SiteHeaderProps) {
             />
           </a>
 
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
+          <div className="flex min-w-0 flex-1 flex-col gap-3 lg:flex-row lg:items-center lg:justify-end">
             <nav
               aria-label="Primary navigation"
-              className="overflow-x-auto pb-1 lg:pb-0"
+              className="order-2 w-full lg:order-none lg:w-auto"
             >
-              <ul className="flex min-w-max items-center gap-1">
+              <ul className="flex flex-wrap items-center justify-center gap-1 lg:justify-start">
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     <a
@@ -59,7 +59,7 @@ export function SiteHeader({ navLinks }: SiteHeaderProps) {
               </ul>
             </nav>
 
-            <div className="flex items-center gap-2">
+            <div className="order-1 flex items-center gap-2 self-end lg:order-none lg:self-auto">
               <a
                 href="/resume/john-ghlen-dealdo-resume.pdf"
                 target="_blank"

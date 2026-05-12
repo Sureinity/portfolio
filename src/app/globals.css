@@ -747,6 +747,38 @@ input:focus-visible {
   margin-inline: auto;
 }
 
+@media (max-width: 899px) {
+  .activity-calendar-shell {
+    --activity-cell-size: 12px;
+    --activity-cell-gap: 3px;
+    --activity-weekday-width: 2rem;
+  }
+
+  .activity-calendar {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .activity-calendar-shell {
+    --activity-cell-size: 10px;
+    --activity-cell-gap: 3px;
+    --activity-weekday-width: 1.65rem;
+    padding-inline: 0;
+  }
+
+  .activity-weekday-labels,
+  .activity-month-label {
+    font-size: 11px;
+  }
+
+  .activity-summary,
+  .activity-legend {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
 .activity-month-layer,
 .activity-body-layer {
   display: grid;
@@ -1030,12 +1062,97 @@ input:focus-visible {
 }
 
 @media (max-width: 520px) {
+  .site-header {
+    padding-inline: 0.75rem;
+  }
+
+  .main-frame {
+    --frame-offset: 0.75rem;
+    padding-inline: 0.75rem;
+  }
+
+  .site-chrome-panel {
+    max-width: calc(100vw - 1.5rem);
+  }
+
+  .panel-divider {
+    height: 1.35rem;
+  }
+
+  .section-panel-header {
+    padding-inline: 1rem;
+  }
+
+  .about-section-body {
+    padding-inline: 1rem;
+    padding-block: 1.35rem;
+  }
+
+  .hero-logo-strip {
+    min-height: 9rem;
+  }
+
+  .profile-portrait-shell {
+    width: clamp(9.25rem, 48vw, 11rem);
+  }
+
+  .hero-identity-band {
+    padding-block: 0.75rem;
+  }
+
+  .hero-identity-band h1 {
+    font-size: clamp(2.15rem, 11vw, 3rem);
+    line-height: 0.95;
+  }
+
+  .role-switcher {
+    grid-template-columns: 4.25rem auto;
+    min-width: 7.85rem;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+
   .terminal-card {
     font-size: 0.78rem;
+    padding: 0.9rem;
   }
 
   .terminal-detail-item {
     white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .terminal-detail-grid {
+    gap: 0.9rem;
+  }
+
+  .profile-link-table {
+    grid-template-columns: repeat(3, minmax(2.75rem, 1fr));
+  }
+
+  .profile-link-cell {
+    min-height: 2.85rem;
+  }
+
+  .project-timeline {
+    padding-left: 1.45rem;
+  }
+
+  .project-timeline-dot {
+    left: -1.28rem;
+  }
+
+  .stack-logo-button {
+    height: 4.25rem;
+    width: 4.25rem;
+  }
+
+  .stack-logo-button img {
+    height: 3.25rem;
+    width: 3.25rem;
   }
 }
 

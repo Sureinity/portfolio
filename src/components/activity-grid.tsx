@@ -29,6 +29,22 @@ const levelClassNames = [
 const DISPLAY_DAYS = 365;
 const weekdayLabels = ["", "Mon", "", "Wed", "", "Fri", ""];
 
+function displayDaysForViewport(width: number) {
+  if (width < 430) {
+    return 98;
+  }
+
+  if (width < 640) {
+    return 154;
+  }
+
+  if (width < 900) {
+    return 231;
+  }
+
+  return DISPLAY_DAYS;
+}
+
 function toCalendarWeeks(contributions: ContributionDay[]) {
   const weeks: ContributionSlot[][] = [];
   let currentWeek: ContributionSlot[] = [];
@@ -113,10 +129,6 @@ function formatContributionTitle(date: string, count: number) {
   return `${count} contribution${count === 1 ? "" : "s"} // ${formattedDate}`;
 }
 
-function visibleContributionDays(weeks: ContributionSlot[]) {
-  return weeks.filter((day): day is ContributionDay => Boolean(day));
-}
-
 function skeletonWeeks() {
   const today = new Date();
   const startDate = new Date(
@@ -142,7 +154,21 @@ function skeletonWeeks() {
 }
 
 export function ActivityGrid({ username }: ActivityGridProps) {
-  const [weeks, setWeeks] = useState<ContributionSlot[][]>(() => skeletonWeeks());
+  const [contributions, setContributions] = useState<ContributionDay[]>(() =>
+    skeletonWeeks().flat().filter((day): day is ContributionDay => Boolean(day)),
+  );
+  const [displayDays, setDisplayDays] = useState(DISPLAY_DAYS);
+
+  useEffect(() => {
+    function syncDisplayDays() {
+      setDisplayDays(displayDaysForViewport(window.innerWidth));
+    }
+
+    syncDisplayDays();
+    window.addEventListener("resize", syncDisplayDays);
+
+    return () => window.removeEventListener("resize", syncDisplayDays);
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -162,11 +188,13 @@ export function ActivityGrid({ username }: ActivityGridProps) {
         const contributions = data.contributions ?? [];
 
         if (contributions.length > 0) {
-          setWeeks(toCalendarWeeks(contributions.slice(-DISPLAY_DAYS)));
+          setContributions(contributions.slice(-DISPLAY_DAYS));
         }
       } catch {
         if (!controller.signal.aborted) {
-          setWeeks(skeletonWeeks());
+          setContributions(
+            skeletonWeeks().flat().filter((day): day is ContributionDay => Boolean(day)),
+          );
         }
       }
     }
@@ -176,8 +204,9 @@ export function ActivityGrid({ username }: ActivityGridProps) {
     return () => controller.abort();
   }, [username]);
 
+  const weeks = toCalendarWeeks(contributions.slice(-displayDays));
   const monthLabels = toMonthLabels(weeks);
-  const contributionDays = visibleContributionDays(weeks.flat());
+  const contributionDays = contributions;
   const latestYear =
     contributionDays.length > 0
       ? new Date(`${contributionDays[contributionDays.length - 1].date}T00:00:00Z`).getUTCFullYear()
