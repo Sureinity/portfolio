@@ -227,13 +227,13 @@ export const projects: ProjectEntry[] = [
     title: "Gated Proxmox Management via OPNsense",
     summary:
       "A hardened virtualized network design that moves hypervisor administration behind a firewall VM and VPN-only access path.",
-    period: "Part-time infra project",
-    status: "Strongest case study",
+    period: "InfraOps project",
+    status: "Implemented · Helity | InfraOps project",
     detail:
       "The goal was to reduce direct management exposure while keeping rollback, baseline capture, and operator access clear enough for a risky network cutover.",
     highlights: [
-      "Designed a two-bridge Proxmox layout with a public WAN bridge and isolated private management bridge.",
-      "Placed OPNsense between public ingress and private administration paths.",
+      "Designed a two-bridge Proxmox layout with a WAN bridge and isolated private management bridge.",
+      "Placed OPNsense between external ingress and private administration paths.",
       "Sequenced baseline capture, rollback prep, VPN validation, cutover, and post-cutover handover.",
     ],
     timeline: [
@@ -250,17 +250,17 @@ export const projects: ProjectEntry[] = [
       {
         title: "Build network base",
         description:
-          "Create public and private bridges, deploy OPNsense, enable private LAN services, and validate a test VM.",
+          "Create WAN and private bridges, deploy OPNsense, enable private LAN services, and validate a test VM.",
       },
       {
         title: "Validate VPN entry",
         description:
-          "Enable WireGuard, test external admin access, and keep management public until the private route works.",
+          "Enable WireGuard, test external admin access, and keep the original management path until the private route works.",
       },
       {
         title: "Cut over management",
         description:
-          "Move hypervisor administration to the private bridge and confirm the old public path is closed.",
+          "Move hypervisor administration to the private bridge and confirm the old exposed path is closed.",
       },
       {
         title: "Harden and hand over",
@@ -269,7 +269,7 @@ export const projects: ProjectEntry[] = [
       },
     ],
     diagram: `flowchart LR
-  internet[Public network] --> wan[Public bridge]
+  internet[Internet] --> wan[WAN bridge]
   wan --> fw[OPNsense VM]
   admin[Admin client] --> vpn[WireGuard]
   vpn --> fw
@@ -284,8 +284,8 @@ export const projects: ProjectEntry[] = [
     title: "Proxmox Provisioning Control Plane",
     summary:
       "A containerized API and worker flow for requesting, validating, and provisioning virtual machines through a controlled interface.",
-    period: "Part-time platform project",
-    status: "Implemented",
+    period: "Platform project",
+    status: "Implemented · Helity | platform project",
     detail:
       "This project turns manual VM creation into an API-backed workflow with validation, job tracking, and integration hooks for an internal low-code interface.",
     highlights: [
@@ -328,8 +328,8 @@ export const projects: ProjectEntry[] = [
   {
     title: "Proxmox Private VM Access with WireGuard",
     summary:
-      "A public infrastructure lab that uses Ansible and Terraform to bootstrap private VM access behind WireGuard.",
-    period: "Public GitHub project",
+      "A GitHub infrastructure lab that uses Ansible and Terraform to bootstrap private VM access behind WireGuard.",
+    period: "GitHub project",
     status: "Active",
     detail:
       "This project separates host preparation from VM lifecycle management: Ansible handles the Proxmox host baseline while Terraform manages VM resources.",
@@ -374,7 +374,7 @@ export const projects: ProjectEntry[] = [
     title: "Web Security Chaos Toolkit",
     summary:
       "A DevSecOps-oriented CLI toolkit for orchestrating web audits, scanners, and controlled failure experiments.",
-    period: "Public GitHub project",
+    period: "GitHub project",
     status: "Active",
     detail:
       "This project focuses on operational security workflows: repeatable scans, structured outputs, local lab services, and adapter-based tooling.",
