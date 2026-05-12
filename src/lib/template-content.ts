@@ -122,6 +122,7 @@ export const navLinks: NavLink[] = [
   { label: "Experience", href: "#experience" },
   // { label: "Blog", href: "#articles" },
   { label: "Stack", href: "#stack" },
+  { label: "Resume", href: "/resume/john-ghlen-dealdo-resume.pdf" },
 ];
 
 export const heroProfile: HeroProfile = {
@@ -597,6 +598,13 @@ export const paletteActions: PaletteAction[] = [
     description: "Review the technology categories and tools.",
     href: "#stack",
     group: "Sections",
+  },
+  {
+    title: "Open Resume",
+    description: "Open the latest resume PDF in a new tab.",
+    href: "/resume/john-ghlen-dealdo-resume.pdf",
+    group: "Links",
+    external: true,
   },
   {
     title: "Open GitHub",
