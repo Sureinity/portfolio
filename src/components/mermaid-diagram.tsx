@@ -7,10 +7,6 @@ type MermaidDiagramProps = {
   chart: string;
 };
 
-function sanitizeSvg(svg: string) {
-  return svg.replace(/<script[\s\S]*?<\/script>/gi, "");
-}
-
 export function MermaidDiagram({ chart }: MermaidDiagramProps) {
   const generatedId = useId().replace(/:/g, "");
   const [svg, setSvg] = useState<string>("");
@@ -43,7 +39,7 @@ export function MermaidDiagram({ chart }: MermaidDiagramProps) {
         const result = await mermaid.render(`project-diagram-${generatedId}`, chart);
 
         if (!cancelled) {
-          setSvg(sanitizeSvg(result.svg));
+          setSvg(result.svg);
           setFailed(false);
         }
       } catch {
