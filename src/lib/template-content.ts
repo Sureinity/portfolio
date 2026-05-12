@@ -228,7 +228,7 @@ export const projects: ProjectEntry[] = [
     summary:
       "A hardened virtualized network design that moves hypervisor administration behind a firewall VM and VPN-only access path.",
     period: "InfraOps project",
-    status: "Implemented · Helity | InfraOps project",
+    status: "Implemented · Helity",
     detail:
       "The goal was to reduce direct management exposure while keeping rollback, baseline capture, and operator access clear enough for a risky network cutover.",
     highlights: [
@@ -285,7 +285,7 @@ export const projects: ProjectEntry[] = [
     summary:
       "A containerized API and worker flow for requesting, validating, and provisioning virtual machines through a controlled interface.",
     period: "Platform project",
-    status: "Implemented · Helity | platform project",
+    status: "Implemented · Helity",
     detail:
       "This project turns manual VM creation into an API-backed workflow with validation, job tracking, and integration hooks for an internal low-code interface.",
     highlights: [
