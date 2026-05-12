@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { NavLink, PaletteAction } from "@/lib/template-content";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { FileText } from "lucide-react";
 
 type SiteHeaderProps = {
   navLinks: NavLink[];
@@ -59,6 +60,18 @@ export function SiteHeader({ navLinks }: SiteHeaderProps) {
             </nav>
 
             <div className="flex items-center gap-2">
+              <a
+                href="/resume/john-ghlen-dealdo-resume.pdf"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open resume PDF"
+                className="icon-badge resume-toggle-button h-10 w-10 text-[color:var(--background)] transition hover:-translate-y-0.5"
+              >
+                <FileText
+                  aria-hidden
+                  className="h-4 w-4"
+                />
+              </a>
               <ThemeToggle />
             </div>
           </div>

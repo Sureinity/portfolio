@@ -122,7 +122,6 @@ export const navLinks: NavLink[] = [
   { label: "Experience", href: "#experience" },
   // { label: "Blog", href: "#articles" },
   { label: "Stack", href: "#stack" },
-  { label: "Resume", href: "/resume/john-ghlen-dealdo-resume.pdf" },
 ];
 
 export const heroProfile: HeroProfile = {
