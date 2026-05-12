@@ -2,10 +2,26 @@
 
 import { Moon, SunMedium } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useSyncExternalStore } from "react";
+
+function subscribe(onStoreChange: () => void) {
+  queueMicrotask(onStoreChange);
+  return () => {};
+}
+
+function getClientSnapshot() {
+  return true;
+}
+
+function getServerSnapshot() {
+  return false;
+}
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const isDarkTheme = resolvedTheme === "dark";
+  const mounted = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
+  const safeTheme = mounted ? resolvedTheme : "light";
+  const isDarkTheme = safeTheme === "dark";
   const Icon = isDarkTheme ? Moon : SunMedium;
 
   return (
