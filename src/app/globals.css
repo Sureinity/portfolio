@@ -988,6 +988,10 @@ input:focus-visible {
   flex-shrink: 0;
 }
 
+.timeline-org-icon {
+  border-radius: 9999px !important;
+}
+
 .profile-link-table {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
