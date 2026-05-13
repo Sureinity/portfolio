@@ -281,49 +281,49 @@ export const projects: ProjectEntry[] = [
       "I learned that infrastructure hardening is mostly sequencing: prove recovery first, validate the new path second, and only then remove the old exposure.",
   },
   {
-    title: "Proxmox Provisioning Control Plane",
+    title: "Web Security Chaos Toolkit",
     summary:
-      "A containerized API and worker flow for requesting, validating, and provisioning virtual machines through a controlled interface.",
-    period: "Platform project",
-    status: "Implemented · Helity",
+      "An internal DevSecOps-oriented CLI toolkit built during my Infosoft internship for repeatable web audits, scanner orchestration, and controlled failure experiments.",
+    period: "Internal DevSecOps tool",
+    status: "Implemented · Infosoft",
     detail:
-      "This project turns manual VM creation into an API-backed workflow with validation, job tracking, and integration hooks for an internal low-code interface.",
+      "This internship task focused on giving the team an internal security workflow tool: repeatable scans, structured outputs, local lab services, and adapter-based tooling.",
     highlights: [
-      "Built a FastAPI service around Proxmox API operations and VM request validation.",
-      "Used Docker Compose to run the API, database, and integration layer consistently.",
-      "Separated request intake from provisioning work so failures can be tracked instead of hidden.",
+      "Built a Python CLI for internal audit workflows with typed configuration and scanner orchestration.",
+      "Used Docker Compose to run supporting security and chaos-testing services.",
+      "Added tests, linting, typing, and pre-commit checks to keep the toolkit maintainable.",
     ],
     timeline: [
       {
-        title: "Define request contract",
+        title: "Model audit workflows",
         description:
-          "Model VM inputs, environment values, and validation rules before touching the hypervisor API.",
+          "Define CLI commands, configuration, and output formats before adding scanners.",
       },
       {
-        title: "Containerize service",
+        title: "Attach tool adapters",
         description:
-          "Package the API and supporting services with Docker Compose for repeatable local and server runs.",
+          "Wrap security tools behind consistent interfaces for repeatable execution.",
       },
       {
-        title: "Add job handling",
+        title: "Run local lab services",
         description:
-          "Track provisioning status through database-backed jobs instead of relying on one-shot scripts.",
+          "Use Compose-managed services for scanner and chaos-testing workflows.",
       },
       {
-        title: "Integrate interface",
+        title: "Enforce quality gates",
         description:
-          "Connect the request workflow to a low-code front end while keeping provisioning logic in the API.",
+          "Use tests, linting, typing, and pre-commit checks to catch toolchain drift.",
       },
     ],
     diagram: `flowchart LR
-  ui[Request UI] --> api[FastAPI service]
-  api --> db[(Job database)]
-  api --> worker[Provisioning worker]
-  worker --> proxmox[Proxmox API]
-  proxmox --> vm[Virtual machine]`,
-    stack: ["FastAPI", "Python", "Docker Compose", "PostgreSQL", "Proxmox API"],
+  cli[Python CLI] --> adapters[Tool adapters]
+  adapters --> scanners[Security scanners]
+  cli --> compose[Compose lab]
+  compose --> target[Test targets]
+  scanners --> reports[Structured reports]`,
+    stack: ["Python", "Docker Compose", "ZAP", "Nuclei", "Nmap", "Trivy", "Semgrep", "pytest"],
     learned:
-      "I learned how platform work changes when the goal is not just to create infrastructure, but to make the request path auditable and repeatable.",
+      "I learned that security tooling becomes more useful when it produces consistent evidence instead of one-off terminal output.",
   },
   {
     title: "Proxmox Private VM Access with WireGuard",
@@ -371,50 +371,49 @@ export const projects: ProjectEntry[] = [
       "I learned why IaC ownership boundaries matter: host state, VM state, and access paths should not be mixed into one unclear automation layer.",
   },
   {
-    title: "Web Security Chaos Toolkit",
+    title: "Proxmox Provisioning Control Plane",
     summary:
-      "A DevSecOps-oriented CLI toolkit for orchestrating web audits, scanners, and controlled failure experiments.",
-    period: "GitHub project",
-    status: "Active",
+      "A containerized API and worker flow for requesting, validating, and provisioning virtual machines through a controlled interface.",
+    period: "Platform project",
+    status: "Implemented · Helity",
     detail:
-      "This project focuses on operational security workflows: repeatable scans, structured outputs, local lab services, and adapter-based tooling.",
+      "This project turns manual VM creation into an API-backed workflow with validation, job tracking, and integration hooks for an internal low-code interface.",
     highlights: [
-      "Built a Python CLI with typed configuration and scanner orchestration.",
-      "Used Docker Compose to run supporting security and chaos-testing services.",
-      "Added tests, linting, typing, and pre-commit checks to keep the toolkit maintainable.",
+      "Built a FastAPI service around Proxmox API operations and VM request validation.",
+      "Used Docker Compose to run the API, database, and integration layer consistently.",
+      "Separated request intake from provisioning work so failures can be tracked instead of hidden.",
     ],
     timeline: [
       {
-        title: "Model audit workflows",
+        title: "Define request contract",
         description:
-          "Define CLI commands, configuration, and output formats before adding scanners.",
+          "Model VM inputs, environment values, and validation rules before touching the hypervisor API.",
       },
       {
-        title: "Attach tool adapters",
+        title: "Containerize service",
         description:
-          "Wrap security tools behind consistent interfaces for repeatable execution.",
+          "Package the API and supporting services with Docker Compose for repeatable local and server runs.",
       },
       {
-        title: "Run local lab services",
+        title: "Add job handling",
         description:
-          "Use Compose-managed services for scanner and chaos-testing workflows.",
+          "Track provisioning status through database-backed jobs instead of relying on one-shot scripts.",
       },
       {
-        title: "Enforce quality gates",
+        title: "Integrate interface",
         description:
-          "Use tests, linting, typing, and pre-commit checks to catch toolchain drift.",
+          "Connect the request workflow to a low-code front end while keeping provisioning logic in the API.",
       },
     ],
     diagram: `flowchart LR
-  cli[Python CLI] --> adapters[Tool adapters]
-  adapters --> scanners[Security scanners]
-  cli --> compose[Compose lab]
-  compose --> target[Test targets]
-  scanners --> reports[Structured reports]`,
-    stack: ["Python", "Docker Compose", "ZAP", "Nuclei", "Nmap", "Trivy", "Semgrep", "pytest"],
-    repoUrl: "https://github.com/Sureinity/websec-chaos-toolkit",
+  ui[Request UI] --> api[FastAPI service]
+  api --> db[(Job database)]
+  api --> worker[Provisioning worker]
+  worker --> proxmox[Proxmox API]
+  proxmox --> vm[Virtual machine]`,
+    stack: ["FastAPI", "Python", "Docker Compose", "PostgreSQL", "Proxmox API"],
     learned:
-      "I learned that security tooling becomes more useful when it produces consistent evidence instead of one-off terminal output.",
+      "I learned how platform work changes when the goal is not just to create infrastructure, but to make the request path auditable and repeatable.",
   },
 ];
 
