@@ -492,7 +492,11 @@ body::before {
 }
 
 @media (min-width: 1024px) {
-  .mobile-menu-button {
+  .icon-badge.mobile-menu-button {
+    display: none !important;
+  }
+
+  .mobile-nav-menu {
     display: none !important;
   }
 }
