@@ -491,6 +491,12 @@ body::before {
   transform: scale(1.12);
 }
 
+@media (min-width: 1024px) {
+  .mobile-menu-button {
+    display: none !important;
+  }
+}
+
 .mobile-nav-menu {
   display: grid;
   grid-template-rows: 0fr;
