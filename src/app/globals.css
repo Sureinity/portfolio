@@ -491,7 +491,7 @@ body::before {
   transform: scale(1.12);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .icon-badge.mobile-menu-button {
     display: none !important;
   }

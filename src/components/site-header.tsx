@@ -45,7 +45,7 @@ export function SiteHeader({ navLinks }: SiteHeaderProps) {
 
           <nav
             aria-label="Primary navigation"
-            className="ml-auto hidden lg:block"
+            className="ml-auto hidden md:block"
           >
             <ul className="flex items-center gap-1">
               {navLinks.map((link) => (
@@ -83,7 +83,7 @@ export function SiteHeader({ navLinks }: SiteHeaderProps) {
               aria-expanded={menuOpen}
               aria-controls="mobile-navigation"
               onClick={() => setMenuOpen((current) => !current)}
-              className="icon-badge mobile-menu-button h-10 w-10 text-[color:var(--foreground)] transition hover:-translate-y-0.5 lg:hidden"
+              className="icon-badge mobile-menu-button h-10 w-10 text-[color:var(--foreground)] transition hover:-translate-y-0.5 md:hidden"
             >
               {menuOpen ? (
                 <X aria-hidden className="h-4 w-4" />
@@ -97,7 +97,7 @@ export function SiteHeader({ navLinks }: SiteHeaderProps) {
         <nav
           id="mobile-navigation"
           aria-label="Mobile navigation"
-          className={`mobile-nav-menu lg:hidden ${menuOpen ? "mobile-nav-menu-open" : ""}`}
+          className={`mobile-nav-menu md:hidden ${menuOpen ? "mobile-nav-menu-open" : ""}`}
         >
           <ul className="grid gap-1">
             {navLinks.map((link) => (
