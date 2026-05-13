@@ -37,11 +37,11 @@ export function TerminalDetailsCard() {
   const leftDetails = [
     {
       icon: TerminalSquare,
-      value: "Linux, infra., automation, IaC, CI/CD",
+      value: "Linux, infra, automation, IaC, CI/CD",
     },
     {
       icon: BriefcaseBusiness,
-      value: "Part-time Linux system administrator",
+      value: "Part-time Linux SysAdmin",
     },
     {
       icon: Target,

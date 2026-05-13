@@ -422,7 +422,7 @@ export const experienceItems: TimelineEntry[] = [
     title: "Linux SysAdmin / System Engineer",
     organization: "Helity",
     organizationLogoFallback: "not-allowed",
-    location: "Europe/Berlin",
+    location: "Europe, Berlin",
     period: "December 2025 - Present",
     mode: "Part-time",
     summary:
