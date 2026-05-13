@@ -17,7 +17,7 @@ export function SiteHeader({ navLinks }: SiteHeaderProps) {
   return (
     <header className="site-header sticky top-0 z-50 px-4 pt-2 sm:px-6 lg:px-8">
       <div className="panel site-chrome-panel mx-auto px-3 py-3">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between gap-3">
           <a
             href="#top"
             className="site-brand-logo"
@@ -45,7 +45,7 @@ export function SiteHeader({ navLinks }: SiteHeaderProps) {
 
           <nav
             aria-label="Primary navigation"
-            className="ml-auto hidden lg:block"
+            className="hidden lg:block"
           >
             <ul className="flex items-center gap-1">
               {navLinks.map((link) => (
