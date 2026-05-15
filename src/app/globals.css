@@ -640,16 +640,15 @@ body::before {
 }
 
 .hero-brand-icon {
-  height: clamp(4rem, 8vw, 6.5rem);
-  width: clamp(15rem, 31vw, 24rem);
+  width: clamp(15rem, 22vw, 21rem);
+  aspect-ratio: 1816 / 621;
   overflow: hidden;
   border-radius: 0.95rem;
-  background: #17191a;
   filter: drop-shadow(0 0 18px rgb(245 158 11 / 0.12));
 }
 
 .hero-brand-icon img {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 }
 
