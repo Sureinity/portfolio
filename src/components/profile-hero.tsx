@@ -22,10 +22,10 @@ export function ProfileHero({ profile, details }: ProfileHeroProps) {
       <div className="surface-pattern rule-b hero-logo-strip">
         <div className="hero-brand-icon">
           <Image
-            src="/brand/primary-logo-dark.svg"
+            src="/brand/slaine-primary.png"
             alt=""
-            width={430}
-            height={115}
+            width={1916}
+            height={821}
             unoptimized
             aria-hidden
             className="h-full w-full object-contain object-center"

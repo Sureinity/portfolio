@@ -24,22 +24,13 @@ export function SiteHeader({ navLinks }: SiteHeaderProps) {
             aria-label="Back to top"
           >
             <Image
-              src="/brand/icon-shorthand-boxed-light.svg"
+              src="/brand/slaine-icon.png"
               alt=""
-              width={256}
-              height={256}
+              width={1254}
+              height={1254}
               unoptimized
               aria-hidden
-              className="h-full w-full object-cover object-center dark:hidden"
-            />
-            <Image
-              src="/brand/icon-shorthand-boxed-dark.svg"
-              alt=""
-              width={256}
-              height={256}
-              unoptimized
-              aria-hidden
-              className="hidden h-full w-full object-cover object-center dark:block"
+              className="h-full w-full object-cover object-center"
             />
           </a>
 
