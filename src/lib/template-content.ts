@@ -415,7 +415,7 @@ export const projects: ProjectEntry[] = [
     learned:
       "I learned how platform work changes when the goal is not just to create infrastructure, but to make the request path auditable and repeatable.",
   },
-];
+].filter((project) => project.title !== "Proxmox Private VM Access with WireGuard");
 
 export const experienceItems: TimelineEntry[] = [
   {
