@@ -424,7 +424,7 @@ export const experienceItems: TimelineEntry[] = [
     organizationUrl: "https://helity.org/",
     organizationLogoSrc: "/organizations/helity.png",
     organizationLogoAlt: "Helity logo",
-    location: "Europe, Berlin",
+    location: "Germany, Europe",
     period: "December 2025 - Present",
     mode: "Part-time",
     summary:
@@ -539,6 +539,7 @@ export const stackLogoItems: StackLogoItem[] = [
   },
   { name: "Terraform", logoSrc: "/stack/theme/terraform.png" },
   { name: "Azure", logoSrc: "/stack/theme/azure.png" },
+  { name: "Linux", logoSrc: "/stack/theme/linux.png" },
   {
     name: "Bash",
     logoSrc: "/stack/theme/bash-light.png",

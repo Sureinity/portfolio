@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 const roles = ["DevOps", "Platform"];
-const SWITCH_INTERVAL_MS = 4200;
+const SWITCH_INTERVAL_MS = 1600;
 
 export function RoleSwitcher() {
   const [roleIndex, setRoleIndex] = useState(0);
