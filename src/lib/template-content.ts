@@ -537,6 +537,7 @@ export const stackLogoItems: StackLogoItem[] = [
     contrastLogoSrc: "/stack/theme/ansible-dark.png",
   },
   { name: "Terraform", logoSrc: "/stack/theme/terraform.png" },
+  { name: "Packer", logoSrc: "/stack/theme/packer.svg" },
   { name: "Azure", logoSrc: "/stack/theme/azure.png" },
   { name: "Linux", logoSrc: "/stack/theme/linux.png" },
   {
