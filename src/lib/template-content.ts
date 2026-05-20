@@ -281,6 +281,58 @@ export const projects: ProjectEntry[] = [
       "I learned that infrastructure hardening is mostly sequencing: prove recovery first, validate the new path second, and only then remove the old exposure.",
   },
   {
+    title: "Proxmox Platform Infrastructure as Code",
+    summary:
+      "A production-style Proxmox platform repository that separates image creation, network control-plane contracts, workload lifecycle, and guest configuration into explicit boundaries.",
+    period: "Platform IaC project",
+    status: "Established · GitHub",
+    detail:
+      "This repository is designed as a secure multi-tier private cloud baseline on Proxmox, using Packer for immutable image construction, Terraform for layered infrastructure lifecycle, and Ansible for post-boot guest configuration.",
+    highlights: [
+      "Split Terraform into `network`, `image-factory`, and `workloads` states to control blast radius and review scope.",
+      "Defined a four-zone platform model with Proxmox Linux bridges at L2 and OPNsense as the routing and policy control plane.",
+      "Published a Terraform-to-Ansible handoff contract and validation-only GitHub Actions pipeline instead of mixing deployment logic into CI.",
+    ],
+    timeline: [
+      {
+        title: "Establish platform contracts",
+        description:
+          "Document architecture, scope, ADRs, naming, and lifecycle ownership before expanding implementation.",
+      },
+      {
+        title: "Build image factory",
+        description:
+          "Use Packer to produce the reusable Debian-based image and template contract for downstream platform layers.",
+      },
+      {
+        title: "Split infrastructure states",
+        description:
+          "Separate shared network fabric, template lifecycle, and workload provisioning into independent Terraform roots.",
+      },
+      {
+        title: "Provision zoned workloads",
+        description:
+          "Model admin, edge, application, and data workloads against the OPNsense-backed four-zone network contract.",
+      },
+      {
+        title: "Hand off to configuration",
+        description:
+          "Publish an Ansible-ready inventory output and keep CI focused on validation, formatting, and syntax safety.",
+      },
+    ],
+    diagram: `flowchart LR
+  packer[Packer image factory] --> template[Approved template]
+  network[Terraform network state] --> fw[OPNsense control plane]
+  template --> workloads[Terraform workloads state]
+  fw --> zones[mgmt / edge / app / data zones]
+  workloads --> inventory[Ansible inventory contract]
+  inventory --> ansible[Ansible guest configuration]`,
+    stack: ["Packer", "Terraform", "Ansible", "Proxmox VE", "OPNsense", "Cloud-init", "GitHub Actions"],
+    repoUrl: "https://github.com/Sureinity/proxmox-platform-iac",
+    learned:
+      "I learned that platform IaC gets much easier to trust when image, network, workload, and guest-configuration ownership are explicit enough to review and change independently.",
+  },
+  {
     title: "Web Security Chaos Toolkit",
     summary:
       "An internal DevSecOps-oriented CLI toolkit built during my Infosoft internship for repeatable web audits, scanner orchestration, and controlled failure experiments.",
