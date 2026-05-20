@@ -668,7 +668,6 @@ body::before {
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 1.15rem;
-  filter: drop-shadow(0 0 18px rgb(245 158 11 / 0.12));
 }
 
 .hero-brand-icon img {
