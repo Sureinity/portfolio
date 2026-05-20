@@ -421,7 +421,6 @@ export const experienceItems: TimelineEntry[] = [
   {
     title: "Linux SysAdmin / System Engineer",
     organization: "Helity",
-    organizationUrl: "https://helity.org/",
     organizationLogoSrc: "/organizations/helity.png",
     organizationLogoAlt: "Helity logo",
     location: "Germany, Europe",

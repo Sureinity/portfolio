@@ -4,7 +4,7 @@ import Image from "next/image";
 import type { NavLink, PaletteAction } from "@/lib/template-content";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { FileText, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type SiteHeaderProps = {
   navLinks: NavLink[];
@@ -13,6 +13,74 @@ type SiteHeaderProps = {
 
 export function SiteHeader({ navLinks }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showBrandLogo, setShowBrandLogo] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
+  const lastScrollYRef = useRef(0);
+  const scrollDirectionRef = useRef<"up" | "down">("down");
+
+  useEffect(() => {
+    let frameId = 0;
+
+    const updateBrandVisibility = () => {
+      const currentScrollY = window.scrollY;
+      let nextDirection = scrollDirectionRef.current;
+
+      if (currentScrollY > lastScrollYRef.current) {
+        nextDirection = "down";
+      } else if (currentScrollY < lastScrollYRef.current) {
+        nextDirection = "up";
+      }
+
+      lastScrollYRef.current = currentScrollY;
+      scrollDirectionRef.current = nextDirection;
+
+      setScrollDirection((currentDirection) =>
+        currentDirection === nextDirection ? currentDirection : nextDirection,
+      );
+
+      const preview = document.getElementById("hero-brand-preview");
+      const header = document.querySelector(".site-header");
+
+      if (!(preview instanceof HTMLElement) || !(header instanceof HTMLElement)) {
+        setShowBrandLogo(true);
+        frameId = 0;
+        return;
+      }
+
+      const previewBottom = preview.getBoundingClientRect().bottom;
+      const headerBottom = header.getBoundingClientRect().bottom;
+      const nextVisible = previewBottom <= headerBottom + 8;
+
+      setShowBrandLogo((currentVisible) =>
+        currentVisible === nextVisible ? currentVisible : nextVisible,
+      );
+
+      frameId = 0;
+    };
+
+    const queueUpdate = () => {
+      if (frameId !== 0) {
+        return;
+      }
+
+      frameId = window.requestAnimationFrame(updateBrandVisibility);
+    };
+
+    lastScrollYRef.current = window.scrollY;
+    updateBrandVisibility();
+
+    window.addEventListener("scroll", queueUpdate, { passive: true });
+    window.addEventListener("resize", queueUpdate);
+
+    return () => {
+      if (frameId !== 0) {
+        window.cancelAnimationFrame(frameId);
+      }
+
+      window.removeEventListener("scroll", queueUpdate);
+      window.removeEventListener("resize", queueUpdate);
+    };
+  }, []);
 
   return (
     <header className="site-header sticky top-0 z-50 px-4 pt-2 sm:px-6 lg:px-8">
@@ -20,8 +88,12 @@ export function SiteHeader({ navLinks }: SiteHeaderProps) {
         <div className="flex items-center gap-3">
           <a
             href="#top"
-            className="site-brand-logo"
+            className={`site-brand-logo site-brand-logo-motion ${
+              showBrandLogo ? "site-brand-logo-visible" : "site-brand-logo-hidden"
+            } ${scrollDirection === "down" ? "site-brand-logo-scroll-down" : "site-brand-logo-scroll-up"}`}
             aria-label="Back to top"
+            aria-hidden={!showBrandLogo}
+            tabIndex={showBrandLogo ? undefined : -1}
           >
             <Image
               src="/brand/slaine-icon.png"

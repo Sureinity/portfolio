@@ -19,16 +19,16 @@ const heroContactLinks = socialLinks.map(({ title, handle, href }) => ({
 export function ProfileHero({ profile, details }: ProfileHeroProps) {
   return (
     <section id="top" className="panel hero-panel animate-rise overflow-hidden">
-      <div className="surface-pattern rule-b hero-logo-strip">
+      <div id="hero-brand-preview" className="surface-pattern rule-b hero-logo-strip">
         <div className="hero-brand-icon">
           <Image
-            src="/brand/slaine-primary.png"
+            src="/brand/slaine-icon.png"
             alt=""
-            width={1916}
-            height={821}
+            width={1254}
+            height={1254}
             unoptimized
             aria-hidden
-            className="h-full w-full object-contain object-center"
+            className="h-full w-full object-cover object-center"
           />
         </div>
       </div>

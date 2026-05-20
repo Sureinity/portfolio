@@ -627,6 +627,33 @@ body::before {
     0 12px 24px color-mix(in srgb, var(--foreground) 8%, transparent);
 }
 
+.site-brand-logo-motion {
+  transition:
+    opacity 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 260ms ease;
+  will-change: opacity, transform, filter;
+}
+
+.site-brand-logo-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.site-brand-logo-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.site-brand-logo-scroll-down.site-brand-logo-hidden {
+  transform: translateY(-0.8rem);
+}
+
+.site-brand-logo-scroll-up.site-brand-logo-hidden {
+  transform: translateY(0.8rem);
+}
+
 .site-brand-logo img {
   object-fit: cover;
   object-position: center;
@@ -640,10 +667,10 @@ body::before {
 }
 
 .hero-brand-icon {
-  width: clamp(15rem, 22vw, 21rem);
-  aspect-ratio: 1816 / 621;
+  width: clamp(6rem, 12vw, 8.5rem);
+  aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: 0.95rem;
+  border-radius: 1.15rem;
   filter: drop-shadow(0 0 18px rgb(245 158 11 / 0.12));
 }
 
