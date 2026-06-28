@@ -274,18 +274,18 @@ body::before {
   align-items: center;
   gap: 0.55rem;
   font-family: var(--font-public-sans), sans-serif;
-  font-size: clamp(1.45rem, 3vw, 2.35rem);
-  font-weight: 900;
-  letter-spacing: -0.055em;
-  line-height: 0.95;
+  font-size: clamp(1.05rem, 2vw, 1.45rem);
+  font-weight: 850;
+  letter-spacing: -0.035em;
+  line-height: 1;
   color: var(--foreground);
   text-transform: none;
 }
 
 .section-title-label::before {
   content: "";
-  height: 0.7rem;
-  width: 0.7rem;
+  height: 0.58rem;
+  width: 0.58rem;
   border-radius: 9999px;
   background: linear-gradient(135deg, var(--accent), #39b6a6);
   animation: status-pulse 2.2s ease-in-out infinite;
