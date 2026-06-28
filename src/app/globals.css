@@ -269,6 +269,18 @@ body::before {
   position: relative;
 }
 
+.section-title-label {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-public-sans), sans-serif;
+  font-size: clamp(1.45rem, 3vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  color: var(--foreground);
+  text-transform: none;
+}
+
 .section-panel-header::after {
   content: "";
   position: absolute;

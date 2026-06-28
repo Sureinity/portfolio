@@ -25,7 +25,7 @@ export function SectionPanel({
         ) : (
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <span className="eyebrow">{title}</span>
+              <span className="section-title-label">{title}</span>
             </div>
             {action}
           </div>

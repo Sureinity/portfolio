@@ -131,11 +131,11 @@ export const heroProfile: HeroProfile = {
   tagline:
     "I build practical systems for infrastructure, automation, and deployment workflows.",
   summary:
-    "I’m a Philippines-based part-time Linux system administrator working toward DevOps and platform engineering. I spend most of my time around Linux, networking, IaC, CI/CD, and the operational habits that make systems easier to run.",
+    "I’m a Philippines-based Linux system administrator working toward DevOps and platform engineering. I spend most of my time around Linux, networking, IaC, CI/CD, and the operational habits that make systems easier to run.",
   status:
-    "Part-time Linux system administrator based in the Philippines, building toward DevOps and platform engineering work.",
+    "Linux system administrator based in the Philippines, building toward DevOps and platform engineering work.",
   quickFacts: [
-    "Part-time Linux system administrator",
+    "Linux system administrator",
     "Philippines-based",
     "Automation-first mindset",
     "Infrastructure-focused growth",
@@ -157,7 +157,7 @@ export const overviewItems: OverviewItem[] = [
   },
   {
     label: "Work",
-    value: "Part-time Linux system administrator",
+    value: "Linux system administrator",
     detail: "Growing practical systems experience while moving deeper into DevOps and platform work",
     icon: Calendar,
   },

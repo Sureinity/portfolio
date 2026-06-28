@@ -112,8 +112,8 @@ export default function RootLayout({
       <body className="min-h-full">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           {children}
