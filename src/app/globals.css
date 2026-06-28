@@ -272,13 +272,23 @@ body::before {
 .section-title-label {
   display: inline-flex;
   align-items: center;
+  gap: 0.55rem;
   font-family: var(--font-public-sans), sans-serif;
   font-size: clamp(1.45rem, 3vw, 2.35rem);
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -0.055em;
   line-height: 0.95;
   color: var(--foreground);
   text-transform: none;
+}
+
+.section-title-label::before {
+  content: "";
+  height: 0.7rem;
+  width: 0.7rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--accent), #39b6a6);
+  animation: status-pulse 2.2s ease-in-out infinite;
 }
 
 .section-panel-header::after {
@@ -305,13 +315,13 @@ body::before {
   border-radius: 0;
   border: none;
   background: color-mix(in srgb, var(--background-elevated) 86%, transparent);
-  padding: 0.45rem 0.8rem;
-  font-family: var(--font-terminus), monospace;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
+  padding: 0.45rem 0.85rem;
+  font-family: var(--font-public-sans), sans-serif;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  text-transform: none;
+  color: var(--foreground);
 }
 
 .eyebrow::before {
@@ -325,10 +335,10 @@ body::before {
 
 .role-switcher {
   display: inline-grid;
-  grid-template-columns: 5rem auto;
+  grid-template-columns: 5.65rem auto;
   align-items: center;
-  gap: 0.08rem;
-  min-width: 9.05rem;
+  gap: 0.12rem;
+  min-width: 10.1rem;
 }
 
 .role-switcher-word {
@@ -339,7 +349,7 @@ body::before {
 }
 
 .role-switcher-static {
-  color: var(--muted-foreground);
+  color: var(--foreground);
 }
 
 .dropdown-card {
@@ -1213,13 +1223,13 @@ input:focus-visible {
   }
 
   .role-switcher {
-    grid-template-columns: 4.25rem auto;
-    min-width: 7.85rem;
+    grid-template-columns: 4.75rem auto;
+    min-width: 8.7rem;
   }
 
   .eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
+    font-size: 1rem;
+    letter-spacing: -0.04em;
   }
 
   .terminal-card {
