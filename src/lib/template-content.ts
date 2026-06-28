@@ -129,9 +129,9 @@ export const heroProfile: HeroProfile = {
   initials: "JGD",
   role: "DevOps / Platform Engineer",
   tagline:
-    "Building reliable infrastructure, automation, and deployment workflows one practical system at a time.",
+    "I build practical systems for infrastructure, automation, and deployment workflows.",
   summary:
-    "I’m drawn to the parts of software delivery that sit below the interface: Linux, networking, infrastructure as code, CI/CD, and the steady operational habits that make systems easier to run and easier to trust.",
+    "I’m a Philippines-based part-time Linux system administrator working toward DevOps and platform engineering. I spend most of my time around Linux, networking, IaC, CI/CD, and the operational habits that make systems easier to run.",
   status:
     "Part-time Linux system administrator based in the Philippines, building toward DevOps and platform engineering work.",
   quickFacts: [
@@ -215,11 +215,8 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const aboutParagraphs = [
-  "I like poking around the **weird layers underneath apps** until I accidentally become emotionally attached to a **Linux server**.",
-  "The deeper I go into **Linux**, **networking**, **containers**, **IaC**, and **deployment automation**, the more I realize: **complexity doesn’t disappear**—it just gets distributed across layers you slowly learn to see.",
-  "I enjoy technical work that rewards **curiosity**, **patience**, and the ability to stare at **logs** until they eventually start making sense.",
-  "I also care about **ownership**—not in a buzzword sense, but in the practical **DevOps** way: if I build or touch a system, I want to understand it **end-to-end**, be responsible for how it behaves in **production**, and be the person who can actually **debug it when it breaks at 2 AM**.",
-  "I’m not trying to act like some **10x infrastructure wizard**. I’m just out here slowly collecting **practical skills**, **documenting what I learn**, and trying to become the kind of engineer who can confidently say: **“give me 20 minutes and I’ll probably figure it out.\"**",
+  "Right now I’m building **Proxmox-focused infrastructure** projects: gated management paths, **platform IaC**, image pipelines, and automation that turns messy setup work into something repeatable.",
+  "Outside work, I’m usually learning through **side projects**, documenting what I figure out, keeping up with **university**, and poking around **open source** or sports when I need to reset.",
 ];
 
 export const projects: ProjectEntry[] = [
