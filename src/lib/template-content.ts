@@ -216,7 +216,8 @@ export const socialLinks: SocialLink[] = [
 
 export const aboutParagraphs = [
   "Right now I’m building **Proxmox-focused infrastructure** projects: gated management paths, **platform IaC**, image pipelines, and automation that turns messy setup work into something repeatable.",
-  "Outside work, I’m usually learning through **side projects**, documenting what I figure out, keeping up with **university**, and poking around **open source** or sports when I need to reset.",
+  "I’m currently focusing more on **security** in **DevOps** and **platform engineering**: access paths, network boundaries, safer defaults, and the habits that make systems easier to trust.",
+  "Outside work, I’m usually learning through **side projects**, documenting what I figure out, and poking around **open source** or sports when I need to reset.",
 ];
 
 export const projects: ProjectEntry[] = [
@@ -493,7 +494,7 @@ export const experienceItems: TimelineEntry[] = [
     organizationLogoSrc: "/organizations/infosoft.png",
     organizationLogoAlt: "Infosoft logo",
     location: "Davao City, Philippines",
-    period: "March 2026 - June 2026 (Expected)",
+    period: "March 2026 - June 2026",
     mode: "Internship",
     summary:
       "Contributing to the team’s DevOps direction by improving development workflows, container practices, and security-focused automation.",
@@ -502,7 +503,7 @@ export const experienceItems: TimelineEntry[] = [
       "Trimmed and optimized the team’s Docker-based PHP/Laravel development environment template to make local setup lighter and easier to maintain.",
       "Developed the Web Security Chaos Toolkit, a Python-based DevSecOps CLI for repeatable web audits, scanner orchestration, Docker Compose lab services, and structured security evidence.",
     ],
-    stack: ["Docker", "Laravel", "PHP", "CI/CD", "Documentation", "Python", "Docker Compose", "DevSecOps"],
+    stack: ["Docker", "Proxmox VE", "Terraform", "CI/CD", "Documentation", "Python", "Docker Compose", "DevSecOps"],
   },
 ];
 
@@ -513,10 +514,10 @@ export const educationItems: TimelineEntry[] = [
     organizationUrl: "https://www.facebook.com/umdigoscollege/",
     organizationLogoSrc: "/organizations/um-digos-college.png",
     organizationLogoAlt: "University of Mindanao - Digos College logo",
-    period: "August 2023 - July 2026 (Expected)",
-    mode: "Undergraduate",
+    period: "August 2023 - July 2026",
+    mode: "Graduate",
     summary:
-      "Focused on Linux, web development, cybersecurity, and machine learning while building a stronger foundation for DevOps and platform engineering work.",
+      "Graduated with a focus on Linux, web development, cybersecurity, and machine learning while building a stronger foundation for DevOps and platform engineering work.",
     bullets: [
       "Built fundamentals across programming, systems, web application development, and security-aware software practices.",
       "Used coursework and self-directed projects to connect Linux, infrastructure, automation, and practical deployment workflows.",
