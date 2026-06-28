@@ -334,11 +334,10 @@ body::before {
 }
 
 .role-switcher {
-  display: inline-grid;
-  grid-template-columns: 5.65rem auto;
+  display: inline-flex;
   align-items: center;
-  gap: 0.12rem;
-  min-width: 10.1rem;
+  gap: 0.28rem;
+  min-width: 0;
 }
 
 .role-switcher-word {
@@ -1223,8 +1222,8 @@ input:focus-visible {
   }
 
   .role-switcher {
-    grid-template-columns: 4.75rem auto;
-    min-width: 8.7rem;
+    gap: 0.24rem;
+    min-width: 0;
   }
 
   .eyebrow {
