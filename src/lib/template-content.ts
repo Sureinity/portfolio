@@ -74,7 +74,6 @@ export type ProjectEntry = {
   stack: string[];
   repoUrl?: string;
   demoUrl?: string;
-  learned: string;
 };
 
 export type TimelineEntry = {
@@ -224,14 +223,18 @@ export const projects: ProjectEntry[] = [
   {
     title: "Gated Proxmox Management via OPNsense",
     summary:
-      "A hardened virtualized network design that moves hypervisor administration behind a firewall VM and VPN-only access path.",
+      "A hardened virtualized network design that moves hypervisor administration behind a two-node OPNsense HA pair and VPN-only access path.",
     period: "InfraOps project",
     status: "Implemented · Helity",
     detail:
-      "The goal was to reduce direct management exposure while keeping rollback, baseline capture, and operator access clear enough for a risky network cutover.",
+      "The goal was to reduce direct management exposure while keeping OPNsense HA, firewall policy, rollback, baseline capture, and operator access clear enough for a risky network cutover.",
     highlights: [
       "Designed a two-bridge Proxmox layout with a WAN bridge and isolated private management bridge.",
       "Placed OPNsense between external ingress and private administration paths.",
+      "Deployed a two-node OPNsense HA pair with CARP virtual IPs (VIPs) on both the LAN and WAN so gateway and firewall failover stays transparent to clients.",
+      "Built a dedicated isolated sync bridge for XMLRPC configuration sync and pfsync state synchronization, kept off the data paths to reduce blast radius and keep HA control traffic in its own fault domain.",
+      "Kept WireGuard as the private administrative access path through the HA design.",
+      "Handled firewalling on the OPNsense pair with policy governing ingress and inter-zone paths.",
       "Sequenced baseline capture, rollback prep, VPN validation, cutover, and post-cutover handover.",
     ],
     timeline: [
@@ -249,6 +252,11 @@ export const projects: ProjectEntry[] = [
         title: "Build network base",
         description:
           "Create WAN and private bridges, deploy OPNsense, enable private LAN services, and validate a test VM.",
+      },
+      {
+        title: "Stand up HA pair",
+        description:
+          "Deploy the second OPNsense node, add the isolated XMLRPC and pfsync sync bridge, and validate CARP failover across LAN and WAN VIPs.",
       },
       {
         title: "Validate VPN entry",
@@ -274,9 +282,47 @@ export const projects: ProjectEntry[] = [
   fw --> lan[Private bridge]
   lan --> pve[Hypervisor management]
   lan --> guests[Private workloads]`,
-    stack: ["Proxmox VE", "OPNsense", "WireGuard", "Linux networking", "Bash", "Cloud-init"],
-    learned:
-      "I learned that infrastructure hardening is mostly sequencing: prove recovery first, validate the new path second, and only then remove the old exposure.",
+    stack: ["Proxmox VE", "OPNsense", "CARP", "pfsync", "WireGuard", "Linux networking", "Bash", "Cloud-init"],
+  },
+  {
+    title: "Zabbix Monitoring Service",
+    summary:
+      "A monolithic Zabbix monitoring service deployed as a single-node control point for metrics and alerting across a customer fleet.",
+    period: "Customer deployment",
+    status: "Implemented · Helity",
+    detail:
+      "Stood up the all-in-one Zabbix server and onboarded 8 client servers, rolling out Zabbix Agent 2 across them with Ansible for repeatable and consistent installation and configuration.",
+    highlights: [
+      "Deployed a monolithic Zabbix server with the server, database, and web frontend on one node as the monitoring control point.",
+      "Rolled out Zabbix Agent 2 to 8 client servers using an Ansible playbook for repeatable, uniform installation and registration.",
+      "Standardized host and agent configuration so monitoring coverage is consistent and easy to extend to new hosts.",
+    ],
+    timeline: [
+      {
+        title: "Stand up Zabbix",
+        description:
+          "Deploy the monolithic Zabbix server with the server, database, and web frontend on one node.",
+      },
+      {
+        title: "Define agent rollout",
+        description:
+          "Create the Ansible path for repeatable Zabbix Agent 2 installation and configuration.",
+      },
+      {
+        title: "Roll out Agent 2",
+        description:
+          "Use Ansible to install and configure Zabbix Agent 2 across the 8 client servers.",
+      },
+      {
+        title: "Verify monitoring",
+        description:
+          "Onboard the hosts into Zabbix and confirm that the fleet reports into monitoring consistently.",
+      },
+    ],
+    diagram: `flowchart LR
+  ansible[Ansible playbook] --> agents[8 client servers with Agent 2]
+  agents --> zabbix[Monolithic Zabbix server]`,
+    stack: ["Zabbix", "Zabbix Agent 2", "Ansible", "Linux", "PostgreSQL"],
   },
   {
     title: "Proxmox Platform Infrastructure as Code",
@@ -327,8 +373,6 @@ export const projects: ProjectEntry[] = [
   inventory --> ansible[Ansible guest configuration]`,
     stack: ["Packer", "Terraform", "Ansible", "Proxmox VE", "OPNsense", "Cloud-init", "GitHub Actions"],
     repoUrl: "https://github.com/Sureinity/proxmox-platform-iac",
-    learned:
-      "I learned that platform IaC gets much easier to trust when image, network, workload, and guest-configuration ownership are explicit enough to review and change independently.",
   },
   {
     title: "Web Security Chaos Toolkit",
@@ -372,8 +416,6 @@ export const projects: ProjectEntry[] = [
   compose --> target[Test targets]
   scanners --> reports[Structured reports]`,
     stack: ["Python", "Docker Compose", "ZAP", "Nuclei", "Nmap", "Trivy", "Semgrep", "pytest"],
-    learned:
-      "I learned that security tooling becomes more useful when it produces consistent evidence instead of one-off terminal output.",
   },
   {
     title: "Proxmox Private VM Access with WireGuard",
@@ -417,53 +459,6 @@ export const projects: ProjectEntry[] = [
   wg[WireGuard] --> vm`,
     stack: ["Terraform", "Ansible", "Proxmox VE", "WireGuard", "GitHub Actions", "Makefile"],
     repoUrl: "https://github.com/Sureinity/proxmox-private-vm-access-wireguard",
-    learned:
-      "I learned why IaC ownership boundaries matter: host state, VM state, and access paths should not be mixed into one unclear automation layer.",
-  },
-  {
-    title: "Proxmox Provisioning Control Plane",
-    summary:
-      "A containerized API and worker flow for requesting, validating, and provisioning virtual machines through a controlled interface.",
-    period: "Platform project",
-    status: "Implemented · Helity",
-    detail:
-      "This project turns manual VM creation into an API-backed workflow with validation, job tracking, and integration hooks for an internal low-code interface.",
-    highlights: [
-      "Built a FastAPI service around Proxmox API operations and VM request validation.",
-      "Used Docker Compose to run the API, database, and integration layer consistently.",
-      "Separated request intake from provisioning work so failures can be tracked instead of hidden.",
-    ],
-    timeline: [
-      {
-        title: "Define request contract",
-        description:
-          "Model VM inputs, environment values, and validation rules before touching the hypervisor API.",
-      },
-      {
-        title: "Containerize service",
-        description:
-          "Package the API and supporting services with Docker Compose for repeatable local and server runs.",
-      },
-      {
-        title: "Add job handling",
-        description:
-          "Track provisioning status through database-backed jobs instead of relying on one-shot scripts.",
-      },
-      {
-        title: "Integrate interface",
-        description:
-          "Connect the request workflow to a low-code front end while keeping provisioning logic in the API.",
-      },
-    ],
-    diagram: `flowchart LR
-  ui[Request UI] --> api[FastAPI service]
-  api --> db[(Job database)]
-  api --> worker[Provisioning worker]
-  worker --> proxmox[Proxmox API]
-  proxmox --> vm[Virtual machine]`,
-    stack: ["FastAPI", "Python", "Docker Compose", "PostgreSQL", "Proxmox API"],
-    learned:
-      "I learned how platform work changes when the goal is not just to create infrastructure, but to make the request path auditable and repeatable.",
   },
 ].filter((project) => project.title !== "Proxmox Private VM Access with WireGuard");
 

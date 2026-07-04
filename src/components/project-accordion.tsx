@@ -88,15 +88,6 @@ export function ProjectAccordion({ projects }: ProjectAccordionProps) {
                     ))}
                   </ol>
                 </div>
-
-                <div className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--background-elevated)] px-4 py-4">
-                  <p className="mono-detail uppercase text-[color:var(--muted-foreground)]">
-                    Engineering takeaway
-                  </p>
-                  <p className="mt-3 text-sm leading-7 text-[color:var(--muted-foreground)] sm:text-base">
-                    {project.learned}
-                  </p>
-                </div>
               </div>
 
               <div className="space-y-4">
