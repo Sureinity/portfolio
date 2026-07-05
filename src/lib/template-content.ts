@@ -128,9 +128,9 @@ export const heroProfile: HeroProfile = {
   initials: "JGD",
   role: "DevOps / Platform Engineer",
   tagline:
-    "I build practical systems for infrastructure, automation, and deployment workflows.",
+    "Builds practical systems for infrastructure, automation, and deployment workflows.",
   summary:
-    "I’m a Philippines-based Linux system administrator working toward DevOps and platform engineering. I spend most of my time around Linux, networking, IaC, CI/CD, and the operational habits that make systems easier to run.",
+    "A Linux system administrator working toward DevOps and platform engineering, with a strong interest in Linux, networking, Infrastructure as Code (IaC), CI/CD, and automation.",
   status:
     "Linux system administrator based in the Philippines, building toward DevOps and platform engineering work.",
   quickFacts: [
@@ -214,9 +214,8 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const aboutParagraphs = [
-  "Right now I’m building **Proxmox-focused infrastructure** projects: gated management paths, **platform IaC**, image pipelines, and automation that turns messy setup work into something repeatable.",
-  "I’m currently focusing more on **security** in **DevOps** and **platform engineering**: access paths, network boundaries, safer defaults, and the habits that make systems easier to trust.",
-  "Outside work, I’m usually learning through **side projects**, documenting what I figure out, and poking around **open source** or sports when I need to reset.",
+  "Most recent work revolves around **Proxmox infrastructure**, image pipelines, **platform IaC**, and building repeatable deployment workflows, with a growing focus on **secure access**, network boundaries, and reliable operations.",
+  "Outside of work, time is usually spent tinkering with **side projects**, exploring new technologies, or training in **calisthenics**.",
 ];
 
 export const projects: ProjectEntry[] = [
