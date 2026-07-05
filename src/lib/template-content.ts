@@ -130,7 +130,7 @@ export const heroProfile: HeroProfile = {
   tagline:
     "Builds practical systems for infrastructure, automation, and deployment workflows.",
   summary:
-    "A Linux system administrator working toward DevOps and platform engineering, with a strong interest in Linux, networking, Infrastructure as Code (IaC), CI/CD, and automation.",
+    "A Linux system administrator specializing in DevOps and platform engineering, with hands-on experience in Linux, networking, Infrastructure as Code (IaC), CI/CD, and automation.",
   status:
     "Linux system administrator based in the Philippines, building toward DevOps and platform engineering work.",
   quickFacts: [
