@@ -126,13 +126,13 @@ export const navLinks: NavLink[] = [
 export const heroProfile: HeroProfile = {
   name: "John Ghlen Dealdo",
   initials: "JGD",
-  role: "DevOps / Platform Engineer",
+  role: "DevOps / Infrastructure Engineer",
   tagline:
-    "Builds practical systems for infrastructure, automation, and deployment workflows.",
+    "Builds practical infrastructure systems designed to be repeatable, recoverable, and easy to operate.",
   summary:
-    "A Linux system administrator specializing in DevOps and platform engineering, with hands-on experience in Linux, networking, Infrastructure as Code (IaC), CI/CD, and automation.",
+    "An infrastructure engineer with a Linux systems background, specializing in DevOps, infrastructure automation, and reliable operations. Hands-on experience across Linux, networking, Infrastructure as Code (IaC), CI/CD, and automation.",
   status:
-    "Linux system administrator based in the Philippines, building toward DevOps and platform engineering work.",
+    "Linux system administrator based in the Philippines, building toward DevOps and infrastructure engineering work.",
   quickFacts: [
     "Linux system administrator",
     "Philippines-based",
@@ -144,7 +144,7 @@ export const heroProfile: HeroProfile = {
 export const overviewItems: OverviewItem[] = [
   {
     label: "Track",
-    value: "DevOps / Platform",
+    value: "DevOps / Infrastructure",
     detail: "Focused on infrastructure, delivery, and operability",
     icon: BriefcaseBusiness,
   },
@@ -157,7 +157,7 @@ export const overviewItems: OverviewItem[] = [
   {
     label: "Work",
     value: "Linux system administrator",
-    detail: "Growing practical systems experience while moving deeper into DevOps and platform work",
+    detail: "Growing practical systems experience while moving deeper into DevOps and Infrastructure work",
     icon: Calendar,
   },
   {
@@ -214,7 +214,7 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const aboutParagraphs = [
-  "Most recent work revolves around **Proxmox infrastructure**, image pipelines, **platform IaC**, and building repeatable deployment workflows, with a growing focus on **secure access**, network boundaries, and reliable operations.",
+  "Most recent work revolves around **Proxmox infrastructure**, image pipelines, **infrastructure as code**, and repeatable deployment workflows, with a growing focus on **secure access**, network boundaries, and reliable operations.",
   "Outside of work, time is usually spent tinkering with **side projects**, exploring new technologies, or training in **calisthenics**.",
 ];
 

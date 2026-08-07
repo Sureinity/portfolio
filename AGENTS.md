@@ -34,7 +34,7 @@ This repository is John Ghlen Dealdo's personal DevOps / platform engineering po
 
 - Name shown in hero: `John Ghlen Dealdo`.
 - Footer owner name: `John Ghlen`.
-- Current role switcher rotates through `DevOps Engineer`, `Platform Engineer`, and `Linux SysAdmin`.
+- Current role switcher rotates through `DevOps Engineer`, `Infrastructure Engineer`, and `Linux SysAdmin`.
 - Default color theme must be light/white.
 - The About section should stay concise, first-person, and focused on practical infrastructure, security in DevOps/platform engineering, Proxmox-focused projects, side projects, open source, and sports.
 - Do not describe Digos College as expected or undergraduate; it is shown as graduated.

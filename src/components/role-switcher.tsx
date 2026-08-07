@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const roles = [
   { specialty: "DevOps", suffix: "Engineer" },
-  { specialty: "Platform", suffix: "Engineer" },
+  { specialty: "Infrastructure", suffix: "Engineer" },
   { specialty: "Linux", suffix: "SysAdmin" },
 ];
 const SWITCH_INTERVAL_MS = 1600;

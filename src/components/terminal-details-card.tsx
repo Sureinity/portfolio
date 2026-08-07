@@ -45,7 +45,7 @@ export function TerminalDetailsCard() {
     },
     {
       icon: Target,
-      value: "DevOps / Platform",
+      value: "DevOps / Infra",
     },
     {
       icon: MapPin,
