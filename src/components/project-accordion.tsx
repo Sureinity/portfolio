@@ -46,7 +46,7 @@ export function ProjectAccordion({ projects }: ProjectAccordionProps) {
                 </p>
 
                 <div>
-                  <p className="mono-detail uppercase text-[color:var(--muted-foreground)]">
+                  <p className="mono-detail text-[color:var(--muted-foreground)]">
                     What this project covers
                   </p>
                   <ul className="mt-3 space-y-3 text-sm leading-7 text-[color:var(--muted-foreground)] sm:text-base">
@@ -61,7 +61,7 @@ export function ProjectAccordion({ projects }: ProjectAccordionProps) {
 
                 {project.diagram ? (
                   <div>
-                    <p className="mono-detail uppercase text-[color:var(--muted-foreground)]">
+                    <p className="mono-detail text-[color:var(--muted-foreground)]">
                       Compact schema
                     </p>
                     <MermaidDiagram chart={project.diagram} />
@@ -69,7 +69,7 @@ export function ProjectAccordion({ projects }: ProjectAccordionProps) {
                 ) : null}
 
                 <div>
-                  <p className="mono-detail uppercase text-[color:var(--muted-foreground)]">
+                  <p className="mono-detail text-[color:var(--muted-foreground)]">
                     Sequence
                   </p>
                   <ol className="project-timeline mt-4">
@@ -92,7 +92,7 @@ export function ProjectAccordion({ projects }: ProjectAccordionProps) {
 
               <div className="space-y-4">
                 <div>
-                  <p className="mono-detail uppercase text-[color:var(--muted-foreground)]">
+                  <p className="mono-detail text-[color:var(--muted-foreground)]">
                     Stack
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">

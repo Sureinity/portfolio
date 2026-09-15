@@ -130,9 +130,9 @@ export const heroProfile: HeroProfile = {
   tagline:
     "Builds practical infrastructure systems designed to be repeatable, recoverable, and easy to operate.",
   summary:
-    "An infrastructure engineer with a Linux systems background, specializing in DevOps, infrastructure automation, and reliable operations. Hands-on experience across Linux, networking, Infrastructure as Code (IaC), CI/CD, and automation.",
+    "Linux administrator turning production Proxmox environments into codified, recoverable platforms using Terraform, Packer, and Ansible. Hands-on across networking, IaC, CI/CD, and secure service deployment.",
   status:
-    "Linux system administrator based in the Philippines, building toward DevOps and infrastructure engineering work.",
+    "Linux system administrator and infrastructure engineer based in the Philippines.",
   quickFacts: [
     "Linux system administrator",
     "Philippines-based",
@@ -215,6 +215,8 @@ export const socialLinks: SocialLink[] = [
 
 export const aboutParagraphs = [
   "Most recent work revolves around **Proxmox infrastructure**, image pipelines, **infrastructure as code**, and repeatable deployment workflows, with a growing focus on **secure access**, network boundaries, and reliable operations.",
+  "The problems that hold attention the most are the ones where the blast radius matters — hardening network boundaries, splitting infrastructure into recoverable states, and making complex systems simple enough to hand over. A good deployment should be boring, and a good rollback should already be written.",
+  "Background is in **Linux system administration**, now growing deeper into platform engineering, codified infrastructure, and operational tooling. Currently part-time with a German infrastructure company while building toward full-time DevOps and infrastructure engineering work.",
   "Outside of work, time is usually spent tinkering with **side projects**, exploring new technologies, or training in **calisthenics**.",
 ];
 
